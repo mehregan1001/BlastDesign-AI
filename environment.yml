@@ -1,0 +1,15 @@
+name: mining-ai
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - jupyterlab
+  - numpy
+  - pandas
+  - matplotlib
+  - scipy
+  - scikit-learn
+  - openpyxl
+  - pytest
+  - nbconvert
+  - pip

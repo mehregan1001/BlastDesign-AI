@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+outputs/figures/*.png
+data/processed/*.csv
+!data/processed/.gitkeep

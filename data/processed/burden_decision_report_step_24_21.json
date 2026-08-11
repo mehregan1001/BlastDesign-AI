@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0",
+  "module": "conventional_burden_comparison",
+  "decision": {
+    "decision_gate": "RESEARCH_COMPARATOR_ONLY",
+    "software_output_mode": "COMPARATIVE_RANGE_WITH_EVIDENCE_WARNING",
+    "recommended_burden_m": null,
+    "site_calibration_required": true,
+    "independently_validated_model_count": 0
+  },
+  "scenario_summaries": {
+    "all_legacy_models": {
+      "model_count": 7,
+      "mean_burden_m": 6.137371,
+      "median_burden_m": 5.83937,
+      "minimum_burden_m": 5.527324,
+      "maximum_burden_m": 6.983189,
+      "range_m": 1.455865
+    },
+    "audited_plus_partial": {
+      "model_count": 4,
+      "mean_burden_m": 6.21764,
+      "median_burden_m": 6.057185,
+      "minimum_burden_m": 5.773,
+      "maximum_burden_m": 6.983189,
+      "range_m": 1.210189
+    },
+    "audited_only": {
+      "model_count": 2,
+      "mean_burden_m": 6.378094,
+      "median_burden_m": 6.378094,
+      "minimum_burden_m": 5.773,
+      "maximum_burden_m": 6.983189,
+      "range_m": 1.210189
+    }
+  },
+  "model_outputs": [
+    {
+      "model_id": "CONV_KONYA_1972",
+      "model_name": "Konya 1972",
+      "burden_m": 5.527324,
+      "evidence_tier": "C",
+      "audit_domain_status": "DOMAIN_UNRESOLVED",
+      "independently_validated": false
+    },
+    {
+      "model_id": "CONV_KONYA_1983",
+      "model_name": "Konya 1983",
+      "burden_m": 5.689716,
+      "evidence_tier": "C",
+      "audit_domain_status": "DOMAIN_UNRESOLVED",
+      "independently_validated": false
+    },
+    {
+      "model_id": "CONV_JIMENO",
+      "model_name": "Lopez Jimeno",
+      "burden_m": 5.773,
+      "evidence_tier": "A",
+      "audit_domain_status": "AUDITED_BRANCH_MATCH",
+      "independently_validated": false
+    },
+    {
+      "model_id": "CONV_TATIYA",
+      "model_name": "Tatiya–Al-Ajmi",
+      "burden_m": 5.83937,
+      "evidence_tier": "B",
+      "audit_domain_status": "PARTIAL_BRANCH_MATCH",
+      "independently_validated": false
+    },
+    {
+      "model_id": "CONV_ASH",
+      "model_name": "Ash",
+      "burden_m": 6.275,
+      "evidence_tier": "B",
+      "audit_domain_status": "PARTIAL_BRANCH_MATCH",
+      "independently_validated": false
+    },
+    {
+      "model_id": "CONV_BHANDARI",
+      "model_name": "Bhandari",
+      "burden_m": 6.874,
+      "evidence_tier": "C",
+      "audit_domain_status": "DOMAIN_UNRESOLVED",
+      "independently_validated": false
+    },
+    {
+      "model_id": "CONV_RUSTAN",
+      "model_name": "Rustan",
+      "burden_m": 6.983189,
+      "evidence_tier": "A",
+      "audit_domain_status": "AUDITED_BRANCH_MATCH",
+      "independently_validated": false
+    }
+  ],
+  "warnings": [
+    "No independently validated burden model was established in the present audit.",
+    "Reported ranges represent deterministic model-form variation, not confidence intervals.",
+    "Site-specific calibration and validation are required before operational use.",
+    "No model output or ensemble statistic should be presented as a validated design burden."
+  ]
+}

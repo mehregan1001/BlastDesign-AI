@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0",
+  "validation_status": "PASSED",
+  "checks_passed": 30,
+  "validated_report": "burden_decision_report_step_24_21.json",
+  "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+}

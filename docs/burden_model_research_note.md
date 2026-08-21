@@ -1,0 +1,155 @@
+# BlastDesign-AI: Evidence-Aware Comparison of Legacy Mine-Blasting Burden Models
+
+**Author:** Alireza Mehregan  
+**Project:** BlastDesign-AI  
+**Research stage:** Reproducible methodological reconstruction and comparative assessment  
+**Software status:** Python package with 18 passing automated tests
+
+## 1. Research background
+
+BlastDesign-AI reconstructs and modernizes a legacy mine-blasting design program originally developed as part of an MSc thesis in mining engineering.
+
+The original software integrated empirical and semi-empirical relationships describing blast geometry, fragmentation, ground vibration, airblast, and flyrock.
+
+The current Python implementation begins by reassessing seven legacy burden-design relationships through transparent model registration, applicability screening, structural comparison, and explicit decision safeguards.
+
+The original research did not provide an independently collected operational blast dataset. Therefore, the present results are interpreted as comparative research outputs rather than field-validated engineering recommendations.
+
+## 2. Research question
+
+When several historical burden-design equations are applied to the same reference blasting scenario, how much disagreement remains after accounting for documented implementation branches and model-applicability evidence?
+
+A related question is whether a software system can prevent apparently precise numerical outputs from being misrepresented as validated blast-design recommendations.
+
+## 3. Legacy burden models
+
+The reconstructed model collection includes:
+
+1. Ash.
+2. Bhandari.
+3. López Jimeno.
+4. Konya, 1972.
+5. Konya, 1983.
+6. Rustan.
+7. Tatiya–Al-Ajmi.
+
+The reference scenario includes a 251 mm blasthole diameter, ANFO explosive conditions where applicable, and an 85 MPa rock-strength input for the relevant strength-dependent relationship.
+
+This reference scenario is a reconstructed analytical example. It is not an independent field-validation dataset.
+
+## 4. Evidence classification
+
+Each model receives an applicability classification according to the evidence available for its implemented calculation branch.
+
+| Evidence tier | Interpretation | Number of models |
+|---|---|---:|
+| A | Documented implementation branch matches the reference scenario. | 2 |
+| B | Some applicable conditions are documented, but important domain information remains unresolved. | 2 |
+| C | Broader applicability or calibration conditions remain unresolved. | 3 |
+
+These evidence tiers describe implementation and applicability transparency. They do not establish independent predictive accuracy.
+
+No model in the current comparison has been independently validated against a suitable site-specific blast dataset.
+
+## 5. Individual burden estimates
+
+| Model | Evidence tier | Estimated burden, m |
+|---|---|---:|
+| Ash | B | 6.275000 |
+| Bhandari | C | 6.874000 |
+| López Jimeno | A | 5.773000 |
+| Konya, 1972 | C | 5.527324 |
+| Konya, 1983 | C | 5.689716 |
+| Rustan | A | 6.983189 |
+| Tatiya–Al-Ajmi | B | 5.839370 |
+
+## 6. Evidence-conditioned comparison
+
+Three screening scenarios were evaluated:
+
+| Scenario | Models | Mean burden, m | Median burden, m | Population standard deviation, m | Burden range, m |
+|---|---:|---:|---:|---:|---:|
+| All legacy models | 7 | 6.137371 | 5.839370 | 0.543940 | 1.455865 |
+| Audited and partially documented models | 4 | 6.217640 | 6.057185 | 0.482221 | 1.210189 |
+| Audited implementation branches only | 2 | 6.378094 | 6.378094 | 0.605094 | 1.210189 |
+
+Restricting the comparison to the two audited implementation branches increases the mean burden by approximately 0.240723 m, or 3.922%, relative to the full seven-model comparison.
+
+However, the audited-only scenario still produces a burden range of approximately 1.210 m.
+
+## 7. Main scientific finding
+
+Applicability screening changes the composition and central tendency of the model ensemble, but substantial disagreement remains even between the two models with documented implementation-branch matches.
+
+This remaining spread represents structural disagreement between empirical equations.
+
+It must not be interpreted as:
+
+- A statistical confidence interval.
+- A probabilistic uncertainty bound.
+- Evidence of predictive accuracy.
+- A validated site-specific design recommendation.
+
+Distinguishing structural model disagreement from validated predictive uncertainty is essential when historical engineering formulas are incorporated into modern decision-support software.
+
+## 8. Decision-safety mechanism
+
+Because independent site-specific validation is unavailable, the software enforces the following decision state:
+
+```text
+Decision gate: RESEARCH_COMPARATOR_ONLY
+Output mode: COMPARATIVE_RANGE_WITH_EVIDENCE_WARNING
+Recommended burden: None
+```
+
+The system therefore permits transparent comparison while preventing an unsupported final engineering recommendation.
+
+## 9. Reproducibility and software quality
+
+The project currently includes:
+
+- A reusable Python package under `src/blastdesign_ai`.
+- Reconstructed burden-model implementations.
+- An evidence-aware burden decision-report builder.
+- A reusable decision-contract validator.
+- An explicitly defined package interface.
+- Automated tests covering model behavior, report construction, decision safeguards, and public API consistency.
+- A complete automated test suite containing 18 passing tests.
+- Version-controlled source code and research outputs.
+
+The automated checks include safeguards against unsupported recommendations, duplicated model identifiers, inconsistent numerical ranges, missing model information, and unsupported validation claims.
+
+## 10. Limitations
+
+The present research stage does not include:
+
+- Independently collected mine-blast measurements.
+- Site-specific empirical calibration.
+- External predictive validation.
+- A trained machine-learning model.
+- A probabilistically calibrated uncertainty model.
+- A field-ready burden recommendation.
+
+These limitations are explicitly documented and enforced within the software decision logic.
+
+## 11. Future research directions
+
+Potential extensions include:
+
+1. Reconstructing additional fragmentation, vibration, airblast, and flyrock relationships from the legacy BlastDesign framework.
+2. Incorporating peer-reviewed post-2010 developments in blast design and predictive modeling.
+3. Performing systematic parameter-sensitivity and scenario analyses.
+4. Integrating traceable operational datasets when suitable observations become available.
+5. Comparing interpretable statistical or machine-learning models against empirical baselines.
+6. Introducing calibrated predictive uncertainty only when supported by adequate validation data.
+7. Developing constrained, multi-objective mining-engineering decision-support workflows.
+
+The underlying methodological principles—model provenance, applicability checks, uncertainty-aware comparison, explicit decision safeguards, and reproducible testing—may also transfer to other mining-engineering problems, including adaptive underground stope dimensioning.
+
+Such transfer would require its own domain-specific models, geotechnical inputs, and validation evidence.
+
+## 12. Current conclusion
+
+BlastDesign-AI demonstrates that historical mine-blasting relationships can be reconstructed within a transparent and testable Python research framework.
+
+The present comparison identifies persistent structural disagreement among burden equations and demonstrates an explicit software mechanism for preventing unsupported design recommendations when independent validation evidence is unavailable.

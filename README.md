@@ -129,8 +129,7 @@ Expected result:
 From the project root:
 
 ```bat
-set "PYTHONPATH=%CD%\src"
-python -m blastdesign_ai data\processed\burden_decision_report_step_24_21.json
+blastdesign-validate data\processed\burden_decision_report_step_24_21.json
 ```
 
 Expected output:

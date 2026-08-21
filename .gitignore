@@ -24,3 +24,9 @@ Thumbs.db
 outputs/figures/*.png
 data/processed/*.csv
 !data/processed/.gitkeep
+
+# Python build and packaging artifacts
+*.egg-info/
+build/
+dist/
+*.whl

@@ -5,13 +5,30 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "blastdesign-ai"
 version = "0.1.0"
-description = "Reconstructed BlastDesign learning, audit and research project"
+description = "Evidence-aware Python reconstruction and assessment of mine-blasting design models"
+readme = "README.md"
 requires-python = ">=3.10"
+
+authors = [
+    { name = "Alireza Mehregan" },
+]
+
+keywords = [
+    "mining-engineering",
+    "drill-and-blast",
+    "burden-design",
+    "decision-support",
+    "structural-uncertainty",
+]
+
 dependencies = [
     "numpy>=1.24",
     "pandas>=2.0",
     "matplotlib>=3.7",
 ]
+
+[project.scripts]
+blastdesign-validate = "blastdesign_ai.__main__:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

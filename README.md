@@ -1,5 +1,11 @@
 # BlastDesign-AI
 
+## Status note: Preliminary public research prototype (alpha).
+BlastDesign-AI is under active development and has not been validated for operational or safety-critical blasting decisions. The current repository is published to document the project concept, initial computational work and planned development.
+
+BlastDesign-AI builds on the author’s MSc research and the original BlastDesign engineering model for drilling-and-blasting design under technical, safety and environmental constraints. The present project aims to extend that work with Python-based data analysis and machine-learning methods.
+
+
 ### Evidence-aware reconstruction and modernization of legacy mine-blasting design software
 
 BlastDesign-AI is a Python research project that reconstructs and modernizes a mine-blasting design program originally developed during an MSc research project in mining engineering at Imam Khomeini International University, Iran.
@@ -182,3 +188,6 @@ for the detailed research background, evidence classification, numerical results
 **Alireza Mehregan**
 
 Mining engineer and research engineer working on computational mining, empirical model reconstruction, uncertainty-aware engineering analysis, and the integration of Python-based data science into mining research.
+
+## Copyright Information
+Copyright © 2026 Alireza Mehregan. All rights reserved. Licensing terms will be added in a later project release.

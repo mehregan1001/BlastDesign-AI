@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software or its research outputs, please cite it using the metadata below."
+title: "BlastDesign-AI: Evidence-aware reconstruction and assessment of mine-blasting design models"
+type: software
+
+authors:
+  - family-names: "Mehregan"
+    given-names: "Alireza"
+
+version: 0.1.0
+repository-code: "https://github.com/mehregan1001/BlastDesign-AI"
+
+abstract: >-
+  BlastDesign-AI is a Python research project for the transparent
+  reconstruction, applicability assessment, and evidence-aware comparison
+  of empirical mine-blasting design models.
+
+keywords:
+  - mining engineering
+  - blast design
+  - burden design
+  - decision support
+  - structural uncertainty
+  - research software

@@ -1,4 +1,5 @@
 # BlastDesign-AI
+[![Automated tests](https://github.com/mehregan1001/BlastDesign-AI/actions/workflows/tests.yml/badge.svg)](https://github.com/mehregan1001/BlastDesign-AI/actions/workflows/tests.yml)
 
 ## Status note: Preliminary public research prototype (alpha).
 BlastDesign-AI is under active development and has not been validated for operational or safety-critical blasting decisions. The current repository is published to document the project concept, initial computational work and planned development.

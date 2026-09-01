@@ -189,6 +189,8 @@ for the detailed research background, evidence classification, numerical results
 **Alireza Mehregan**
 
 Mining engineer and research engineer working on computational mining, empirical model reconstruction, uncertainty-aware engineering analysis, and the integration of Python-based data science into mining research.
+## License
 
+BlastDesign-AI is released under the [MIT License](LICENSE).
 ## Copyright Information
 Copyright © 2026 Alireza Mehregan. All rights reserved. Licensing terms will be added in a later project release.

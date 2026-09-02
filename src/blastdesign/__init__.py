@@ -1,6 +1,9 @@
 """BlastDesign-AI reconstructed learning and research package."""
 
-from .audit import gole_gohar_burden_results
+from .audit import (
+    gole_gohar_burden_results,
+    gole_gohar_reference_inputs,
+)
 from .burden import (
     ash_burden,
     bhandari_burden,
@@ -32,4 +35,5 @@ __all__ = [
     "score_model",
     "tatiya_al_ajmi_burden",
     "tatiya_al_ajmi_coefficients",
+    "gole_gohar_reference_inputs",
 ]

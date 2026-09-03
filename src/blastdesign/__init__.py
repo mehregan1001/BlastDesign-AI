@@ -1,5 +1,9 @@
 """BlastDesign-AI reconstructed learning and research package."""
 from .comparison import evaluate_conventional_burden_models
+from .sensitivity import (
+    DEFAULT_DIAMETER_GRID_MM,
+    build_gole_gohar_diameter_sensitivity_table,
+)
 from .audit import (
     gole_gohar_burden_results,
     gole_gohar_reference_inputs,
@@ -37,4 +41,6 @@ __all__ = [
     "tatiya_al_ajmi_coefficients",
     "gole_gohar_reference_inputs",
     "evaluate_conventional_burden_models",
+    "DEFAULT_DIAMETER_GRID_MM",
+"build_gole_gohar_diameter_sensitivity_table",
 ]

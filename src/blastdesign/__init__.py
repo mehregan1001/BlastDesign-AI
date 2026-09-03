@@ -1,5 +1,7 @@
 """BlastDesign-AI reconstructed learning and research package."""
 from .comparison import evaluate_conventional_burden_models
+build_diameter_ensemble_summary,
+build_model_diameter_response_summary,
 from .sensitivity import (
     DEFAULT_DIAMETER_GRID_MM,
     build_gole_gohar_diameter_sensitivity_table,
@@ -43,4 +45,6 @@ __all__ = [
     "evaluate_conventional_burden_models",
     "DEFAULT_DIAMETER_GRID_MM",
 "build_gole_gohar_diameter_sensitivity_table",
+    "build_diameter_ensemble_summary",
+"build_model_diameter_response_summary",
 ]

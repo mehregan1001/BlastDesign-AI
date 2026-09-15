@@ -76,6 +76,18 @@ The two audited model branches still disagree by approximately **1.210 m**.
 
 This disagreement represents structural differences between empirical equations. It is not a confidence interval, a calibrated uncertainty estimate, or evidence that either result is correct for a particular mine.
 
+## Diameter sensitivity analysis
+
+A controlled one-factor-at-a-time analysis was performed by varying hole diameter from 181 to 311 mm while keeping the other reference inputs fixed.
+
+![Diameter sensitivity comparison](docs/figures/diameter_sensitivity_comparison.png)
+
+All seven model outputs increase with diameter, although at different rates. The seven-model range is 1.455865 m at the 251 mm reference diameter. Across the sampled interval, it reaches its lowest sampled value of 1.394229 m at 271 mm and increases to 1.722230 m at 311 mm.
+
+The changing range reflects structural differences and ranking changes among the empirical equations. It does not identify an optimal diameter or represent calibrated predictive uncertainty.
+
+See the [detailed diameter sensitivity analysis](docs/diameter_sensitivity_analysis.md) for the fixed inputs, numerical interpretation, limitations, and reproducibility information.
+
 ## Decision safeguards
 
 Because independent site-specific validation is not available, the software enforces:

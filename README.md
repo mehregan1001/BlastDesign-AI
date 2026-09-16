@@ -125,7 +125,7 @@ The software includes:
 - A documented public Python package interface.
 - A command-line report validator.
 - Automated checks for unsupported recommendations and inconsistent model outputs.
-- A full test suite with **21 passing tests**.
+- A full test suite with **39 passing tests**.
 
 ## Run the automated tests
 
@@ -140,7 +140,7 @@ python -m pytest -v
 Expected result:
 
 ```text
-21 passed
+39 passed
 ```
 
 ## Validate the research decision report

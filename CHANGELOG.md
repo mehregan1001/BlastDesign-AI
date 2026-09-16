@@ -4,6 +4,29 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-16
+
+### Added
+
+- Centralized Gole Gohar reference-scenario inputs.
+- Shared evaluator for the seven reconstructed conventional burden models.
+- Controlled one-factor-at-a-time hole-diameter sensitivity analysis.
+- Ensemble-level and model-level diameter-response summary functions.
+- Reproducible Jupyter notebook and publication-quality sensitivity figure.
+- Machine-readable model-output, ensemble-summary, and model-response CSV files.
+- Automated verification that saved sensitivity artifacts match regenerated calculations.
+- Detailed diameter-sensitivity research documentation.
+
+### Changed
+
+- Expanded the automated test suite from 21 to 39 tests.
+- Updated the project overview with the diameter-sensitivity findings and limitations.
+
+### Research safeguards
+
+- Retains the `RESEARCH_COMPARATOR_ONLY` decision gate.
+- Treats the calculated range as structural model disagreement, not a confidence interval.
+- Does not identify an optimal diameter or issue an operational burden recommendation.
 ## [0.1.0] - 2026-09-02
 
 ### Added
@@ -38,5 +61,5 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - No probabilistically calibrated uncertainty model.
 - No field-ready blasting recommendation.
 
-[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/mehregan1001/BlastDesign-AI/releases/tag/v0.1.0
+[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.1.0...v0.2.0

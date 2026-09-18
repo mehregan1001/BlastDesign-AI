@@ -26,8 +26,10 @@ from .registry import (
 )
 from .sensitivity import (
     DEFAULT_DIAMETER_GRID_MM,
+    DEFAULT_UCS_GRID_MPA,
     build_diameter_ensemble_summary,
     build_gole_gohar_diameter_sensitivity_table,
+    build_gole_gohar_ucs_sensitivity_table,
     build_model_diameter_response_summary,
 )
 from .validation import assert_close
@@ -35,12 +37,14 @@ from .validation import assert_close
 
 __all__ = [
     "DEFAULT_DIAMETER_GRID_MM",
+    "DEFAULT_UCS_GRID_MPA",
     "SCORE_COLUMNS",
     "ash_burden",
     "assert_close",
     "bhandari_burden",
     "build_diameter_ensemble_summary",
     "build_gole_gohar_diameter_sensitivity_table",
+    "build_gole_gohar_ucs_sensitivity_table",
     "build_model_diameter_response_summary",
     "build_model_registry",
     "calculate_blast_metrics",

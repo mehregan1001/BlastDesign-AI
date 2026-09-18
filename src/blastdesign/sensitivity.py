@@ -16,7 +16,19 @@ DEFAULT_DIAMETER_GRID_MM = tuple(
     for value in range(181, 312, 10)
 )
 
-
+DEFAULT_UCS_GRID_MPA = (
+    40.0,
+    54.999,
+    55.0,
+    69.999,
+    70.0,
+    85.0,
+    110.0,
+    110.001,
+    180.0,
+    180.001,
+    220.0,
+)
 def build_gole_gohar_diameter_sensitivity_table(
     hole_diameters_mm: Iterable[float] | None = None,
 ) -> pd.DataFrame:
@@ -144,7 +156,104 @@ def build_gole_gohar_diameter_sensitivity_table(
     )
 
     return result
+def build_gole_gohar_ucs_sensitivity_table(
+    ucs_values_mpa: Iterable[float] | None = None,
+) -> pd.DataFrame:
+    """Build a seven-model UCS-sensitivity comparison.
 
+    The default grid explicitly samples the strength-class boundaries
+    used by Lopez Jimeno and Tatiya-Al-Ajmi, including values immediately
+    below and above the discontinuities.
+
+    The sampled interval is a classification probe, not a universal
+    validation domain for all models.
+    """
+
+    if ucs_values_mpa is None:
+        raw_values = list(DEFAULT_UCS_GRID_MPA)
+    else:
+        if isinstance(ucs_values_mpa, (str, bytes)):
+            raise TypeError(
+                "ucs_values_mpa must be an iterable "
+                "of numerical values."
+            )
+
+        try:
+            raw_values = list(ucs_values_mpa)
+        except TypeError as error:
+            raise TypeError(
+                "ucs_values_mpa must be an iterable "
+                "of numerical values."
+            ) from error
+
+    if not raw_values:
+        raise ValueError(
+            "At least one UCS value is required."
+        )
+
+    ucs_values = [
+        positive_float(value, "ucs_mpa")
+        for value in raw_values
+    ]
+
+    if len(set(ucs_values)) != len(ucs_values):
+        raise ValueError(
+            "UCS values must be unique."
+        )
+
+    ucs_values.sort()
+
+    reference_inputs = gole_gohar_reference_inputs()
+    tables = []
+
+    for ucs in ucs_values:
+        scenario_inputs = reference_inputs.copy()
+        scenario_inputs["ucs_mpa"] = ucs
+
+        model_table = evaluate_conventional_burden_models(
+            **scenario_inputs
+        )
+
+        model_table.insert(
+            0,
+            "ucs_mpa",
+            ucs,
+        )
+
+        tables.append(model_table)
+
+    result = pd.concat(
+        tables,
+        ignore_index=True,
+    )
+
+    fixed_inputs = reference_inputs.copy()
+    reference_ucs = fixed_inputs.pop("ucs_mpa")
+
+    result.attrs["analysis_type"] = (
+        "one_factor_at_a_time"
+    )
+    result.attrs["varied_parameter"] = "ucs_mpa"
+    result.attrs["reference_ucs_mpa"] = reference_ucs
+    result.attrs["fixed_inputs"] = fixed_inputs
+    result.attrs["sampled_interval_mpa"] = {
+        "minimum": ucs_values[0],
+        "maximum": ucs_values[-1],
+    }
+    result.attrs["classification_boundaries_mpa"] = {
+        "lopez_jimeno": (70.0, 180.0),
+        "tatiya_al_ajmi": (55.0, 110.0),
+    }
+    result.attrs["decision_gate"] = (
+        "RESEARCH_COMPARATOR_ONLY"
+    )
+    result.attrs["boundary_warning"] = (
+        "The grid probes discrete strength-class transitions. "
+        "It is not a continuous material-response model or a "
+        "universal validation domain."
+    )
+
+    return result
 _REQUIRED_SENSITIVITY_COLUMNS = {
     "hole_diameter_mm",
     "model_id",

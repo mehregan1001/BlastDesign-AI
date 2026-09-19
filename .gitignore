@@ -23,6 +23,10 @@ Thumbs.db
 # Generated project outputs
 outputs/figures/*.png
 data/processed/*.csv
+# Version-controlled UCS sensitivity research artifacts
+!data/processed/ucs_sensitivity_model_outputs.csv
+!data/processed/ucs_sensitivity_ensemble_summary.csv
+!data/processed/ucs_sensitivity_model_response_summary.csv
 !data/processed/diameter_sensitivity_model_outputs.csv
 !data/processed/diameter_sensitivity_ensemble_summary.csv
 !data/processed/diameter_sensitivity_model_response_summary.csv

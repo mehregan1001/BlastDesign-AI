@@ -30,7 +30,9 @@ from .sensitivity import (
     build_diameter_ensemble_summary,
     build_gole_gohar_diameter_sensitivity_table,
     build_gole_gohar_ucs_sensitivity_table,
-    build_model_diameter_response_summary,
+    build_model_diameter_response_summary,   
+    build_model_ucs_response_summary,
+    build_ucs_ensemble_summary,
 )
 from .validation import assert_close
 
@@ -59,4 +61,6 @@ __all__ = [
     "score_model",
     "tatiya_al_ajmi_burden",
     "tatiya_al_ajmi_coefficients",
+    "build_model_ucs_response_summary",
+    "build_ucs_ensemble_summary",
 ]

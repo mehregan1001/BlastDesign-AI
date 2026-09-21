@@ -3,6 +3,9 @@
 All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
+### Fixed
+
+- Removed an unreachable duplicate UCS sensitivity-column declaration and normalized sensitivity-module spacing without changing numerical behavior.
 ## [0.3.0] - 2026-09-21
 
 ### Added

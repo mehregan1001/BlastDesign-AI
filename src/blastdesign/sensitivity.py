@@ -29,6 +29,8 @@ DEFAULT_UCS_GRID_MPA = (
     180.001,
     220.0,
 )
+
+
 def build_gole_gohar_diameter_sensitivity_table(
     hole_diameters_mm: Iterable[float] | None = None,
 ) -> pd.DataFrame:
@@ -156,6 +158,8 @@ def build_gole_gohar_diameter_sensitivity_table(
     )
 
     return result
+
+    
 def build_gole_gohar_ucs_sensitivity_table(
     ucs_values_mpa: Iterable[float] | None = None,
 ) -> pd.DataFrame:
@@ -254,6 +258,8 @@ def build_gole_gohar_ucs_sensitivity_table(
     )
 
     return result
+
+    
 _REQUIRED_SENSITIVITY_COLUMNS = {
     "hole_diameter_mm",
     "model_id",
@@ -492,12 +498,7 @@ def build_model_diameter_response_summary(
     )
 
     return summary
-    _REQUIRED_UCS_SENSITIVITY_COLUMNS = {
-    "ucs_mpa",
-    "model_id",
-    "model_name",
-    "burden_m",
-}
+
 
 _REQUIRED_UCS_SENSITIVITY_COLUMNS = {
     "ucs_mpa",
@@ -505,6 +506,8 @@ _REQUIRED_UCS_SENSITIVITY_COLUMNS = {
     "model_name",
     "burden_m",
 }
+
+
 def _validate_ucs_sensitivity_table(
     sensitivity_table: pd.DataFrame,
 ) -> None:

@@ -170,7 +170,23 @@ Expected result:
 ```text
 54 passed
 ```
+## Regenerate the integrity manifest
 
+The repository includes a deterministic SHA-256 manifest covering reproducibility-critical source code, tests, notebooks, documentation, source materials, and processed research artifacts.
+
+From the project root, run:
+
+```bat
+python scripts\generate_checksums.py
+```
+
+This regenerates:
+
+```text
+CHECKSUMS.sha256
+```
+
+The manifest supports integrity checking and records the exact state of important research files included in a release.
 ## Validate the research decision report
 
 From the project root:

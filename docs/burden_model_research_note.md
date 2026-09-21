@@ -3,7 +3,7 @@
 **Author:** Alireza Mehregan  
 **Project:** BlastDesign-AI  
 **Research stage:** Reproducible methodological reconstruction and comparative assessment  
-**Software status:** Python package with 39 passing automated tests
+**Software status:** **Software status:** Python packages with 54 passing automated tests
 
 ## 1. Research background
 
@@ -108,13 +108,14 @@ The system therefore permits transparent comparison while preventing an unsuppor
 
 The project currently includes:
 
-- A reusable Python package under `src/blastdesign_ai`.
+- - Reusable burden-model and sensitivity-analysis code under `src/blastdesign`.
+- Evidence-aware decision-report and validation code under `src/blastdesign_ai`.
 - Reconstructed burden-model implementations.
 - An evidence-aware burden decision-report builder.
 - A reusable decision-contract validator.
 - An explicitly defined package interface.
 - Automated tests covering model behavior, report construction, decision safeguards, and public API consistency.
-- A complete automated test suite containing 39 passing tests.
+- - A complete automated test suite containing 54 passing tests.
 - Version-controlled source code and research outputs.
 
 The automated checks include safeguards against unsupported recommendations, duplicated model identifiers, inconsistent numerical ranges, missing model information, and unsupported validation claims.
@@ -153,3 +154,57 @@ Such transfer would require its own domain-specific models, geotechnical inputs,
 BlastDesign-AI demonstrates that historical mine-blasting relationships can be reconstructed within a transparent and testable Python research framework.
 
 The present comparison identifies persistent structural disagreement among burden equations and demonstrates an explicit software mechanism for preventing unsupported design recommendations when independent validation evidence is unavailable.
+
+## 13. Controlled UCS sensitivity analysis
+
+A deterministic one-factor sensitivity analysis was performed for uniaxial compressive strength (UCS). Hole diameter, explosive density, rock density, explosive type, and other reference inputs were held constant at the reconstructed Gole Gohar scenario values.
+
+The sampled grid deliberately includes values immediately below, at, and immediately above the documented empirical classification boundaries.
+
+| UCS interval, MPa | López Jimeno burden, m | Tatiya–Al-Ajmi burden, m | Seven-model range, m |
+|---|---:|---:|---:|
+| UCS < 55 | 7.028 | 6.940860 | 1.500676 |
+| 55 ≤ UCS < 70 | 7.028 | 5.839370 | 1.500676 |
+| 70 ≤ UCS ≤ 110 | 5.773 | 5.839370 | 1.455865 |
+| 110 < UCS ≤ 180 | 5.773 | 5.089080 | 1.894109 |
+| UCS > 180 | 5.271 | 5.089080 | 1.894109 |
+
+Only two of the seven reconstructed equations respond to UCS:
+
+- López Jimeno changes at 70 MPa and immediately above 180 MPa.
+- Tatiya–Al-Ajmi changes at 55 MPa and immediately above 110 MPa.
+- Ash, Bhandari, Konya 1972, Konya 1983, and Rustan remain constant because UCS is not an explicit input to their reconstructed equations.
+
+The abrupt numerical changes reflect discrete empirical strength-class rules. They must not be interpreted as abrupt physical changes in rock behavior.
+
+The largest sampled seven-model range is approximately **1.894 m**, occurring immediately above the Tatiya–Al-Ajmi 110 MPa boundary. At the reference UCS of **85 MPa**, the analysis reproduces the established seven-model range of approximately **1.456 m**.
+
+This is a deterministic model-structure sensitivity analysis. It does not provide:
+
+- A calibrated prediction interval.
+- A statistical confidence interval.
+- Evidence that one model is more accurate.
+- A site-specific operational burden recommendation.
+
+The reproducible analysis is available in:
+
+```text
+notebooks/ucs_sensitivity_comparison.ipynb
+```
+
+Its version-controlled numerical artifacts are:
+
+```text
+data/processed/ucs_sensitivity_model_outputs.csv
+data/processed/ucs_sensitivity_ensemble_summary.csv
+data/processed/ucs_sensitivity_model_response_summary.csv
+```
+
+Automated artifact-consistency tests verify that these saved CSV files match results regenerated directly from the current implementation.
+
+The decision state remains:
+
+```text
+Decision gate: RESEARCH_COMPARATOR_ONLY
+Recommended burden: None
+```

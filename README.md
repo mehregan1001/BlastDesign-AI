@@ -87,7 +87,35 @@ All seven model outputs increase with diameter, although at different rates. The
 The changing range reflects structural differences and ranking changes among the empirical equations. It does not identify an optimal diameter or represent calibrated predictive uncertainty.
 
 See the [detailed diameter sensitivity analysis](docs/diameter_sensitivity_analysis.md) for the fixed inputs, numerical interpretation, limitations, and reproducibility information.
+## Controlled UCS sensitivity analysis
 
+The project includes a deterministic one-factor analysis of uniaxial compressive strength while the other reconstructed Gole Gohar inputs remain fixed.
+
+Only two equations respond to UCS:
+
+- López Jimeno changes at 70 MPa and immediately above 180 MPa.
+- Tatiya–Al-Ajmi changes at 55 MPa and immediately above 110 MPa.
+- The other five equations remain constant because UCS is not an explicit input.
+
+| UCS interval, MPa | Seven-model burden range, m |
+|---|---:|
+| UCS < 70 | 1.501 |
+| 70 ≤ UCS ≤ 110 | 1.456 |
+| UCS > 110 | 1.894 |
+
+These step changes represent empirical strength-class transitions, not abrupt physical changes in rock behavior or calibrated predictive uncertainty.
+
+The reproducible notebook is:
+
+```text
+notebooks/ucs_sensitivity_comparison.ipynb
+```
+
+Its version-controlled numerical outputs are stored under:
+
+```text
+data/processed/ucs_sensitivity_*.csv
+```
 ## Decision safeguards
 
 Because independent site-specific validation is not available, the software enforces:
@@ -125,7 +153,7 @@ The software includes:
 - A documented public Python package interface.
 - A command-line report validator.
 - Automated checks for unsupported recommendations and inconsistent model outputs.
-- A full test suite with **39 passing tests**.
+- A full test suite with **54 passing tests**.
 
 ## Run the automated tests
 
@@ -140,7 +168,7 @@ python -m pytest -v
 Expected result:
 
 ```text
-39 passed
+54 passed
 ```
 
 ## Validate the research decision report

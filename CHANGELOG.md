@@ -3,7 +3,18 @@
 All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
+### Added
 
+- Controlled one-factor UCS sensitivity analysis across documented empirical strength-class boundaries.
+- UCS ensemble-disagreement and per-model response summary functions.
+- Reproducible UCS sensitivity notebook with a research-safety interpretation.
+- Version-controlled UCS model-output, ensemble-summary, and model-response CSV artifacts.
+- Automated tests verifying UCS boundary behavior, summary calculations, and saved-artifact consistency.
+
+### Changed
+
+- Expanded the research note and README with UCS sensitivity findings and limitations.
+- Updated the documented automated-test count to 54 passing tests.
 ## [0.2.0] - 2026-09-16
 
 ### Added
@@ -62,4 +73,4 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - No field-ready blasting recommendation.
 
 [Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.1.0...v0.2.0
+[0.2.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.2.0...v0.2.0

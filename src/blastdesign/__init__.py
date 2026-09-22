@@ -33,6 +33,8 @@ from .sensitivity import (
     build_model_diameter_response_summary,   
     build_model_ucs_response_summary,
     build_ucs_ensemble_summary,
+    DEFAULT_EXPLOSIVE_DENSITY_GRID_G_CM3,
+    build_gole_gohar_explosive_density_sensitivity_table,
 )
 from .validation import assert_close
 
@@ -63,4 +65,6 @@ __all__ = [
     "tatiya_al_ajmi_coefficients",
     "build_model_ucs_response_summary",
     "build_ucs_ensemble_summary",
+    "DEFAULT_EXPLOSIVE_DENSITY_GRID_G_CM3",
+    "build_gole_gohar_explosive_density_sensitivity_table",
 ]

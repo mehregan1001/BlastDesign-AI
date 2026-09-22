@@ -31,6 +31,16 @@ DEFAULT_UCS_GRID_MPA = (
 )
 
 
+DEFAULT_EXPLOSIVE_DENSITY_GRID_G_CM3 = (
+    0.70,
+    0.75,
+    0.80,
+    0.85,
+    0.90,
+    0.95,
+    1.00,
+)
+
 def build_gole_gohar_diameter_sensitivity_table(
     hole_diameters_mm: Iterable[float] | None = None,
 ) -> pd.DataFrame:
@@ -259,6 +269,149 @@ def build_gole_gohar_ucs_sensitivity_table(
 
     return result
 
+
+def build_gole_gohar_explosive_density_sensitivity_table(
+    explosive_densities_g_cm3: Iterable[float] | None = None,
+) -> pd.DataFrame:
+    """Build a seven-model explosive-density comparison.
+
+    Explosive density varies while rock density and all other
+    reconstructed Gole Gohar inputs remain fixed.
+
+    The default grid is an exploratory computational window
+    around the reference density. It is not a universal
+    validation domain or a recommended operational range.
+    """
+
+    if explosive_densities_g_cm3 is None:
+        raw_values = list(
+            DEFAULT_EXPLOSIVE_DENSITY_GRID_G_CM3
+        )
+    else:
+        if isinstance(
+            explosive_densities_g_cm3,
+            (str, bytes),
+        ):
+            raise TypeError(
+                "explosive_densities_g_cm3 must be an "
+                "iterable of numerical values."
+            )
+
+        try:
+            raw_values = list(
+                explosive_densities_g_cm3
+            )
+        except TypeError as error:
+            raise TypeError(
+                "explosive_densities_g_cm3 must be an "
+                "iterable of numerical values."
+            ) from error
+
+    if not raw_values:
+        raise ValueError(
+            "At least one explosive-density value is required."
+        )
+
+    density_values = [
+        positive_float(
+            value,
+            "explosive_density_g_cm3",
+        )
+        for value in raw_values
+    ]
+
+    if len(set(density_values)) != len(density_values):
+        raise ValueError(
+            "Explosive-density values must be unique."
+        )
+
+    density_values.sort()
+
+    reference_inputs = gole_gohar_reference_inputs()
+
+    rock_density = positive_float(
+        reference_inputs["rock_density_g_cm3"],
+        "rock_density_g_cm3",
+    )
+
+    tables = []
+
+    for explosive_density in density_values:
+        scenario_inputs = reference_inputs.copy()
+
+        scenario_inputs[
+            "explosive_density_g_cm3"
+        ] = explosive_density
+
+        model_table = (
+            evaluate_conventional_burden_models(
+                **scenario_inputs
+            )
+        )
+
+        model_table.insert(
+            0,
+            "explosive_density_g_cm3",
+            explosive_density,
+        )
+
+        model_table.insert(
+            1,
+            "explosive_to_rock_density_ratio",
+            explosive_density / rock_density,
+        )
+
+        tables.append(model_table)
+
+    result = pd.concat(
+        tables,
+        ignore_index=True,
+    )
+
+    fixed_inputs = reference_inputs.copy()
+
+    reference_explosive_density = fixed_inputs.pop(
+        "explosive_density_g_cm3"
+    )
+
+    result.attrs["analysis_type"] = (
+        "one_factor_at_a_time"
+    )
+
+    result.attrs["varied_parameter"] = (
+        "explosive_density_g_cm3"
+    )
+
+    result.attrs[
+        "reference_explosive_density_g_cm3"
+    ] = reference_explosive_density
+
+    result.attrs[
+        "reference_explosive_to_rock_density_ratio"
+    ] = (
+        reference_explosive_density
+        / rock_density
+    )
+
+    result.attrs["fixed_inputs"] = fixed_inputs
+
+    result.attrs["sampled_interval_g_cm3"] = {
+        "minimum": density_values[0],
+        "maximum": density_values[-1],
+    }
+
+    result.attrs["decision_gate"] = (
+        "RESEARCH_COMPARATOR_ONLY"
+    )
+
+    result.attrs["density_warning"] = (
+        "The sampled interval is an exploratory computational "
+        "window around the reference value. It is not a "
+        "recommended explosive-density range or a universal "
+        "model-validation domain."
+    )
+
+    return result
     
 _REQUIRED_SENSITIVITY_COLUMNS = {
     "hole_diameter_mm",

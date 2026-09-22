@@ -16,6 +16,11 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - Version-controlled UCS model-output, ensemble-summary, and model-response CSV artifacts.
 - Automated tests verifying UCS boundary behavior, summary calculations, and saved-artifact consistency.
 - - Deterministic SHA-256 checksum generation for reproducibility-critical source code, tests, notebooks, documentation, and research artifacts.
+ 
+### Added
+
+- Controlled one-factor explosive-density sensitivity analysis with explicit explosive-to-rock density ratios.
+- Automated tests confirming that only the Konya 1972 and Konya 1983 equations respond to explosive density in the current seven-model comparison.
 
 ### Changed
 

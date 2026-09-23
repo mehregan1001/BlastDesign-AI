@@ -3,6 +3,7 @@
 All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
+
 ### Fixed
 
 - Removed an unreachable duplicate UCS sensitivity-column declaration and normalized sensitivity-module spacing without changing numerical behavior.
@@ -16,6 +17,7 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - Version-controlled UCS model-output, ensemble-summary, and model-response CSV artifacts.
 - Automated tests verifying UCS boundary behavior, summary calculations, and saved-artifact consistency.
 - - Deterministic SHA-256 checksum generation for reproducibility-critical source code, tests, notebooks, documentation, and research artifacts.
+- Explosive-density ensemble-disagreement and per-model response summary metrics with structural-validation tests.
  
 ### Added
 

@@ -35,6 +35,8 @@ from .sensitivity import (
     build_ucs_ensemble_summary,
     DEFAULT_EXPLOSIVE_DENSITY_GRID_G_CM3,
     build_gole_gohar_explosive_density_sensitivity_table,
+    build_explosive_density_ensemble_summary,
+    build_model_explosive_density_response_summary,
 )
 from .validation import assert_close
 
@@ -67,4 +69,6 @@ __all__ = [
     "build_ucs_ensemble_summary",
     "DEFAULT_EXPLOSIVE_DENSITY_GRID_G_CM3",
     "build_gole_gohar_explosive_density_sensitivity_table",
+    "build_explosive_density_ensemble_summary",
+    "build_model_explosive_density_response_summary",
 ]

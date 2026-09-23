@@ -833,3 +833,280 @@ def build_model_ucs_response_summary(
     )
 
     return summary
+_REQUIRED_EXPLOSIVE_DENSITY_COLUMNS = {
+    "explosive_density_g_cm3",
+    "explosive_to_rock_density_ratio",
+    "model_id",
+    "model_name",
+    "burden_m",
+}
+
+
+def _validate_explosive_density_table(
+    sensitivity_table: pd.DataFrame,
+) -> None:
+    """Validate a seven-model explosive-density table."""
+
+    if not isinstance(
+        sensitivity_table,
+        pd.DataFrame,
+    ):
+        raise TypeError(
+            "sensitivity_table must be a pandas DataFrame."
+        )
+
+    missing_columns = (
+        _REQUIRED_EXPLOSIVE_DENSITY_COLUMNS.difference(
+            sensitivity_table.columns
+        )
+    )
+
+    if missing_columns:
+        raise ValueError(
+            "Missing explosive-density columns: "
+            f"{sorted(missing_columns)}"
+        )
+
+    if sensitivity_table.empty:
+        raise ValueError(
+            "The explosive-density table must not be empty."
+        )
+
+    if sensitivity_table.duplicated(
+        subset=[
+            "explosive_density_g_cm3",
+            "model_id",
+        ]
+    ).any():
+        raise ValueError(
+            "The explosive-density table contains duplicate "
+            "density-model combinations."
+        )
+
+    model_counts = (
+        sensitivity_table.groupby(
+            "explosive_density_g_cm3"
+        )["model_id"]
+        .nunique()
+    )
+
+    if not model_counts.eq(7).all():
+        raise ValueError(
+            "Every explosive-density value must contain "
+            "exactly seven unique burden models."
+        )
+
+    ratio_counts = (
+        sensitivity_table.groupby(
+            "explosive_density_g_cm3"
+        )["explosive_to_rock_density_ratio"]
+        .nunique()
+    )
+
+    if not ratio_counts.eq(1).all():
+        raise ValueError(
+            "Each explosive-density value must have exactly "
+            "one density ratio."
+        )
+
+
+def build_explosive_density_ensemble_summary(
+    sensitivity_table: pd.DataFrame,
+) -> pd.DataFrame:
+    """Summarize model disagreement by explosive density."""
+
+    _validate_explosive_density_table(
+        sensitivity_table
+    )
+
+    summary = (
+        sensitivity_table.groupby(
+            [
+                "explosive_density_g_cm3",
+                "explosive_to_rock_density_ratio",
+            ],
+            as_index=False,
+        )
+        .agg(
+            model_count=(
+                "model_id",
+                "nunique",
+            ),
+            mean_burden_m=(
+                "burden_m",
+                "mean",
+            ),
+            median_burden_m=(
+                "burden_m",
+                "median",
+            ),
+            minimum_burden_m=(
+                "burden_m",
+                "min",
+            ),
+            maximum_burden_m=(
+                "burden_m",
+                "max",
+            ),
+        )
+        .sort_values(
+            "explosive_density_g_cm3"
+        )
+        .reset_index(drop=True)
+    )
+
+    summary["range_m"] = (
+        summary["maximum_burden_m"]
+        - summary["minimum_burden_m"]
+    )
+
+    summary.attrs["decision_gate"] = (
+        "RESEARCH_COMPARATOR_ONLY"
+    )
+
+    summary.attrs["interpretation_warning"] = (
+        "Changes represent deterministic equation responses "
+        "and model-form disagreement, not calibrated "
+        "predictive uncertainty."
+    )
+
+    return summary
+
+
+def build_model_explosive_density_response_summary(
+    sensitivity_table: pd.DataFrame,
+    reference_explosive_density_g_cm3: float = 0.85,
+) -> pd.DataFrame:
+    """Summarize each model's explosive-density response."""
+
+    _validate_explosive_density_table(
+        sensitivity_table
+    )
+
+    reference_density = positive_float(
+        reference_explosive_density_g_cm3,
+        "reference_explosive_density_g_cm3",
+    )
+
+    rows = []
+
+    for model_id, group in sensitivity_table.groupby(
+        "model_id",
+        sort=False,
+    ):
+        model_names = (
+            group["model_name"]
+            .drop_duplicates()
+            .tolist()
+        )
+
+        if len(model_names) != 1:
+            raise ValueError(
+                f"Model {model_id!r} has inconsistent names."
+            )
+
+        ordered = (
+            group.sort_values(
+                "explosive_density_g_cm3"
+            )
+            .reset_index(drop=True)
+        )
+
+        reference_rows = ordered[
+            ordered["explosive_density_g_cm3"].eq(
+                reference_density
+            )
+        ]
+
+        if len(reference_rows) != 1:
+            raise ValueError(
+                f"Model {model_id!r} must contain exactly "
+                f"one row at {reference_density} g/cm3."
+            )
+
+        lower_row = ordered.iloc[0]
+        upper_row = ordered.iloc[-1]
+        reference_row = reference_rows.iloc[0]
+
+        burdens = ordered["burden_m"].astype(float)
+
+        lower_burden = float(
+            lower_row["burden_m"]
+        )
+
+        upper_burden = float(
+            upper_row["burden_m"]
+        )
+
+        endpoint_change = (
+            upper_burden - lower_burden
+        )
+
+        distinct_burden_count = int(
+            burdens.nunique()
+        )
+
+        rows.append(
+            {
+                "model_id": str(model_id),
+                "model_name": model_names[0],
+                "distinct_burden_count": (
+                    distinct_burden_count
+                ),
+                "responds_to_explosive_density": (
+                    distinct_burden_count > 1
+                ),
+                "lower_explosive_density_g_cm3": float(
+                    lower_row[
+                        "explosive_density_g_cm3"
+                    ]
+                ),
+                "upper_explosive_density_g_cm3": float(
+                    upper_row[
+                        "explosive_density_g_cm3"
+                    ]
+                ),
+                "burden_at_lower_endpoint_m": (
+                    lower_burden
+                ),
+                "reference_explosive_density_g_cm3": (
+                    reference_density
+                ),
+                "reference_density_ratio": float(
+                    reference_row[
+                        "explosive_to_rock_density_ratio"
+                    ]
+                ),
+                "reference_burden_m": float(
+                    reference_row["burden_m"]
+                ),
+                "burden_at_upper_endpoint_m": (
+                    upper_burden
+                ),
+                "endpoint_change_m": (
+                    endpoint_change
+                ),
+                "endpoint_change_percent": (
+                    endpoint_change
+                    / lower_burden
+                    * 100.0
+                ),
+                "burden_range_m": float(
+                    burdens.max() - burdens.min()
+                ),
+            }
+        )
+
+    summary = pd.DataFrame(rows)
+
+    summary.attrs["decision_gate"] = (
+        "RESEARCH_COMPARATOR_ONLY"
+    )
+
+    summary.attrs["interpretation_warning"] = (
+        "A model response indicates deterministic dependence "
+        "on the explosive-to-rock density ratio, not "
+        "predictive accuracy."
+    )
+
+    return summary

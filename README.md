@@ -115,6 +115,29 @@ Its version-controlled numerical outputs are stored under:
 
 ```text
 data/processed/ucs_sensitivity_*.csv
+
+## Controlled explosive-density sensitivity
+
+BlastDesign-AI includes a deterministic one-factor analysis of explosive density from **0.70 to 1.00 g/cm³**, with the reconstructed reference value at **0.85 g/cm³**.
+
+Only the Konya 1972 and Konya 1983 equations respond explicitly to explosive density. The other five reconstructed burden equations remain constant.
+
+| Explosive density, g/cm³ | Konya 1972 burden, m | Konya 1983 burden, m | Seven-model range, m |
+|---:|---:|---:|---:|
+| 0.70 | 5.184287 | 5.482943 | 1.798902 |
+| 0.85 | 5.527324 | 5.689716 | 1.455865 |
+| 1.00 | 5.831854 | 5.896490 | 1.210189 |
+
+Across the sampled endpoints, the Konya 1972 result changes by approximately **0.648 m**, while the Konya 1983 result changes by approximately **0.414 m**.
+
+The changing seven-model range represents structural behavior among the reconstructed equations. It is not evidence of increasing accuracy, a calibrated uncertainty interval, or a recommended explosive-density range.
+
+![Deterministic explosive-density sensitivity comparison](outputs/figures/explosive_density_sensitivity_comparison.png)
+
+The reproducible notebook is:
+
+```text
+notebooks/explosive_density_sensitivity_comparison.ipynb
 ```
 ## Decision safeguards
 
@@ -153,7 +176,7 @@ The software includes:
 - A documented public Python package interface.
 - A command-line report validator.
 - Automated checks for unsupported recommendations and inconsistent model outputs.
-- A full test suite with **54 passing tests**.
+- A full test suite with **69 passing tests**.
 
 ## Run the automated tests
 
@@ -168,7 +191,7 @@ python -m pytest -v
 Expected result:
 
 ```text
-54 passed
+69 passed
 ```
 ## Regenerate the integrity manifest
 

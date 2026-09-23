@@ -3,7 +3,7 @@
 **Author:** Alireza Mehregan  
 **Project:** BlastDesign-AI  
 **Research stage:** Reproducible methodological reconstruction and comparative assessment  
-**Software status:** **Software status:** Python packages with 54 passing automated tests
+**Software status:** **Software status:** Python packages with 69 passing automated tests
 
 ## 1. Research background
 
@@ -115,7 +115,7 @@ The project currently includes:
 - A reusable decision-contract validator.
 - An explicitly defined package interface.
 - Automated tests covering model behavior, report construction, decision safeguards, and public API consistency.
-- - A complete automated test suite containing 54 passing tests.
+- - A complete automated test suite containing 69 passing tests.
 - Version-controlled source code and research outputs.
 
 The automated checks include safeguards against unsupported recommendations, duplicated model identifiers, inconsistent numerical ranges, missing model information, and unsupported validation claims.
@@ -208,3 +208,46 @@ The decision state remains:
 Decision gate: RESEARCH_COMPARATOR_ONLY
 Recommended burden: None
 ```
+
+## Controlled explosive-density sensitivity analysis
+
+A deterministic one-factor sensitivity analysis was performed for explosive density. Hole diameter, rock density, UCS, explosive type, and all other inputs were held constant at the reconstructed Gole Gohar reference values.
+
+Explosive density was sampled from **0.70 to 1.00 g/cm³** in increments of **0.05 g/cm³**. The reference value is **0.85 g/cm³**. This grid is an exploratory analytical range and must not be interpreted as a recommended operational explosive-density range.
+
+Only two reconstructed equations respond explicitly to explosive density:
+
+- Konya 1972.
+- Konya 1983.
+
+Ash, Bhandari, López Jimeno, Rustan, and Tatiya–Al-Ajmi remain constant because explosive density is not an explicit input to their reconstructed equations.
+
+Selected results are:
+
+| Explosive density, g/cm³ | Konya 1972 burden, m | Konya 1983 burden, m | Seven-model range, m |
+|---:|---:|---:|---:|
+| 0.70 | 5.184287 | 5.482943 | 1.798902 |
+| 0.85 | 5.527324 | 5.689716 | 1.455865 |
+| 1.00 | 5.831854 | 5.896490 | 1.210189 |
+
+Across the sampled endpoints:
+
+- The Konya 1972 burden increases by approximately **0.648 m**.
+- The Konya 1983 burden increases by approximately **0.414 m**.
+- The seven-model burden range decreases from approximately **1.799 m** to **1.210 m**.
+- The reference density reproduces the established seven-model range of approximately **1.456 m**.
+
+The reduction in ensemble range does not demonstrate improved predictive accuracy. It occurs because two equations respond to explosive density while the remaining five are unchanged, and because the identities of the limiting models can change across the sampled grid.
+
+These results represent deterministic model-structure sensitivity. They do not provide:
+
+- A calibrated prediction interval.
+- A statistical confidence interval.
+- Evidence that either Konya equation is more accurate.
+- A recommended explosive product or density.
+- A site-specific operational burden recommendation.
+
+The reproducible analysis is available in:
+
+```text
+notebooks/explosive_density_sensitivity_comparison.ipynb

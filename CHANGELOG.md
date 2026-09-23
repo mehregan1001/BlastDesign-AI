@@ -4,9 +4,26 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-09-23
+
+### Added
+
+- Controlled one-factor explosive-density sensitivity analysis with explicit explosive-to-rock density ratios.
+- Explosive-density ensemble-disagreement and per-model response summary metrics.
+- Reproducible explosive-density sensitivity notebook and comparative figure.
+- Version-controlled explosive-density model-output, ensemble-summary, and model-response CSV artifacts.
+- Automated tests confirming that only the Konya 1972 and Konya 1983 equations respond to explosive density in the current seven-model comparison.
+- Artifact-regression tests verifying that saved explosive-density results match regenerated calculations.
+
+### Changed
+
+- Expanded the research note and README with explosive-density sensitivity findings and limitations.
+- Increased the complete automated test suite from 54 to 69 passing tests.
+
 ### Fixed
 
 - Removed an unreachable duplicate UCS sensitivity-column declaration and normalized sensitivity-module spacing without changing numerical behavior.
+
 ## [0.3.0] - 2026-09-21
 
 ### Added
@@ -16,30 +33,13 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - Reproducible UCS sensitivity notebook with a research-safety interpretation.
 - Version-controlled UCS model-output, ensemble-summary, and model-response CSV artifacts.
 - Automated tests verifying UCS boundary behavior, summary calculations, and saved-artifact consistency.
-- - Deterministic SHA-256 checksum generation for reproducibility-critical source code, tests, notebooks, documentation, and research artifacts.
-- Explosive-density ensemble-disagreement and per-model response summary metrics with structural-validation tests.
- 
-### Added
-
-- Controlled one-factor explosive-density sensitivity analysis with explicit explosive-to-rock density ratios.
-- Automated tests confirming that only the Konya 1972 and Konya 1983 equations respond to explosive density in the current seven-model comparison.
-
-### Changed
-
-- Expanded the research note and README with UCS sensitivity findings and limitations.
-- Increased the complete automated test suite to 54 passing tests.
-### Added
-
-- Controlled one-factor UCS sensitivity analysis across documented empirical strength-class boundaries.
-- UCS ensemble-disagreement and per-model response summary functions.
-- Reproducible UCS sensitivity notebook with a research-safety interpretation.
-- Version-controlled UCS model-output, ensemble-summary, and model-response CSV artifacts.
-- Automated tests verifying UCS boundary behavior, summary calculations, and saved-artifact consistency.
+- Deterministic SHA-256 checksum generation for reproducibility-critical source code, tests, notebooks, documentation, and research artifacts.
 
 ### Changed
 
 - Expanded the research note and README with UCS sensitivity findings and limitations.
 - Updated the documented automated-test count to 54 passing tests.
+
 ## [0.2.0] - 2026-09-16
 
 ### Added
@@ -63,6 +63,7 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - Retains the `RESEARCH_COMPARATOR_ONLY` decision gate.
 - Treats the calculated range as structural model disagreement, not a confidence interval.
 - Does not identify an optimal diameter or issue an operational burden recommendation.
+
 ## [0.1.0] - 2026-09-02
 
 ### Added
@@ -76,8 +77,7 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - Reusable and explicitly declared Python package interface.
 - Detailed burden-model research note.
 - Professional research-focused repository overview.
-- Automated tests for model behavior, report construction, decision safeguards,
-  command-line behavior, package metadata, and public API consistency.
+- Automated tests for model behavior, report construction, decision safeguards, command-line behavior, package metadata, and public API consistency.
 - GitHub Actions testing across Python 3.10, 3.11, 3.12, 3.13, and 3.14.
 - Research-software citation metadata.
 - MIT software licence.
@@ -86,8 +86,7 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 - Enforces the `RESEARCH_COMPARATOR_ONLY` decision gate.
 - Prevents unsupported operational burden recommendations.
-- Distinguishes structural model disagreement from validated predictive
-  uncertainty.
+- Distinguishes structural model disagreement from validated predictive uncertainty.
 
 ### Known research limitations
 
@@ -97,5 +96,8 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - No probabilistically calibrated uncertainty model.
 - No field-ready blasting recommendation.
 
-[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.3.0...HEAD
-[0.3.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.3.0...v0.3.0
+[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.3.0...v0.4.0
+[0.3.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/mehregan1001/BlastDesign-AI/releases/tag/v0.1.0

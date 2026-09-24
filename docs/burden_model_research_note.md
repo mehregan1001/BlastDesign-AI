@@ -3,7 +3,7 @@
 **Author:** Alireza Mehregan  
 **Project:** BlastDesign-AI  
 **Research stage:** Reproducible methodological reconstruction and comparative assessment  
-**Software status:** **Software status:** Python packages with 69 passing automated tests
+**Software status:** Python package with 69 passing automated tests
 
 ## 1. Research background
 
@@ -115,7 +115,7 @@ The project currently includes:
 - A reusable decision-contract validator.
 - An explicitly defined package interface.
 - Automated tests covering model behavior, report construction, decision safeguards, and public API consistency.
-- - A complete automated test suite containing 69 passing tests.
+- A complete automated test suite containing 69 passing tests.
 - Version-controlled source code and research outputs.
 
 The automated checks include safeguards against unsupported recommendations, duplicated model identifiers, inconsistent numerical ranges, missing model information, and unsupported validation claims.

@@ -42,3 +42,8 @@ dist/
 !data/processed/explosive_density_sensitivity_ensemble_summary.csv
 !data/processed/explosive_density_sensitivity_model_response_summary.csv
 !outputs/figures/explosive_density_sensitivity_comparison.png
+
+# Version-controlled rock-density sensitivity artifacts
+!data/processed/rock_density_sensitivity_model_outputs.csv
+!data/processed/rock_density_sensitivity_ensemble_summary.csv
+!data/processed/rock_density_sensitivity_model_response_summary.csv

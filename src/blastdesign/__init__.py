@@ -37,7 +37,12 @@ from .sensitivity import (
     build_gole_gohar_explosive_density_sensitivity_table,
     build_explosive_density_ensemble_summary,
     build_model_explosive_density_response_summary,
+    DEFAULT_ROCK_DENSITY_GRID_G_CM3,
+    build_gole_gohar_rock_density_sensitivity_table,
+    build_model_rock_density_response_summary,
+    build_rock_density_ensemble_summary,
 )
+
 from .validation import assert_close
 
 
@@ -71,4 +76,8 @@ __all__ = [
     "build_gole_gohar_explosive_density_sensitivity_table",
     "build_explosive_density_ensemble_summary",
     "build_model_explosive_density_response_summary",
+    "DEFAULT_ROCK_DENSITY_GRID_G_CM3",
+    "build_gole_gohar_rock_density_sensitivity_table",
+    "build_model_rock_density_response_summary",
+    "build_rock_density_ensemble_summary",
 ]

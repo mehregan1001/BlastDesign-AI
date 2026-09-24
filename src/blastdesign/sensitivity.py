@@ -40,7 +40,20 @@ DEFAULT_EXPLOSIVE_DENSITY_GRID_G_CM3 = (
     0.95,
     1.00,
 )
-
+DEFAULT_ROCK_DENSITY_GRID_G_CM3 = (
+    1.80,
+    2.10,
+    2.40,
+    2.60,
+    2.75,
+    3.00,
+    3.30,
+    3.75,
+    4.00,
+    4.37,
+    4.80,
+    5.30,
+)
 def build_gole_gohar_diameter_sensitivity_table(
     hole_diameters_mm: Iterable[float] | None = None,
 ) -> pd.DataFrame:
@@ -169,7 +182,153 @@ def build_gole_gohar_diameter_sensitivity_table(
 
     return result
 
-    
+def build_gole_gohar_rock_density_sensitivity_table(
+    rock_densities_g_cm3: Iterable[float] | None = None,
+) -> pd.DataFrame:
+    """Build a seven-model rock-density comparison.
+
+    Rock density varies while explosive density and all other reconstructed
+    Gole Gohar inputs remain fixed.
+
+    The default grid is a broad exploratory computational interval spanning
+    common host rocks, low-density rock, and unusually dense ore-rich
+    endmembers. It is not a frequency distribution, a universal geological
+    range, a model-validation domain, or a recommended operational range.
+    Input values must use the density definition intended by the source
+    equation and must not mix mineral density with intact-rock bulk density.
+    """
+
+    if rock_densities_g_cm3 is None:
+        raw_values = list(
+            DEFAULT_ROCK_DENSITY_GRID_G_CM3
+        )
+    else:
+        if isinstance(
+            rock_densities_g_cm3,
+            (str, bytes),
+        ):
+            raise TypeError(
+                "rock_densities_g_cm3 must be an "
+                "iterable of numerical values."
+            )
+
+        try:
+            raw_values = list(
+                rock_densities_g_cm3
+            )
+        except TypeError as error:
+            raise TypeError(
+                "rock_densities_g_cm3 must be an "
+                "iterable of numerical values."
+            ) from error
+
+    if not raw_values:
+        raise ValueError(
+            "At least one rock-density value is required."
+        )
+
+    density_values = [
+        positive_float(
+            value,
+            "rock_density_g_cm3",
+        )
+        for value in raw_values
+    ]
+
+    if len(set(density_values)) != len(density_values):
+        raise ValueError(
+            "Rock-density values must be unique."
+        )
+
+    density_values.sort()
+
+    reference_inputs = gole_gohar_reference_inputs()
+
+    explosive_density = positive_float(
+        reference_inputs["explosive_density_g_cm3"],
+        "explosive_density_g_cm3",
+    )
+
+    tables = []
+
+    for rock_density in density_values:
+        scenario_inputs = reference_inputs.copy()
+
+        scenario_inputs[
+            "rock_density_g_cm3"
+        ] = rock_density
+
+        model_table = (
+            evaluate_conventional_burden_models(
+                **scenario_inputs
+            )
+        )
+
+        model_table.insert(
+            0,
+            "rock_density_g_cm3",
+            rock_density,
+        )
+
+        model_table.insert(
+            1,
+            "explosive_to_rock_density_ratio",
+            explosive_density / rock_density,
+        )
+
+        tables.append(model_table)
+
+    result = pd.concat(
+        tables,
+        ignore_index=True,
+    )
+
+    fixed_inputs = reference_inputs.copy()
+
+    reference_rock_density = fixed_inputs.pop(
+        "rock_density_g_cm3"
+    )
+
+    result.attrs["analysis_type"] = (
+        "one_factor_at_a_time"
+    )
+
+    result.attrs["varied_parameter"] = (
+        "rock_density_g_cm3"
+    )
+
+    result.attrs[
+        "reference_rock_density_g_cm3"
+    ] = reference_rock_density
+
+    result.attrs[
+        "reference_explosive_to_rock_density_ratio"
+    ] = (
+        explosive_density
+        / reference_rock_density
+    )
+
+    result.attrs["fixed_inputs"] = fixed_inputs
+
+    result.attrs["sampled_interval_g_cm3"] = {
+        "minimum": density_values[0],
+        "maximum": density_values[-1],
+    }
+
+    result.attrs["decision_gate"] = (
+        "RESEARCH_COMPARATOR_ONLY"
+    )
+
+    result.attrs["density_warning"] = (
+        "The sampled interval is a broad exploratory computational grid. "
+        "Its endpoints include uncommon geological endmembers and do not "
+        "represent an equally probable or universally applicable rock-density "
+        "range. Mineral, grain, dry-bulk, saturated-bulk, and in-situ density "
+        "must not be treated as interchangeable."
+    )
+
+    return result
+   
 def build_gole_gohar_ucs_sensitivity_table(
     ucs_values_mpa: Iterable[float] | None = None,
 ) -> pd.DataFrame:
@@ -1070,6 +1229,279 @@ def build_model_explosive_density_response_summary(
                     lower_burden
                 ),
                 "reference_explosive_density_g_cm3": (
+                    reference_density
+                ),
+                "reference_density_ratio": float(
+                    reference_row[
+                        "explosive_to_rock_density_ratio"
+                    ]
+                ),
+                "reference_burden_m": float(
+                    reference_row["burden_m"]
+                ),
+                "burden_at_upper_endpoint_m": (
+                    upper_burden
+                ),
+                "endpoint_change_m": (
+                    endpoint_change
+                ),
+                "endpoint_change_percent": (
+                    endpoint_change
+                    / lower_burden
+                    * 100.0
+                ),
+                "burden_range_m": float(
+                    burdens.max() - burdens.min()
+                ),
+            }
+        )
+
+    summary = pd.DataFrame(rows)
+
+    summary.attrs["decision_gate"] = (
+        "RESEARCH_COMPARATOR_ONLY"
+    )
+
+    summary.attrs["interpretation_warning"] = (
+        "A model response indicates deterministic dependence "
+        "on the explosive-to-rock density ratio, not "
+        "predictive accuracy."
+    )
+
+    return summary
+
+_REQUIRED_ROCK_DENSITY_COLUMNS = {
+    "rock_density_g_cm3",
+    "explosive_to_rock_density_ratio",
+    "model_id",
+    "model_name",
+    "burden_m",
+}
+
+
+def _validate_rock_density_table(
+    sensitivity_table: pd.DataFrame,
+) -> None:
+    """Validate a seven-model rock-density table."""
+
+    if not isinstance(
+        sensitivity_table,
+        pd.DataFrame,
+    ):
+        raise TypeError(
+            "sensitivity_table must be a pandas DataFrame."
+        )
+
+    missing_columns = (
+        _REQUIRED_ROCK_DENSITY_COLUMNS.difference(
+            sensitivity_table.columns
+        )
+    )
+
+    if missing_columns:
+        raise ValueError(
+            "Missing rock-density columns: "
+            f"{sorted(missing_columns)}"
+        )
+
+    if sensitivity_table.empty:
+        raise ValueError(
+            "The rock-density table must not be empty."
+        )
+
+    if sensitivity_table.duplicated(
+        subset=[
+            "rock_density_g_cm3",
+            "model_id",
+        ]
+    ).any():
+        raise ValueError(
+            "The rock-density table contains duplicate "
+            "density-model combinations."
+        )
+
+    model_counts = (
+        sensitivity_table.groupby(
+            "rock_density_g_cm3"
+        )["model_id"]
+        .nunique()
+    )
+
+    if not model_counts.eq(7).all():
+        raise ValueError(
+            "Every rock-density value must contain "
+            "exactly seven unique burden models."
+        )
+
+    ratio_counts = (
+        sensitivity_table.groupby(
+            "rock_density_g_cm3"
+        )["explosive_to_rock_density_ratio"]
+        .nunique()
+    )
+
+    if not ratio_counts.eq(1).all():
+        raise ValueError(
+            "Each rock-density value must have exactly "
+            "one density ratio."
+        )
+
+
+def build_rock_density_ensemble_summary(
+    sensitivity_table: pd.DataFrame,
+) -> pd.DataFrame:
+    """Summarize model disagreement by rock density."""
+
+    _validate_rock_density_table(
+        sensitivity_table
+    )
+
+    summary = (
+        sensitivity_table.groupby(
+            [
+                "rock_density_g_cm3",
+                "explosive_to_rock_density_ratio",
+            ],
+            as_index=False,
+        )
+        .agg(
+            model_count=(
+                "model_id",
+                "nunique",
+            ),
+            mean_burden_m=(
+                "burden_m",
+                "mean",
+            ),
+            median_burden_m=(
+                "burden_m",
+                "median",
+            ),
+            minimum_burden_m=(
+                "burden_m",
+                "min",
+            ),
+            maximum_burden_m=(
+                "burden_m",
+                "max",
+            ),
+        )
+        .sort_values(
+            "rock_density_g_cm3"
+        )
+        .reset_index(drop=True)
+    )
+
+    summary["range_m"] = (
+        summary["maximum_burden_m"]
+        - summary["minimum_burden_m"]
+    )
+
+    summary.attrs["decision_gate"] = (
+        "RESEARCH_COMPARATOR_ONLY"
+    )
+
+    summary.attrs["interpretation_warning"] = (
+        "Changes represent deterministic equation responses "
+        "and model-form disagreement, not calibrated "
+        "predictive uncertainty."
+    )
+
+    return summary
+
+def build_model_rock_density_response_summary(
+    sensitivity_table: pd.DataFrame,
+    reference_rock_density_g_cm3: float = 4.37,
+) -> pd.DataFrame:
+    """Summarize each model's rock-density response."""
+
+    _validate_rock_density_table(
+        sensitivity_table
+    )
+
+    reference_density = positive_float(
+        reference_rock_density_g_cm3,
+        "reference_rock_density_g_cm3",
+    )
+
+    rows = []
+
+    for model_id, group in sensitivity_table.groupby(
+        "model_id",
+        sort=False,
+    ):
+        model_names = (
+            group["model_name"]
+            .drop_duplicates()
+            .tolist()
+        )
+
+        if len(model_names) != 1:
+            raise ValueError(
+                f"Model {model_id!r} has inconsistent names."
+            )
+
+        ordered = (
+            group.sort_values(
+                "rock_density_g_cm3"
+            )
+            .reset_index(drop=True)
+        )
+
+        reference_rows = ordered[
+            ordered["rock_density_g_cm3"].eq(
+                reference_density
+            )
+        ]
+
+        if len(reference_rows) != 1:
+            raise ValueError(
+                f"Model {model_id!r} must contain exactly "
+                f"one row at {reference_density} g/cm3."
+            )
+
+        lower_row = ordered.iloc[0]
+        upper_row = ordered.iloc[-1]
+        reference_row = reference_rows.iloc[0]
+
+        burdens = ordered["burden_m"].astype(float)
+
+        lower_burden = float(
+            lower_row["burden_m"]
+        )
+
+        upper_burden = float(
+            upper_row["burden_m"]
+        )
+
+        endpoint_change = (
+            upper_burden - lower_burden
+        )
+
+        distinct_burden_count = int(
+            burdens.nunique()
+        )
+
+        rows.append(
+            {
+                "model_id": str(model_id),
+                "model_name": model_names[0],
+                "distinct_burden_count": (
+                    distinct_burden_count
+                ),
+                "responds_to_rock_density": (
+                    distinct_burden_count > 1
+                ),
+                "lower_rock_density_g_cm3": float(
+                    lower_row["rock_density_g_cm3"]
+                ),
+                "upper_rock_density_g_cm3": float(
+                    upper_row["rock_density_g_cm3"]
+                ),
+                "burden_at_lower_endpoint_m": (
+                    lower_burden
+                ),
+                "reference_rock_density_g_cm3": (
                     reference_density
                 ),
                 "reference_density_ratio": float(

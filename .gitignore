@@ -47,3 +47,5 @@ dist/
 !data/processed/rock_density_sensitivity_model_outputs.csv
 !data/processed/rock_density_sensitivity_ensemble_summary.csv
 !data/processed/rock_density_sensitivity_model_response_summary.csv
+
+!outputs/figures/rock_density_sensitivity_comparison.png

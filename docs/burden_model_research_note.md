@@ -3,7 +3,7 @@
 **Author:** Alireza Mehregan  
 **Project:** BlastDesign-AI  
 **Research stage:** Reproducible methodological reconstruction and comparative assessment  
-**Software status:** Python package with 69 passing automated tests
+**Software status:** Python package with 96 passing automated tests
 
 ## 1. Research background
 
@@ -115,7 +115,7 @@ The project currently includes:
 - A reusable decision-contract validator.
 - An explicitly defined package interface.
 - Automated tests covering model behavior, report construction, decision safeguards, and public API consistency.
-- A complete automated test suite containing 69 passing tests.
+- A complete automated test suite containing 96 passing tests.
 - Version-controlled source code and research outputs.
 
 The automated checks include safeguards against unsupported recommendations, duplicated model identifiers, inconsistent numerical ranges, missing model information, and unsupported validation claims.
@@ -250,4 +250,97 @@ These results represent deterministic model-structure sensitivity. They do not p
 The reproducible analysis is available in:
 
 ```text
-notebooks/explosive_density_sensitivity_comparison.ipynb
+## Controlled rock-density sensitivity analysis
+
+A deterministic one-factor-at-a-time sensitivity analysis was performed for rock density. Explosive density, hole diameter, uniaxial compressive strength, explosive type, Ash burden ratio, and all other reconstructed reference inputs were held constant.
+
+The sampled rock-density grid is:
+
+```text
+1.80, 2.10, 2.40, 2.60, 2.75, 3.00,
+3.30, 3.75, 4.00, 4.37, 4.80, 5.30 g/cm³
+```
+
+This is a deliberately broad exploratory computational grid. It spans comparatively low-density rock, the central range occupied by many common competent rocks, dense ore-rich materials, and uncommon mineral-dominated endmembers.
+
+The grid is not:
+
+- A frequency distribution of rocks encountered in open-pit mines.
+- A universal geological classification.
+- A documented applicability range for every burden equation.
+- A recommended operational density interval.
+- Evidence that all sampled values are equally common.
+
+Representative values compiled by the British Geological Survey place sandstone commonly around 2.1–2.65 g/cm³, many granitic and metamorphic rocks around 2.6–2.9 g/cm³, and several mafic rocks near 2.9–3.1 g/cm³. The same compilation includes lower-density materials such as chalk near 1.85 g/cm³.
+
+Dense ore minerals can exceed 5 g/cm³. USGS documentation lists approximate mineral densities of 5.02 g/cm³ for pyrite, 5.18 g/cm³ for magnetite, and 5.26 g/cm³ for hematite. These mineral values must not automatically be interpreted as intact-rock or in-situ rock-mass bulk densities.
+
+Relevant geological sources include:
+
+- [British Geological Survey rock-density compilation](https://earthwise.bgs.ac.uk/index.php/OR/15/065_Appendix_4_-_Bulking_of_soils_%26_rocks_classification_descriptions)
+- [USGS massive-sulfide ore-mineral density table](https://pubs.usgs.gov/sir/2010/5070/c/Chapter7SIR10-5070-C-3.pdf)
+
+### Density-definition safeguard
+
+The term *rock density* requires an explicit measurement basis. The following quantities are not interchangeable:
+
+- Mineral density.
+- Grain or particle density.
+- Intact dry-bulk density.
+- Intact saturated-bulk density.
+- Loose or broken-rock bulk density.
+- In-situ rock-mass density.
+
+The reconstructed Gole Gohar reference value of **4.37 g/cm³** is retained to preserve analytical reproducibility. Its original measurement basis should be audited before using it for site-specific interpretation.
+
+### Model responses
+
+Only the Konya 1972 and Konya 1983 equations respond to rock density in the current seven-model reconstruction because both explicitly use the explosive-to-rock density ratio.
+
+| Model | Burden at 1.80 g/cm³, m | Reference burden at 4.37 g/cm³, m | Burden at 5.30 g/cm³, m | Endpoint change, m | Endpoint change, % |
+|---|---:|---:|---:|---:|---:|
+| Konya 1972 | 7.406855 | 5.527324 | 5.186361 | −2.220494 | −29.978906 |
+| Konya 1983 | 7.362667 | 5.689716 | 5.484113 | −1.878553 | −25.514580 |
+
+Ash, Bhandari, López Jimeno, Rustan, and Tatiya–Al-Ajmi remain numerically constant because rock density is absent from their reconstructed equation inputs. This structural insensitivity does not demonstrate that rock density has no physical effect on blasting performance.
+
+### Ensemble disagreement
+
+| Sampled condition | Rock density, g/cm³ | Explosive-to-rock density ratio | Mean burden, m | Seven-model range, m |
+|---|---:|---:|---:|---:|
+| Lower endpoint | 1.80 | 0.472222 | 6.644869 | 1.633855 |
+| Minimum-range plateau | 2.40–3.75 | 0.354167–0.226667 | 6.447441–6.205939 | 1.210189 |
+| Reference scenario | 4.37 | 0.194508 | 6.137371 | 1.455865 |
+| Upper endpoint | 5.30 | 0.160377 | 6.059290 | 1.796828 |
+
+The minimum sampled range is a plateau covering the sampled densities from 2.40 through 3.75 g/cm³. Throughout this interval, the responsive Konya outputs remain within an ensemble envelope defined by unchanged models.
+
+Therefore, the plateau must not be interpreted as:
+
+- An optimum rock density.
+- An optimum density ratio.
+- A calibrated design region.
+- Evidence of superior predictive accuracy.
+- A site-specific burden recommendation.
+
+The increase in ensemble range toward the upper sampled densities represents changing structural disagreement among the empirical equations. It is not a statistical confidence interval or calibrated predictive uncertainty.
+
+### Reproducible outputs
+
+The analysis is available in:
+
+```text
+notebooks/rock_density_sensitivity_comparison.ipynb
+outputs/figures/rock_density_sensitivity_comparison.png
+data/processed/rock_density_sensitivity_model_outputs.csv
+data/processed/rock_density_sensitivity_ensemble_summary.csv
+data/processed/rock_density_sensitivity_model_response_summary.csv
+```
+
+Automated tests verify grid validation, reference-scenario reproduction, density-ratio calculations, responsive-model identification, monotonic Konya behavior, ensemble-summary calculations, research-safety metadata, and saved-artifact consistency.
+
+The decision gate remains:
+
+```text
+RESEARCH_COMPARATOR_ONLY
+```

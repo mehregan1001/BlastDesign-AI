@@ -139,6 +139,38 @@ The reproducible notebook is:
 ```text
 notebooks/explosive_density_sensitivity_comparison.ipynb
 ```
+## Controlled rock-density sensitivity analysis
+
+A controlled one-factor-at-a-time analysis varies rock density from **1.80 to 5.30 g/cm³** while holding explosive density and all other reconstructed Gole Gohar inputs constant.
+
+The grid deliberately spans low-density rock, common competent host-rock densities, dense ore-rich rock, and uncommon mineral-dominated endmembers. It is an exploratory computational grid, not a frequency distribution, a universal geological range, or a model-validation domain.
+
+Only two reconstructed equations respond directly to rock density:
+
+- Konya 1972 decreases from approximately **7.407 m** at 1.80 g/cm³ to **5.186 m** at 5.30 g/cm³, an endpoint change of approximately **−2.220 m** or **−29.98%**.
+- Konya 1983 decreases from approximately **7.363 m** to **5.484 m**, an endpoint change of approximately **−1.879 m** or **−25.51%**.
+- Ash, Bhandari, López Jimeno, Rustan, and Tatiya–Al-Ajmi remain constant because rock density is not an explicit input to their reconstructed equations.
+
+| Sampled condition | Rock density, g/cm³ | Explosive-to-rock density ratio | Mean burden, m | Seven-model range, m |
+|---|---:|---:|---:|---:|
+| Lower endpoint | 1.80 | 0.472222 | 6.644869 | 1.633855 |
+| Minimum-range plateau | 2.40–3.75 | 0.354167–0.226667 | 6.447441–6.205939 | 1.210189 |
+| Reference scenario | 4.37 | 0.194508 | 6.137371 | 1.455865 |
+| Upper endpoint | 5.30 | 0.160377 | 6.059290 | 1.796828 |
+
+The minimum sampled range forms a plateau rather than identifying a unique optimum. Across this plateau, the two density-responsive Konya estimates remain inside an envelope defined by unchanged models. It must not be interpreted as an optimum rock density or an optimum blast-design condition.
+
+Density definitions also require care. Mineral density, grain density, dry-bulk density, saturated-bulk density, and in-situ rock-mass density are not interchangeable. The reconstructed reference value of **4.37 g/cm³** is retained for reproducibility, but its original measurement basis requires further provenance auditing before site-specific interpretation.
+
+Representative geological context for the exploratory grid is provided by the [British Geological Survey rock-density compilation](https://earthwise.bgs.ac.uk/index.php/OR/15/065_Appendix_4_-_Bulking_of_soils_%26_rocks_classification_descriptions) and [USGS density data for massive-sulfide ore minerals](https://pubs.usgs.gov/sir/2010/5070/c/Chapter7SIR10-5070-C-3.pdf).
+
+Reproducible outputs are available in:
+
+- `notebooks/rock_density_sensitivity_comparison.ipynb`
+- `outputs/figures/rock_density_sensitivity_comparison.png`
+- `data/processed/rock_density_sensitivity_model_outputs.csv`
+- `data/processed/rock_density_sensitivity_ensemble_summary.csv`
+- `data/processed/rock_density_sensitivity_model_response_summary.csv`
 ## Decision safeguards
 
 Because independent site-specific validation is not available, the software enforces:
@@ -176,7 +208,7 @@ The software includes:
 - A documented public Python package interface.
 - A command-line report validator.
 - Automated checks for unsupported recommendations and inconsistent model outputs.
-- A full test suite with **69 passing tests**.
+- A full test suite with **96 passing tests**.
 
 ## Run the automated tests
 
@@ -191,7 +223,7 @@ python -m pytest -v
 Expected result:
 
 ```text
-69 passed
+96 passed
 ```
 ## Regenerate the integrity manifest
 

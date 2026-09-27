@@ -3,6 +3,29 @@
 All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
+## [0.5.0] - 2026-09-27
+
+### Added
+
+- Controlled one-factor rock-density sensitivity analysis over a broad exploratory grid from 1.80 to 5.30 g/cm³.
+- Explicit explosive-to-rock density-ratio calculations for every sampled scenario.
+- Rock-density table validation, ensemble-disagreement summaries, and per-model response summaries.
+- Reproducible rock-density sensitivity notebook and comparative two-panel figure.
+- Version-controlled rock-density model-output, ensemble-summary, and model-response CSV artifacts.
+- Automated tests covering grid validation, reference-scenario reproduction, density-ratio calculations, responsive-model identification, monotonic Konya behavior, research-safety metadata, and saved-artifact consistency.
+
+### Changed
+
+- Expanded the README and research note with rock-density findings, geological context, measurement-basis safeguards, and reproducible outputs.
+- Increased the complete automated test suite from 69 to 96 passing tests.
+
+### Research safeguards
+
+- Distinguishes mineral, grain, dry-bulk, saturated-bulk, loose-material, and in-situ rock-mass density.
+- Treats the 1.80–5.30 g/cm³ grid as a broad exploratory computational interval rather than a universal geological or operational range.
+- Retains the reconstructed 4.37 g/cm³ reference value while explicitly identifying its original measurement basis as requiring further provenance auditing.
+- Identifies the minimum ensemble range as a plateau rather than an optimum rock density or blast-design condition.
+- Retains the `RESEARCH_COMPARATOR_ONLY` decision gate.
 
 ## [0.4.0] - 2026-09-24
 
@@ -96,7 +119,8 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - No probabilistically calibrated uncertainty model.
 - No field-ready blasting recommendation.
 
-[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.1.0...v0.2.0

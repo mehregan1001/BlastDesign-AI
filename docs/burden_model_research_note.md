@@ -3,7 +3,7 @@
 **Author:** Alireza Mehregan  
 **Project:** BlastDesign-AI  
 **Research stage:** Reproducible methodological reconstruction and comparative assessment  
-**Software status:** Python package with 96 passing automated tests
+**Software status:** Python package with 123 passing automated tests
 
 ## 1. Research background
 
@@ -115,7 +115,7 @@ The project currently includes:
 - A reusable decision-contract validator.
 - An explicitly defined package interface.
 - Automated tests covering model behavior, report construction, decision safeguards, and public API consistency.
-- A complete automated test suite containing 96 passing tests.
+- A complete automated test suite containing 123 passing tests.
 - Version-controlled source code and research outputs.
 
 The automated checks include safeguards against unsupported recommendations, duplicated model identifiers, inconsistent numerical ranges, missing model information, and unsupported validation claims.
@@ -344,3 +344,86 @@ The decision gate remains:
 ```text
 RESEARCH_COMPARATOR_ONLY
 ```
+## Controlled Ash burden-ratio sensitivity analysis
+
+### Method
+
+A deterministic one-factor-at-a-time analysis was performed for the dimensionless coefficient used by the reconstructed Ash burden relationship:
+
+```text
+B = K_B d
+```
+
+where `B` is burden in metres, `K_B` is the dimensionless Ash burden ratio, and `d` is hole diameter in metres.
+
+The Ash burden ratio was sampled at:
+
+```text
+20.0, 22.5, 25.0, 27.5, 30.0, 32.5, 35.0, 37.5, 40.0
+```
+
+The hole diameter remained fixed at the reconstructed reference value of 251 mm. All other scenario inputs were also held constant.
+
+The reference Ash burden ratio is 25. The sampled 20–40 interval corresponds to the current implementation constraint; it is not asserted to be a universal calibration domain or operationally recommended interval.
+
+### Deterministic results
+
+Only the Ash equation responds to the varied coefficient. The other six burden equations remain constant because the Ash burden ratio is not an input to those models.
+
+| Scenario | Ash burden ratio | Ash burden, m | Seven-model mean, m | Seven-model range, m |
+|---|---:|---:|---:|---:|
+| Lower endpoint | 20.0 | 5.020000 | 5.958085 | 1.963189 |
+| Reference scenario | 25.0 | 6.275000 | 6.137371 | 1.455865 |
+| Upper endpoint | 40.0 | 10.040000 | 6.675228 | 4.512676 |
+
+Across the sampled endpoints, the Ash burden increases by **5.020 m**, corresponding to a **100%** increase relative to its lower-endpoint value.
+
+The minimum sampled seven-model range is approximately **1.456 m** and occurs at Ash burden ratios **22.5, 25.0, and 27.5**.
+
+At these three sampled ratios, the Ash estimate lies between:
+
+- The fixed minimum estimate from Konya 1972.
+- The fixed maximum estimate from Rustan.
+
+Consequently, changing the Ash estimate within this interval does not alter the ensemble minimum or maximum. The resulting minimum-range plateau must not be interpreted as an optimized burden-ratio interval.
+
+At an Ash burden ratio of 20, the Ash estimate becomes the minimum of the seven-model ensemble. At sufficiently high sampled ratios, the Ash estimate becomes the maximum. At the upper endpoint of 40, the ensemble range increases to approximately **4.513 m**.
+
+### Scientific interpretation
+
+This analysis demonstrates that model-ensemble spread may change substantially when an empirical coefficient is varied, even though only one model in the ensemble responds.
+
+The calculated response represents:
+
+- Deterministic sensitivity to an empirical equation coefficient.
+- Structural disagreement between reconstructed burden equations.
+- The effect of moving one model relative to six fixed comparison models.
+
+It does not represent:
+
+- A calibrated probability distribution for the Ash coefficient.
+- A confidence interval.
+- A predictive-uncertainty bound.
+- Evidence that one sampled ratio is more accurate.
+- Identification of an optimal operational burden ratio.
+- A field-ready blasting recommendation.
+
+The decision gate therefore remains:
+
+```text
+RESEARCH_COMPARATOR_ONLY
+```
+
+### Reproducibility
+
+The analysis is reproduced through:
+
+```text
+notebooks/ash_burden_ratio_sensitivity_comparison.ipynb
+outputs/figures/ash_burden_ratio_sensitivity_comparison.png
+data/processed/ash_burden_ratio_sensitivity_model_outputs.csv
+data/processed/ash_burden_ratio_sensitivity_ensemble_summary.csv
+data/processed/ash_burden_ratio_sensitivity_model_response_summary.csv
+```
+
+Automated tests verify the coefficient grid, input validation, reference-scenario reproduction, linear Ash response, invariance of the other six models, ensemble-summary calculations, research-safety metadata, and saved-artifact consistency.

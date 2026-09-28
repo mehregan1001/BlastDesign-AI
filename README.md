@@ -171,6 +171,48 @@ Reproducible outputs are available in:
 - `data/processed/rock_density_sensitivity_model_outputs.csv`
 - `data/processed/rock_density_sensitivity_ensemble_summary.csv`
 - `data/processed/rock_density_sensitivity_model_response_summary.csv`
+
+## Controlled Ash burden-ratio sensitivity analysis
+
+A deterministic one-factor-at-a-time analysis varies the dimensionless Ash burden ratio from 20 to 40 while keeping hole diameter and all other reconstructed Gole Gohar inputs fixed.
+
+The implemented Ash relationship is:
+
+```text
+B = K_B d
+```
+
+where `K_B` is the dimensionless Ash burden ratio and `d` is the hole diameter in metres. With the reference diameter fixed at 0.251 m, the Ash estimate responds linearly to the varied coefficient.
+
+| Scenario | Ash burden ratio | Ash burden, m | Seven-model range, m |
+|---|---:|---:|---:|
+| Lower endpoint | 20.0 | 5.020000 | 1.963189 |
+| Reference scenario | 25.0 | 6.275000 | 1.455865 |
+| Upper endpoint | 40.0 | 10.040000 | 4.512676 |
+
+Only the Ash equation responds to this parameter. The other six reconstructed models remain constant and serve as deterministic controls.
+
+The minimum sampled seven-model range of approximately **1.456 m** occurs at ratios **22.5, 25.0, and 27.5**. This plateau does not identify an optimal burden ratio. It occurs because the corresponding Ash estimates lie between the fixed minimum and maximum estimates produced by other equations.
+
+At the upper sampled ratio of 40, the Ash equation becomes the largest estimate and increases the seven-model range to approximately **4.513 m**.
+
+The 20–40 interval is the currently implemented analytical constraint for the reconstructed Ash relationship. It is not presented as:
+
+- A universally applicable calibration range.
+- A probability distribution for the Ash coefficient.
+- A validated predictive-uncertainty interval.
+- Evidence that any sampled ratio is optimal.
+- A site-specific operational recommendation.
+
+Reproducible outputs are provided in:
+
+```text
+notebooks/ash_burden_ratio_sensitivity_comparison.ipynb
+outputs/figures/ash_burden_ratio_sensitivity_comparison.png
+data/processed/ash_burden_ratio_sensitivity_model_outputs.csv
+data/processed/ash_burden_ratio_sensitivity_ensemble_summary.csv
+data/processed/ash_burden_ratio_sensitivity_model_response_summary.csv
+```
 ## Decision safeguards
 
 Because independent site-specific validation is not available, the software enforces:
@@ -208,7 +250,7 @@ The software includes:
 - A documented public Python package interface.
 - A command-line report validator.
 - Automated checks for unsupported recommendations and inconsistent model outputs.
-- A full test suite with **96 passing tests**.
+- A full test suite with **123 passing tests**.
 
 ## Run the automated tests
 
@@ -223,7 +265,7 @@ python -m pytest -v
 Expected result:
 
 ```text
-96 passed
+123 passed
 ```
 ## Regenerate the integrity manifest
 

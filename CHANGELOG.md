@@ -3,6 +3,27 @@
 All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
+
+### Added
+
+- Controlled one-factor Ash burden-ratio sensitivity analysis across the currently implemented dimensionless interval from 20 to 40.
+- Ash burden-ratio table validation, ensemble-disagreement summaries, and per-model response summaries.
+- Reproducible Ash burden-ratio sensitivity notebook and comparative two-panel figure.
+- Version-controlled Ash burden-ratio model-output, ensemble-summary, and model-response CSV artifacts.
+- Automated tests covering grid validation, reference-scenario reproduction, linear Ash response, fixed-model behavior, summary calculations, research-safety metadata, and saved-artifact consistency.
+
+### Changed
+
+- Expanded the README and research note with Ash burden-ratio sensitivity findings, interpretation, limitations, and reproducible outputs.
+- Increased the complete automated test suite from 96 to 123 passing tests.
+
+### Research safeguards
+
+- Treats the Ash burden ratio as an empirical equation coefficient rather than a probabilistically calibrated variable.
+- Treats the implemented 20–40 interval as an analytical sampling constraint, not a universal calibration or operational range.
+- Explicitly states that the minimum-range plateau at sampled ratios 22.5, 25.0, and 27.5 is not an optimization result.
+- Retains the `RESEARCH_COMPARATOR_ONLY` decision gate and does not issue a field-ready burden recommendation.
+
 ## [0.5.0] - 2026-09-27
 
 ### Added

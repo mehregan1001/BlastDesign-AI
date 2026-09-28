@@ -30,6 +30,7 @@ data/processed/*.csv
 !data/processed/diameter_sensitivity_model_outputs.csv
 !data/processed/diameter_sensitivity_ensemble_summary.csv
 !data/processed/diameter_sensitivity_model_response_summary.csv
+!outputs/figures/ash_burden_ratio_sensitivity_comparison.png
 !data/processed/.gitkeep
 
 # Python build and packaging artifacts

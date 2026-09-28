@@ -54,6 +54,129 @@ DEFAULT_ROCK_DENSITY_GRID_G_CM3 = (
     4.80,
     5.30,
 )
+DEFAULT_ASH_BURDEN_RATIO_GRID = (
+    20.0,
+    22.5,
+    25.0,
+    27.5,
+    30.0,
+    32.5,
+    35.0,
+    37.5,
+    40.0,
+)
+def build_gole_gohar_ash_burden_ratio_sensitivity_table(
+    ash_burden_ratios: Iterable[float] | None = None,
+) -> pd.DataFrame:
+    """Build a seven-model Ash burden-ratio comparison.
+
+    The dimensionless Ash burden ratio varies while hole diameter
+    and all other reconstructed Gole Gohar inputs remain fixed.
+
+    The default grid spans the currently implemented 20–40 interval.
+    It is an analytical parameter-sensitivity grid, not a universal
+    calibration domain or a recommended operational range.
+    """
+
+    if ash_burden_ratios is None:
+        raw_values = list(
+            DEFAULT_ASH_BURDEN_RATIO_GRID
+        )
+    else:
+        if isinstance(ash_burden_ratios, (str, bytes)):
+            raise TypeError(
+                "ash_burden_ratios must be an iterable "
+                "of numerical values."
+            )
+
+        try:
+            raw_values = list(ash_burden_ratios)
+        except TypeError as error:
+            raise TypeError(
+                "ash_burden_ratios must be an iterable "
+                "of numerical values."
+            ) from error
+
+    if not raw_values:
+        raise ValueError(
+            "At least one Ash burden-ratio value is required."
+        )
+
+    ratio_values = [
+        positive_float(value, "ash_burden_ratio")
+        for value in raw_values
+    ]
+
+    if len(set(ratio_values)) != len(ratio_values):
+        raise ValueError(
+            "Ash burden-ratio values must be unique."
+        )
+
+    if any(
+        not 20.0 <= ratio <= 40.0
+        for ratio in ratio_values
+    ):
+        raise ValueError(
+            "Ash burden-ratio values must be between "
+            "20 and 40."
+        )
+
+    ratio_values.sort()
+
+    reference_inputs = gole_gohar_reference_inputs()
+    reference_ratio = positive_float(
+        reference_inputs["ash_burden_ratio"],
+        "ash_burden_ratio",
+    )
+
+    tables = []
+
+    for ratio in ratio_values:
+        scenario_inputs = reference_inputs.copy()
+        scenario_inputs["ash_burden_ratio"] = ratio
+
+        model_table = evaluate_conventional_burden_models(
+            **scenario_inputs
+        )
+
+        model_table.insert(
+            0,
+            "ash_burden_ratio",
+            ratio,
+        )
+
+        tables.append(model_table)
+
+    result = pd.concat(tables, ignore_index=True)
+
+    fixed_inputs = reference_inputs.copy()
+    fixed_inputs.pop("ash_burden_ratio")
+
+    result.attrs["analysis_type"] = (
+        "one_factor_at_a_time"
+    )
+    result.attrs["varied_parameter"] = (
+        "ash_burden_ratio"
+    )
+    result.attrs["reference_ash_burden_ratio"] = (
+        reference_ratio
+    )
+    result.attrs["fixed_inputs"] = fixed_inputs
+    result.attrs["sampled_interval"] = {
+        "minimum": ratio_values[0],
+        "maximum": ratio_values[-1],
+    }
+    result.attrs["decision_gate"] = (
+        "RESEARCH_COMPARATOR_ONLY"
+    )
+    result.attrs["parameter_warning"] = (
+        "The Ash burden ratio is an empirical model "
+        "coefficient. The sampled interval represents "
+        "deterministic parameter sensitivity, not calibrated "
+        "uncertainty or a recommended operational range."
+    )
+
+    return result
 def build_gole_gohar_diameter_sensitivity_table(
     hole_diameters_mm: Iterable[float] | None = None,
 ) -> pd.DataFrame:

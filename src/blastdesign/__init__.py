@@ -25,6 +25,8 @@ from .registry import (
     score_model,
 )
 from .sensitivity import (
+    DEFAULT_ASH_BURDEN_RATIO_GRID,
+    build_gole_gohar_ash_burden_ratio_sensitivity_table,
     DEFAULT_DIAMETER_GRID_MM,
     DEFAULT_UCS_GRID_MPA,
     build_diameter_ensemble_summary,
@@ -47,6 +49,7 @@ from .validation import assert_close
 
 
 __all__ = [
+    "DEFAULT_ASH_BURDEN_RATIO_GRID",
     "DEFAULT_DIAMETER_GRID_MM",
     "DEFAULT_UCS_GRID_MPA",
     "SCORE_COLUMNS",
@@ -54,6 +57,7 @@ __all__ = [
     "assert_close",
     "bhandari_burden",
     "build_diameter_ensemble_summary",
+    "build_gole_gohar_ash_burden_ratio_sensitivity_table",
     "build_gole_gohar_diameter_sensitivity_table",
     "build_gole_gohar_ucs_sensitivity_table",
     "build_model_diameter_response_summary",

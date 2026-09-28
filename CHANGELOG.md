@@ -4,6 +4,8 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-09-28
+
 ### Added
 
 - Controlled one-factor Ash burden-ratio sensitivity analysis across the currently implemented dimensionless interval from 20 to 40.
@@ -140,7 +142,8 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - No probabilistically calibrated uncertainty model.
 - No field-ready blasting recommendation.
 
-[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.2.0...v0.3.0

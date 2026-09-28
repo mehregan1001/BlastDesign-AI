@@ -43,6 +43,8 @@ from .sensitivity import (
     build_gole_gohar_rock_density_sensitivity_table,
     build_model_rock_density_response_summary,
     build_rock_density_ensemble_summary,
+    build_ash_burden_ratio_ensemble_summary,
+    build_model_ash_burden_ratio_response_summary,
 )
 
 from .validation import assert_close
@@ -84,4 +86,6 @@ __all__ = [
     "build_gole_gohar_rock_density_sensitivity_table",
     "build_model_rock_density_response_summary",
     "build_rock_density_ensemble_summary",
+    "build_ash_burden_ratio_ensemble_summary",
+    "build_model_ash_burden_ratio_response_summary",
 ]

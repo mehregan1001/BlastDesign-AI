@@ -1665,3 +1665,242 @@ def build_model_rock_density_response_summary(
     )
 
     return summary
+
+_REQUIRED_ASH_BURDEN_RATIO_COLUMNS = {
+    "ash_burden_ratio",
+    "model_id",
+    "model_name",
+    "burden_m",
+}
+
+
+def _validate_ash_burden_ratio_table(
+    sensitivity_table: pd.DataFrame,
+) -> None:
+    """Validate a seven-model Ash burden-ratio table."""
+
+    if not isinstance(sensitivity_table, pd.DataFrame):
+        raise TypeError(
+            "sensitivity_table must be a pandas DataFrame."
+        )
+
+    missing_columns = (
+        _REQUIRED_ASH_BURDEN_RATIO_COLUMNS.difference(
+            sensitivity_table.columns
+        )
+    )
+
+    if missing_columns:
+        raise ValueError(
+            "Missing Ash burden-ratio columns: "
+            f"{sorted(missing_columns)}"
+        )
+
+    if sensitivity_table.empty:
+        raise ValueError(
+            "The Ash burden-ratio table must not be empty."
+        )
+
+    if sensitivity_table.duplicated(
+        subset=[
+            "ash_burden_ratio",
+            "model_id",
+        ]
+    ).any():
+        raise ValueError(
+            "The Ash burden-ratio table contains duplicate "
+            "ratio-model combinations."
+        )
+
+    model_counts = sensitivity_table.groupby(
+        "ash_burden_ratio"
+    )["model_id"].nunique()
+
+    if not model_counts.eq(7).all():
+        raise ValueError(
+            "Every Ash burden-ratio value must contain "
+            "exactly seven unique burden models."
+        )
+
+
+def build_ash_burden_ratio_ensemble_summary(
+    sensitivity_table: pd.DataFrame,
+) -> pd.DataFrame:
+    """Summarize model disagreement by Ash burden ratio."""
+
+    _validate_ash_burden_ratio_table(
+        sensitivity_table
+    )
+
+    summary = (
+        sensitivity_table.groupby(
+            "ash_burden_ratio",
+            as_index=False,
+        )
+        .agg(
+            model_count=(
+                "model_id",
+                "nunique",
+            ),
+            mean_burden_m=(
+                "burden_m",
+                "mean",
+            ),
+            median_burden_m=(
+                "burden_m",
+                "median",
+            ),
+            minimum_burden_m=(
+                "burden_m",
+                "min",
+            ),
+            maximum_burden_m=(
+                "burden_m",
+                "max",
+            ),
+        )
+        .sort_values("ash_burden_ratio")
+        .reset_index(drop=True)
+    )
+
+    summary["range_m"] = (
+        summary["maximum_burden_m"]
+        - summary["minimum_burden_m"]
+    )
+
+    summary.attrs["decision_gate"] = (
+        "RESEARCH_COMPARATOR_ONLY"
+    )
+    summary.attrs["interpretation_warning"] = (
+        "Changes represent deterministic response to an "
+        "empirical model coefficient and structural "
+        "model disagreement, not calibrated predictive "
+        "uncertainty."
+    )
+
+    return summary
+
+
+def build_model_ash_burden_ratio_response_summary(
+    sensitivity_table: pd.DataFrame,
+    reference_ash_burden_ratio: float = 25.0,
+) -> pd.DataFrame:
+    """Summarize each model's Ash burden-ratio response."""
+
+    _validate_ash_burden_ratio_table(
+        sensitivity_table
+    )
+
+    reference_ratio = positive_float(
+        reference_ash_burden_ratio,
+        "reference_ash_burden_ratio",
+    )
+
+    rows = []
+
+    for model_id, group in sensitivity_table.groupby(
+        "model_id",
+        sort=False,
+    ):
+        model_names = (
+            group["model_name"]
+            .drop_duplicates()
+            .tolist()
+        )
+
+        if len(model_names) != 1:
+            raise ValueError(
+                f"Model {model_id!r} has inconsistent names."
+            )
+
+        ordered = (
+            group.sort_values("ash_burden_ratio")
+            .reset_index(drop=True)
+        )
+
+        reference_rows = ordered[
+            ordered["ash_burden_ratio"].eq(
+                reference_ratio
+            )
+        ]
+
+        if len(reference_rows) != 1:
+            raise ValueError(
+                f"Model {model_id!r} must contain exactly "
+                f"one row at Ash burden ratio "
+                f"{reference_ratio}."
+            )
+
+        lower_row = ordered.iloc[0]
+        upper_row = ordered.iloc[-1]
+        reference_row = reference_rows.iloc[0]
+
+        burdens = ordered["burden_m"].astype(float)
+
+        lower_burden = float(
+            lower_row["burden_m"]
+        )
+        upper_burden = float(
+            upper_row["burden_m"]
+        )
+        endpoint_change = (
+            upper_burden - lower_burden
+        )
+        distinct_burden_count = int(
+            burdens.nunique()
+        )
+
+        rows.append(
+            {
+                "model_id": str(model_id),
+                "model_name": model_names[0],
+                "distinct_burden_count": (
+                    distinct_burden_count
+                ),
+                "responds_to_ash_burden_ratio": (
+                    distinct_burden_count > 1
+                ),
+                "lower_ash_burden_ratio": float(
+                    lower_row["ash_burden_ratio"]
+                ),
+                "upper_ash_burden_ratio": float(
+                    upper_row["ash_burden_ratio"]
+                ),
+                "burden_at_lower_endpoint_m": (
+                    lower_burden
+                ),
+                "reference_ash_burden_ratio": (
+                    reference_ratio
+                ),
+                "reference_burden_m": float(
+                    reference_row["burden_m"]
+                ),
+                "burden_at_upper_endpoint_m": (
+                    upper_burden
+                ),
+                "endpoint_change_m": (
+                    endpoint_change
+                ),
+                "endpoint_change_percent": (
+                    endpoint_change
+                    / lower_burden
+                    * 100.0
+                ),
+                "burden_range_m": float(
+                    burdens.max() - burdens.min()
+                ),
+            }
+        )
+
+    summary = pd.DataFrame(rows)
+
+    summary.attrs["decision_gate"] = (
+        "RESEARCH_COMPARATOR_ONLY"
+    )
+    summary.attrs["interpretation_warning"] = (
+        "A model response indicates deterministic "
+        "dependence on the Ash burden coefficient, "
+        "not predictive accuracy or field validation."
+    )
+
+    return summary

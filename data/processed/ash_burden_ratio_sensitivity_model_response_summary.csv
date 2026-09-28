@@ -1,0 +1,8 @@
+model_id,model_name,distinct_burden_count,responds_to_ash_burden_ratio,lower_ash_burden_ratio,upper_ash_burden_ratio,burden_at_lower_endpoint_m,reference_ash_burden_ratio,reference_burden_m,burden_at_upper_endpoint_m,endpoint_change_m,endpoint_change_percent,burden_range_m
+CONV_ASH,Ash,9,True,20.0,40.0,5.02,25.0,6.275,10.04,5.02,100.0,5.02
+CONV_BHANDARI,Bhandari,1,False,20.0,40.0,6.874,25.0,6.874,6.874,0.0,0.0,0.0
+CONV_JIMENO,Lopez Jimeno,1,False,20.0,40.0,5.773,25.0,5.773,5.773,0.0,0.0,0.0
+CONV_KONYA_1972,Konya 1972,1,False,20.0,40.0,5.5273236163425565,25.0,5.5273236163425565,5.5273236163425565,0.0,0.0,0.0
+CONV_KONYA_1983,Konya 1983,1,False,20.0,40.0,5.689716247139588,25.0,5.689716247139588,5.689716247139588,0.0,0.0,0.0
+CONV_RUSTAN,Rustan,1,False,20.0,40.0,6.983188559264405,25.0,6.983188559264405,6.983188559264405,0.0,0.0,0.0
+CONV_TATIYA,Tatiya–Al-Ajmi,1,False,20.0,40.0,5.839369999999999,25.0,5.839369999999999,5.839369999999999,0.0,0.0,0.0

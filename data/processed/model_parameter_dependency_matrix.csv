@@ -1,0 +1,8 @@
+model_id,model_name,hole_diameter_mm,ucs_mpa,explosive_density_g_cm3,rock_density_g_cm3,ash_burden_ratio,responsive_parameter_count
+CONV_ASH,Ash,True,False,False,False,True,2
+CONV_BHANDARI,Bhandari,True,False,False,False,False,1
+CONV_JIMENO,Lopez Jimeno,True,True,False,False,False,2
+CONV_KONYA_1972,Konya 1972,True,False,True,True,False,3
+CONV_KONYA_1983,Konya 1983,True,False,True,True,False,3
+CONV_RUSTAN,Rustan,True,False,False,False,False,1
+CONV_TATIYA,Tatiya–Al-Ajmi,True,True,False,False,False,2

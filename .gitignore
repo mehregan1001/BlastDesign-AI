@@ -51,5 +51,7 @@ dist/
 !data/processed/ash_burden_ratio_sensitivity_model_outputs.csv
 !data/processed/ash_burden_ratio_sensitivity_ensemble_summary.csv
 !data/processed/ash_burden_ratio_sensitivity_model_response_summary.csv
+!data/processed/integrated_sensitivity_summary.csv
+!data/processed/model_parameter_dependency_matrix.csv
 
 !outputs/figures/rock_density_sensitivity_comparison.png

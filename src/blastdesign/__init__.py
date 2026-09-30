@@ -46,6 +46,10 @@ from .sensitivity import (
     build_ash_burden_ratio_ensemble_summary,
     build_model_ash_burden_ratio_response_summary,
 )
+from .synthesis import (
+    build_integrated_sensitivity_summary,
+    build_model_parameter_dependency_matrix,
+)
 
 from .validation import assert_close
 
@@ -88,4 +92,6 @@ __all__ = [
     "build_rock_density_ensemble_summary",
     "build_ash_burden_ratio_ensemble_summary",
     "build_model_ash_burden_ratio_response_summary",
+    "build_integrated_sensitivity_summary",
+    "build_model_parameter_dependency_matrix",
 ]

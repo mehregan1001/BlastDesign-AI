@@ -55,3 +55,4 @@ dist/
 !data/processed/model_parameter_dependency_matrix.csv
 
 !outputs/figures/rock_density_sensitivity_comparison.png
+!outputs/figures/integrated_sensitivity_synthesis.png

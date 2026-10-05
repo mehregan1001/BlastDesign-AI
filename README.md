@@ -213,6 +213,43 @@ data/processed/ash_burden_ratio_sensitivity_model_outputs.csv
 data/processed/ash_burden_ratio_sensitivity_ensemble_summary.csv
 data/processed/ash_burden_ratio_sensitivity_model_response_summary.csv
 ```
+## Integrated sensitivity synthesis
+
+The five controlled one-factor-at-a-time analyses were combined into a reproducible cross-analysis synthesis.
+
+| Analysis | Sampled interval | Responding models | Reference range, m | Minimum sampled range, m | Maximum sampled range, m |
+|---|---:|---:|---:|---:|---:|
+| Hole diameter | 181–311 mm | 7 | 1.455865 | 1.394229 | 1.722230 |
+| UCS | 40–220 MPa | 2 | 1.455865 | 1.455865 | 1.894109 |
+| Explosive density | 0.70–1.00 g/cm³ | 2 | 1.455865 | 1.210189 | 1.798902 |
+| Rock density | 1.80–5.30 g/cm³ | 2 | 1.455865 | 1.210189 | 1.796828 |
+| Ash burden ratio | 20–40 | 1 | 1.455865 | 1.455865 | 4.512676 |
+
+All five analyses reproduce the same seven-model range at the reconstructed reference scenario.
+
+The model–parameter dependency matrix identifies numerical dependencies in the currently implemented equations:
+
+| Model | Hole diameter | UCS | Explosive density | Rock density | Ash burden ratio |
+|---|---:|---:|---:|---:|---:|
+| Ash | Yes | No | No | No | Yes |
+| Bhandari | Yes | No | No | No | No |
+| López Jimeno | Yes | Yes | No | No | No |
+| Konya 1972 | Yes | No | Yes | Yes | No |
+| Konya 1983 | Yes | No | Yes | Yes | No |
+| Rustan | Yes | No | No | No | No |
+| Tatiya–Al-Ajmi | Yes | Yes | No | No | No |
+
+A `Yes` value means only that the reconstructed equation changes somewhere on the corresponding sampled grid. It does not establish causal influence, field importance, predictive accuracy, or independent validation.
+
+The ranges from different analyses must not be interpreted as a universal parameter-importance ranking. Each analysis uses a different physical unit, sampled interval, empirical domain, and response structure. In particular, the large sampled Ash-ratio range reflects its selected interval and direct equation structure; it does not establish that the Ash coefficient is the most important physical blast-design parameter.
+
+Reproducible synthesis outputs are available in:
+
+- `notebooks/integrated_sensitivity_synthesis.ipynb`
+- `outputs/figures/integrated_sensitivity_synthesis.png`
+- `data/processed/integrated_sensitivity_summary.csv`
+- `data/processed/model_parameter_dependency_matrix.csv`
+  
 ## Decision safeguards
 
 Because independent site-specific validation is not available, the software enforces:
@@ -250,7 +287,7 @@ The software includes:
 - A documented public Python package interface.
 - A command-line report validator.
 - Automated checks for unsupported recommendations and inconsistent model outputs.
-- A full test suite with **123 passing tests**.
+- A full test suite with **135 passing tests**.
 
 ## Run the automated tests
 
@@ -265,7 +302,7 @@ python -m pytest -v
 Expected result:
 
 ```text
-123 passed
+135 passed
 ```
 ## Regenerate the integrity manifest
 

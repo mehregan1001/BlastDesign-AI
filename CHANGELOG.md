@@ -4,6 +4,27 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-10-05
+
+### Added
+
+- Integrated synthesis of five deterministic one-factor sensitivity analyses.
+- Cross-analysis summary of sampled ensemble ranges and responding-model counts.
+- Seven-model by five-parameter numerical dependency matrix.
+- Reproducible integrated-synthesis notebook, comparative figure, and version-controlled CSV artifacts.
+- Automated structural and artifact-regression tests for the synthesis outputs.
+
+### Changed
+
+- Expanded the README and research note with integrated sensitivity findings and interpretation limitations.
+- Increased the complete automated test suite from 123 to 135 passing tests.
+
+### Research safeguards
+
+- Explicitly prevents cross-grid results from being interpreted as a universal ranking of parameter importance.
+- Distinguishes reconstructed equation dependencies from causal influence, predictive sensitivity, and field significance.
+- Retains the `RESEARCH_COMPARATOR_ONLY` decision gate.
+
 ## [0.6.0] - 2026-09-28
 
 ### Added
@@ -23,7 +44,7 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 - Treats the Ash burden ratio as an empirical equation coefficient rather than a probabilistically calibrated variable.
 - Treats the implemented 20–40 interval as an analytical sampling constraint, not a universal calibration or operational range.
-- Explicitly states that the minimum-range plateau at sampled ratios 22.5, 25.0, and 27.5 is not an optimization result.
+- - Documents why cross-grid results cannot establish a universal ranking of parameter importance.
 - Retains the `RESEARCH_COMPARATOR_ONLY` decision gate and does not issue a field-ready burden recommendation.
 
 ## [0.5.0] - 2026-09-27
@@ -142,7 +163,8 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - No probabilistically calibrated uncertainty model.
 - No field-ready blasting recommendation.
 
-[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.6.0...HEAD
+[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.3.0...v0.4.0

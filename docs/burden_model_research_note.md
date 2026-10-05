@@ -3,7 +3,7 @@
 **Author:** Alireza Mehregan  
 **Project:** BlastDesign-AI  
 **Research stage:** Reproducible methodological reconstruction and comparative assessment  
-**Software status:** Python package with 123 passing automated tests
+**Software status:** Python package with 135 passing automated tests
 
 ## 1. Research background
 
@@ -115,7 +115,7 @@ The project currently includes:
 - A reusable decision-contract validator.
 - An explicitly defined package interface.
 - Automated tests covering model behavior, report construction, decision safeguards, and public API consistency.
-- A complete automated test suite containing 123 passing tests.
+- A complete automated test suite containing 135 passing tests.
 - Version-controlled source code and research outputs.
 
 The automated checks include safeguards against unsupported recommendations, duplicated model identifiers, inconsistent numerical ranges, missing model information, and unsupported validation claims.
@@ -427,3 +427,63 @@ data/processed/ash_burden_ratio_sensitivity_model_response_summary.csv
 ```
 
 Automated tests verify the coefficient grid, input validation, reference-scenario reproduction, linear Ash response, invariance of the other six models, ensemble-summary calculations, research-safety metadata, and saved-artifact consistency.
+
+## Integrated deterministic sensitivity synthesis
+
+The five controlled one-factor-at-a-time analyses were combined to examine the numerical response structure of the complete seven-model comparison.
+
+| Analysis | Reference value | Sample count | Responding models | Reference range, m | Minimum sampled range, m | Maximum sampled range, m |
+|---|---:|---:|---:|---:|---:|---:|
+| Hole diameter | 251 mm | 14 | 7 | 1.455865 | 1.394229 | 1.722230 |
+| UCS | 85 MPa | 11 | 2 | 1.455865 | 1.455865 | 1.894109 |
+| Explosive density | 0.85 g/cm³ | 7 | 2 | 1.455865 | 1.210189 | 1.798902 |
+| Rock density | 4.37 g/cm³ | 12 | 2 | 1.455865 | 1.210189 | 1.796828 |
+| Ash burden ratio | 25 | 9 | 1 | 1.455865 | 1.455865 | 4.512676 |
+
+Every analysis reproduces the established reference mean burden of approximately 6.137371 m and reference seven-model range of approximately 1.455865 m.
+
+### Reconstructed model–parameter dependencies
+
+| Model | Hole diameter | UCS | Explosive density | Rock density | Ash burden ratio | Responsive parameter count |
+|---|---:|---:|---:|---:|---:|---:|
+| Ash | Yes | No | No | No | Yes | 2 |
+| Bhandari | Yes | No | No | No | No | 1 |
+| López Jimeno | Yes | Yes | No | No | No | 2 |
+| Konya 1972 | Yes | No | Yes | Yes | No | 3 |
+| Konya 1983 | Yes | No | Yes | Yes | No | 3 |
+| Rustan | Yes | No | No | No | No | 1 |
+| Tatiya–Al-Ajmi | Yes | Yes | No | No | No | 2 |
+
+The matrix describes numerical dependencies in the reconstructed implementations:
+
+- Hole diameter affects all seven equations.
+- UCS affects López Jimeno and Tatiya–Al-Ajmi through discrete empirical strength classifications.
+- Explosive density and rock density affect the two Konya equations through the explosive-to-rock density ratio.
+- The Ash burden ratio affects only the Ash equation.
+
+### Interpretation limitations
+
+The cross-analysis results are descriptive summaries of five separately designed computational experiments. They are not directly comparable measures of physical sensitivity because the analyses use different units, grid widths, classifications, and mathematical response structures.
+
+The large range observed at the upper Ash burden-ratio endpoint is partly determined by the selected dimensionless interval and the direct linear dependence of the Ash equation. It must not be interpreted as evidence that the Ash ratio is more important than diameter, UCS, or density under field conditions.
+
+Similarly, explosive density and rock density are mathematically linked through the density ratio in the Konya equations. Their separate one-factor analyses do not represent independent physical mechanisms or model interactions.
+
+The synthesis therefore does not provide:
+
+- A global sensitivity ranking.
+- Variance-based sensitivity indices.
+- Calibrated parameter uncertainty.
+- Predictive confidence intervals.
+- Evidence of causal importance.
+- Independent field validation.
+- An optimized or operational blast-design recommendation.
+
+The reproducible synthesis is available in:
+
+- `notebooks/integrated_sensitivity_synthesis.ipynb`
+- `outputs/figures/integrated_sensitivity_synthesis.png`
+- `data/processed/integrated_sensitivity_summary.csv`
+- `data/processed/model_parameter_dependency_matrix.csv`
+
+The enforced decision state remains `RESEARCH_COMPARATOR_ONLY`.

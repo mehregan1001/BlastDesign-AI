@@ -56,3 +56,10 @@ dist/
 
 !outputs/figures/rock_density_sensitivity_comparison.png
 !outputs/figures/integrated_sensitivity_synthesis.png
+
+# Joint-density research artifacts
+!data/processed/joint_density_sensitivity_model_outputs.csv
+!data/processed/joint_density_sensitivity_ensemble_summary.csv
+!data/processed/joint_density_sensitivity_model_response_summary.csv
+
+!outputs/figures/joint_density_sensitivity_comparison.png

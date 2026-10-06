@@ -2,7 +2,7 @@ import blastdesign_ai
 
 
 def test_package_version_is_defined():
-    assert blastdesign_ai.__version__ == "0.7.0"
+    assert blastdesign_ai.__version__ == "0.8.0"
 
 
 def test_public_api_exposes_report_builder():

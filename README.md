@@ -250,6 +250,44 @@ Reproducible synthesis outputs are available in:
 - `data/processed/integrated_sensitivity_summary.csv`
 - `data/processed/model_parameter_dependency_matrix.csv`
   
+## Controlled joint-density sensitivity analysis
+
+A Cartesian analysis varies explosive density and rock density together while
+hole diameter, UCS, explosive-type label, and Ash burden ratio remain fixed.
+The default grids combine seven explosive densities (0.70-1.00 g/cm³) with
+twelve rock densities (1.80-5.30 g/cm³), producing 84 density pairs and 588
+outputs from the seven reconstructed models.
+
+Only Konya 1972 and Konya 1983 respond to these density inputs. Both equations
+depend on the explosive-to-rock density ratio: proportional changes in the
+two densities preserve their calculated burdens at fixed hole diameter.
+
+| Sampled result | Seven-model range, m |
+|---|---:|
+| Reference pair: explosive 0.85, rock 4.37 g/cm³ | 1.455865 |
+| Minimum, attained by 44 sampled pairs | 1.210189 |
+| Maximum: explosive 0.70, rock 5.30 g/cm³ | 2.118704 |
+
+These are grid-dependent structural comparisons. The minimum-range plateau
+does not identify an optimal explosive, rock condition, or blast design.
+The broad rock-density grid includes uncommon geological endmembers; density
+measurement bases must remain consistent with the intended source equation.
+The fixed ANFO label does not establish that every sampled explosive density
+corresponds to a realizable product with unchanged energy or performance.
+
+The reproducible notebook is
+`notebooks/joint_density_sensitivity_comparison.ipynb`. Its three-panel figure
+shows both Konya burden surfaces and the seven-model range on the actual
+density coordinates. Three saved CSV tables under `data/processed/` contain
+model outputs, ensemble summaries, and model response summaries.
+Regenerate the CSV files with:
+
+```bash
+python scripts/generate_joint_density_artifacts.py
+```
+
+The analysis retains the `RESEARCH_COMPARATOR_ONLY` decision gate.
+
 ## Decision safeguards
 
 Because independent site-specific validation is not available, the software enforces:
@@ -287,7 +325,7 @@ The software includes:
 - A documented public Python package interface.
 - A command-line report validator.
 - Automated checks for unsupported recommendations and inconsistent model outputs.
-- A full test suite with **135 passing tests**.
+- A full test suite with **192 passing tests**.
 
 ## Run the automated tests
 
@@ -302,7 +340,7 @@ python -m pytest -v
 Expected result:
 
 ```text
-135 passed
+192 passed
 ```
 ## Regenerate the integrity manifest
 

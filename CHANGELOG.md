@@ -4,6 +4,28 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-10-06
+
+### Added
+
+- Controlled Cartesian explosive-density and rock-density analysis with 84 density pairs and seven models per pair.
+- Joint-density input validation, ensemble-disagreement summaries, and per-model ratio-response summaries.
+- Reproducible joint-density notebook and three-panel figure with actual density coordinates and reference-ratio annotations.
+- CSV regeneration script and version-controlled joint-density model-output, ensemble-summary, and model-response tables.
+- Automated tests for grid coverage, one-factor slice agreement, equal-ratio invariance, response direction, reference reproduction, summary contracts, and saved-artifact consistency.
+
+### Changed
+
+- Expanded the README and research note with joint-density findings and interpretation limits.
+- Increased the automated test suite from 135 to 192 passing tests; the new summary tests also execute 228 subtests.
+
+### Research safeguards
+
+- Distinguishes joint-grid ratio-endpoint changes from changes along either density axis alone.
+- Treats the minimum-range plateau as structural equation disagreement rather than a blast-design optimization result.
+- Documents exploratory grid limits, density measurement bases, and the physical limitations of holding the ANFO label fixed.
+- Retains the `RESEARCH_COMPARATOR_ONLY` decision gate.
+
 ## [0.7.0] - 2026-10-06
 
 ### Added
@@ -163,7 +185,8 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - No probabilistically calibrated uncertainty model.
 - No field-ready blasting recommendation.
 
-[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.7.0...HEAD
+[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.8.0...HEAD
+[0.8.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.4.0...v0.5.0

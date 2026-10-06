@@ -53,6 +53,11 @@ from .synthesis import (
 
 from .validation import assert_close
 
+from .joint_density import (
+    build_gole_gohar_joint_density_sensitivity_table,
+    build_joint_density_ensemble_summary,
+    build_model_joint_density_response_summary,
+)
 
 __all__ = [
     "DEFAULT_ASH_BURDEN_RATIO_GRID",
@@ -94,4 +99,7 @@ __all__ = [
     "build_model_ash_burden_ratio_response_summary",
     "build_integrated_sensitivity_summary",
     "build_model_parameter_dependency_matrix",
+    "build_gole_gohar_joint_density_sensitivity_table",
+    "build_joint_density_ensemble_summary",
+    "build_model_joint_density_response_summary",
 ]

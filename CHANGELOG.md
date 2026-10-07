@@ -4,7 +4,7 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
 
-## [0.8.0] - 2026-10-06
+## [0.8.0] - 2026-10-08
 
 ### Added
 

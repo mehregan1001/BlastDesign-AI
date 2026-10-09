@@ -3,6 +3,10 @@
 All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
+### Added
+
+- Analytical local density-elasticity summary for the reconstructed Konya 1972 and Konya 1983 equations.
+- Twelve automated tests covering numerical derivative agreement, reference values, input validation, and research-safety metadata.
 
 ## [0.8.0] - 2026-10-08
 

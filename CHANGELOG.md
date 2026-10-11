@@ -3,6 +3,9 @@
 All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
+
+## [0.9.0] - 2026-10-12
+
 ### Added
 
 - Analytical local density-elasticity summary for the reconstructed Konya 1972 and Konya 1983 equations.
@@ -202,7 +205,8 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - No probabilistically calibrated uncertainty model.
 - No field-ready blasting recommendation.
 
-[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.8.0...HEAD
+[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.9.0...HEAD
+[0.9.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.5.0...v0.6.0

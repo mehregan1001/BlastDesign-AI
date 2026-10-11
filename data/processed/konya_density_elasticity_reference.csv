@@ -1,0 +1,3 @@
+model_id,model_name,hole_diameter_mm,explosive_density_g_cm3,rock_density_g_cm3,explosive_to_rock_density_ratio,burden_m,explosive_density_elasticity,rock_density_elasticity
+CONV_KONYA_1972,Konya 1972,251.0,0.85,4.37,0.19450800915331806,5.5273236163425565,0.33,-0.33
+CONV_KONYA_1983,Konya 1983,251.0,0.85,4.37,0.19450800915331806,5.689716247139588,0.2059357964869776,-0.2059357964869776

@@ -1,0 +1,103 @@
+{
+  "artifacts": {
+    "konya_density_elasticity_grid.csv": {
+      "attributes": {
+        "analysis_type": "analytical_local_density_elasticity_grid",
+        "decision_gate": "RESEARCH_COMPARATOR_ONLY",
+        "density_warning": "The density grids are exploratory computational intervals, not probability distributions, recommended operational ranges, or universal model-validation domains. Numerical acceptance does not establish geological or product realizability. Use the density definition intended by the source equation; mineral, grain, dry-bulk, saturated-bulk, and in-situ densities are not interchangeable.",
+        "elasticity_definition": "E_x = (x/B) * dB/dx, with other inputs fixed.",
+        "elasticity_units": "dimensionless",
+        "fixed_inputs": {
+          "hole_diameter_mm": 251.0
+        },
+        "grid_shape": [
+          7,
+          12
+        ],
+        "interpretation_warning": "Elasticities describe local fractional responses of the reconstructed equations. They do not establish field sensitivity, causal influence, predictive accuracy, calibrated uncertainty, or an operational recommendation. The differential approximation is not generally an exact response to a finite percentage change.",
+        "model_scope": [
+          "CONV_KONYA_1972",
+          "CONV_KONYA_1983"
+        ],
+        "models_per_scenario": 2,
+        "reference_density_pair": {
+          "explosive_density_g_cm3": 0.85,
+          "rock_density_g_cm3": 4.37
+        },
+        "reference_density_pair_sampled": true,
+        "sampled_intervals_g_cm3": {
+          "explosive_density_g_cm3": {
+            "maximum": 1.0,
+            "minimum": 0.7
+          },
+          "rock_density_g_cm3": {
+            "maximum": 5.3,
+            "minimum": 1.8
+          }
+        },
+        "scenario_count": 84,
+        "varied_parameters": [
+          "explosive_density_g_cm3",
+          "rock_density_g_cm3"
+        ]
+      },
+      "columns": [
+        "model_id",
+        "model_name",
+        "hole_diameter_mm",
+        "explosive_density_g_cm3",
+        "rock_density_g_cm3",
+        "explosive_to_rock_density_ratio",
+        "burden_m",
+        "explosive_density_elasticity",
+        "rock_density_elasticity"
+      ],
+      "row_count": 168
+    },
+    "konya_density_elasticity_reference.csv": {
+      "attributes": {
+        "analysis_type": "analytical_local_density_elasticity",
+        "decision_gate": "RESEARCH_COMPARATOR_ONLY",
+        "density_warning": "Use the density definition intended by the source equation. Mineral, grain, dry-bulk, saturated-bulk, and in-situ densities must not be treated as interchangeable.",
+        "elasticity_definition": "E_x = (x/B) * dB/dx, with other inputs fixed.",
+        "elasticity_units": "dimensionless",
+        "interpretation_warning": "Elasticities describe local fractional responses of the reconstructed equations. They do not establish field sensitivity, causal influence, predictive accuracy, calibrated uncertainty, or an operational recommendation. The differential approximation is not generally an exact response to a finite percentage change.",
+        "model_scope": [
+          "CONV_KONYA_1972",
+          "CONV_KONYA_1983"
+        ],
+        "scenario_inputs": {
+          "explosive_density_g_cm3": 0.85,
+          "hole_diameter_mm": 251.0,
+          "rock_density_g_cm3": 4.37
+        }
+      },
+      "columns": [
+        "model_id",
+        "model_name",
+        "hole_diameter_mm",
+        "explosive_density_g_cm3",
+        "rock_density_g_cm3",
+        "explosive_to_rock_density_ratio",
+        "burden_m",
+        "explosive_density_elasticity",
+        "rock_density_elasticity"
+      ],
+      "row_count": 2
+    }
+  },
+  "calculation_source": "blastdesign.density_elasticity",
+  "column_units": {
+    "burden_m": "m",
+    "explosive_density_elasticity": "dimensionless",
+    "explosive_density_g_cm3": "g/cm3",
+    "explosive_to_rock_density_ratio": "dimensionless",
+    "hole_diameter_mm": "mm",
+    "model_id": "identifier",
+    "model_name": "text",
+    "rock_density_elasticity": "dimensionless",
+    "rock_density_g_cm3": "g/cm3"
+  },
+  "decision_gate": "RESEARCH_COMPARATOR_ONLY",
+  "schema_version": 1
+}

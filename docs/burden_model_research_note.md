@@ -3,7 +3,7 @@
 **Author:** Alireza Mehregan  
 **Project:** BlastDesign-AI  
 **Research stage:** Reproducible methodological reconstruction and comparative assessment  
-**Software status:** Python package with 192 passing automated tests
+**Software status:** Python package with 215 passing automated tests
 
 ## 1. Research background
 
@@ -115,7 +115,7 @@ The project currently includes:
 - A reusable decision-contract validator.
 - An explicitly defined package interface.
 - Automated tests covering model behavior, report construction, decision safeguards, and public API consistency.
-- A complete automated test suite containing 192 passing tests.
+- A complete automated test suite containing 215 passing tests.
 - Version-controlled source code and research outputs.
 
 The automated checks include safeguards against unsupported recommendations, duplicated model identifiers, inconsistent numerical ranges, missing model information, and unsupported validation claims.
@@ -586,3 +586,102 @@ Automated tests verify Cartesian coverage, density ratios, agreement with
 both existing one-factor sweeps, reference reproduction, proportional-pair
 invariance, response direction, summary statistics, invalid-input rejection,
 metadata handling, and consistency of saved CSV artifacts.
+
+## Analytical local density elasticities of the Konya equations
+
+The density-grid comparison is extended with analytical local
+elasticities of the two reconstructed Konya burden equations. This
+analysis describes their implemented mathematical structure.
+
+Let $q = \rho_e / \rho_r$, with both densities expressed in g/cm3 using
+the density definitions intended by the source equations. For diameter
+$d$ in metres and burden $B$ in metres, the implementations are:
+
+$$
+B_{1972} = 37.8\,d\,q^{0.33},
+\qquad
+B_{1983} = 12\,d\,(2q + 1.5).
+$$
+
+The exponent remains 0.33, matching the reconstructed implementation.
+It is not replaced with one third.
+
+For an input $x$, local elasticity is defined by
+
+$$
+E_x = \frac{x}{B}\frac{\partial B}{\partial x},
+$$
+
+with the other inputs held fixed. Differentiation gives
+
+$$
+E_{\rho_e}^{1972} = 0.33,
+\qquad E_{\rho_r}^{1972} = -0.33,
+$$
+
+$$
+E_{\rho_e}^{1983} = \frac{2q}{2q + 1.5}
+= \frac{q}{q + 0.75},
+\qquad E_{\rho_r}^{1983} = -E_{\rho_e}^{1983}.
+$$
+
+At the reference density pair, 0.85 and 4.37 g/cm3, the ratio is
+approximately 0.194508. The reference results are:
+
+| Model | Explosive-density elasticity | Rock-density elasticity |
+|---|---:|---:|
+| Konya 1972 | +0.330000 | -0.330000 |
+| Konya 1983 | +0.205936 | -0.205936 |
+
+The Cartesian grid uses the existing 7 explosive-density values from
+0.70 to 1.00 g/cm3 and 12 rock-density values from 1.80 to 5.30 g/cm3.
+At fixed reference diameter, 251 mm, it evaluates 84 pairs and returns
+168 rows for the two equations. The sampled Konya 1983
+explosive-density elasticity has minimum approximately 0.149733 at
+0.70/5.30 g/cm3 and maximum approximately 0.425532 at 1.00/1.80 g/cm3.
+Konya 1972 retains constant elasticities throughout this grid.
+
+For Konya 1983, explosive-density elasticity increases with the density
+ratio. At fixed rock density it therefore increases with explosive
+density, and at fixed explosive density it decreases with rock density.
+The diameter factor cancels from both equations' density elasticities.
+
+The differential relation $\mathrm{d}B/B = E_x\,\mathrm{d}x/x$ describes
+small fractional changes when only $x$ varies. At the reference pair,
+for example, a small 1% increase in explosive density corresponds to
+approximately a 0.33% burden increase for Konya 1972 and a 0.206%
+increase for Konya 1983. This is a local approximation, not a general
+exact rule for finite changes. The changed-input equation should be
+evaluated when a finite response is required.
+
+Opposite density-elasticity signs arise because both implementations
+depend on the same density ratio. They do not establish two separately
+validated physical mechanisms. Larger elasticity means a stronger local
+fractional response of the reconstructed equation. It does not establish
+greater predictive importance, field sensitivity, causal influence,
+model accuracy, or calibrated uncertainty.
+
+The sampled density pairs remain exploratory computational scenarios.
+Their numerical acceptance does not establish geological or explosive-
+product feasibility. Mineral, grain, dry-bulk, saturated-bulk, and
+in-situ densities must not be treated as interchangeable.
+
+Reproducible outputs are:
+
+- `data/processed/konya_density_elasticity_reference.csv`
+- `data/processed/konya_density_elasticity_grid.csv`
+- `data/processed/konya_density_elasticity_metadata.json`
+- `outputs/figures/konya_density_elasticity_comparison.png`
+
+The [comparison notebook](../notebooks/konya_density_elasticity_comparison.ipynb)
+and `scripts/generate_konya_density_elasticity_artifacts.py` use the same
+export routine. CSV numbers retain computational precision, while the
+JSON sidecar preserves column units and analysis attributes.
+
+Automated checks cover analytical derivatives against numerical finite
+differences, ratio invariance, reference reproduction, complete grid
+structure, input validation, metadata, and saved-data consistency.
+The project suite currently passes 215 tests and 228 subtests.
+
+The analysis retains `RESEARCH_COMPARATOR_ONLY` and provides no
+operational burden recommendation.

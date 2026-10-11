@@ -7,6 +7,7 @@ a measured rock or explosive property or a calibrated uncertainty measure.
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from math import isfinite
 
 import numpy as np
@@ -14,6 +15,10 @@ import pandas as pd
 
 from .audit import gole_gohar_reference_inputs
 from .burden import konya_1972_burden, konya_1983_burden
+from .sensitivity import (
+    DEFAULT_EXPLOSIVE_DENSITY_GRID_G_CM3,
+    DEFAULT_ROCK_DENSITY_GRID_G_CM3,
+)
 from .validation import positive_float
 
 
@@ -132,3 +137,126 @@ def build_konya_density_elasticity_summary(
         }
     )
     return summary
+
+
+def _validated_elasticity_density_grid(
+    values: Iterable[float] | None,
+    default_values: Iterable[float],
+    parameter_name: str,
+) -> list[float]:
+    """Return a sorted, nonempty grid of unique positive real densities."""
+    if values is None:
+        raw_values = list(default_values)
+    else:
+        if isinstance(values, (str, bytes)):
+            raise TypeError(f"{parameter_name} must be an iterable of numbers.")
+        try:
+            raw_values = list(values)
+        except TypeError as error:
+            raise TypeError(
+                f"{parameter_name} must be an iterable of numbers."
+            ) from error
+
+    if not raw_values:
+        raise ValueError(f"At least one {parameter_name} value is required.")
+    validated = [_positive_real_input(value, parameter_name) for value in raw_values]
+    if len(set(validated)) != len(validated):
+        raise ValueError(f"{parameter_name} values must be unique.")
+    return sorted(validated)
+
+
+def build_gole_gohar_konya_density_elasticity_table(
+    explosive_densities_g_cm3: Iterable[float] | None = None,
+    rock_densities_g_cm3: Iterable[float] | None = None,
+) -> pd.DataFrame:
+    """Evaluate analytical local elasticities at every sampled density pair.
+
+    The default Cartesian grid is the same as the joint-density analysis.
+    Both densities vary while the centralized reference diameter stays
+    fixed. Each pair has one row for each reconstructed Konya equation.
+
+    A custom grid need not include the reference density pair. Its
+    presence is explicitly recorded in the output metadata.
+
+    Elasticities are dimensionless local derivatives evaluated at each
+    pair. The grid is not a probability distribution, a calibrated
+    uncertainty model, or a validated geological or operational domain.
+    """
+    explosive_values = _validated_elasticity_density_grid(
+        explosive_densities_g_cm3,
+        DEFAULT_EXPLOSIVE_DENSITY_GRID_G_CM3,
+        "explosive_density_g_cm3",
+    )
+    rock_values = _validated_elasticity_density_grid(
+        rock_densities_g_cm3,
+        DEFAULT_ROCK_DENSITY_GRID_G_CM3,
+        "rock_density_g_cm3",
+    )
+    reference = gole_gohar_reference_inputs()
+    diameter = _positive_real_input(reference["hole_diameter_mm"], "hole_diameter_mm")
+    reference_pair = {
+        name: _positive_real_input(reference[name], name)
+        for name in ("explosive_density_g_cm3", "rock_density_g_cm3")
+    }
+
+    tables = []
+    common_metadata = {}
+    for rho_e in explosive_values:
+        for rho_r in rock_values:
+            point = build_konya_density_elasticity_summary(diameter, rho_e, rho_r)
+            if not common_metadata:
+                common_metadata = {
+                    name: point.attrs[name]
+                    for name in (
+                        "elasticity_definition",
+                        "elasticity_units",
+                        "model_scope",
+                        "decision_gate",
+                        "interpretation_warning",
+                    )
+                }
+            # A single scenario's attributes do not describe the entire grid.
+            point.attrs.clear()
+            tables.append(point)
+
+    result = pd.concat(tables, ignore_index=True)
+    result.attrs.clear()
+    result.attrs.update(common_metadata)
+    result.attrs.update(
+        {
+            "analysis_type": "analytical_local_density_elasticity_grid",
+            "varied_parameters": (
+                "explosive_density_g_cm3",
+                "rock_density_g_cm3",
+            ),
+            "fixed_inputs": {"hole_diameter_mm": diameter},
+            "reference_density_pair": reference_pair,
+            "reference_density_pair_sampled": (
+                reference_pair["explosive_density_g_cm3"] in explosive_values
+                and reference_pair["rock_density_g_cm3"] in rock_values
+            ),
+            "grid_shape": (len(explosive_values), len(rock_values)),
+            "scenario_count": len(explosive_values) * len(rock_values),
+            "models_per_scenario": 2,
+            "sampled_intervals_g_cm3": {
+                "explosive_density_g_cm3": {
+                    "minimum": explosive_values[0],
+                    "maximum": explosive_values[-1],
+                },
+                "rock_density_g_cm3": {
+                    "minimum": rock_values[0],
+                    "maximum": rock_values[-1],
+                },
+            },
+            "density_warning": (
+                "The density grids are exploratory computational intervals, "
+                "not probability distributions, recommended operational "
+                "ranges, or universal model-validation domains. Numerical "
+                "acceptance does not establish geological or product "
+                "realizability. Use the density definition intended by the "
+                "source equation; mineral, grain, dry-bulk, saturated-bulk, "
+                "and in-situ densities are not interchangeable."
+            ),
+        }
+    )
+    return result

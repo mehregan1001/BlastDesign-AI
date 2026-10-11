@@ -288,6 +288,44 @@ python scripts/generate_joint_density_artifacts.py
 
 The analysis retains the `RESEARCH_COMPARATOR_ONLY` decision gate.
 
+## Analytical Konya density elasticities
+
+The reconstructed Konya equations are also compared through dimensionless
+local density elasticities, holding other inputs fixed. For the density
+ratio `q = explosive_density / rock_density`, Konya 1972 has explosive-density
+elasticity `0.33`, while Konya 1983 has elasticity `q / (q + 0.75)`.
+Rock-density elasticity is the negative of explosive-density elasticity
+for both equations.
+
+| Model | Reference explosive-density elasticity | Reference rock-density elasticity |
+|---|---:|---:|
+| Konya 1972 | +0.330000 | -0.330000 |
+| Konya 1983 | +0.205936 | -0.205936 |
+
+The reference pair is 0.85 g/cm3 explosive density and 4.37 g/cm3 rock
+density, at a hole diameter of 251 mm. The existing 7-by-12 density grid
+contains 84 pairs and produces 168 rows for these two equations. Sampled
+Konya 1983 explosive-density elasticities range from approximately
+0.149733 to 0.425532.
+
+Elasticity describes a differential fractional equation response. Its
+percentage interpretation is local. A finite input change generally
+requires reevaluating the burden equation. These results do not establish
+field sensitivity, predictive accuracy, calibrated uncertainty, or an
+operational recommendation.
+
+The [comparison notebook](notebooks/konya_density_elasticity_comparison.ipynb)
+shows the analytical ratio response and the sampled density-pair values.
+Regenerate the two CSV tables, metadata JSON file, and figure with:
+
+```text
+python scripts/generate_konya_density_elasticity_artifacts.py
+```
+
+The JSON sidecar preserves units, scenario inputs, sampled intervals,
+and interpretation warnings that CSV does not retain. All outputs keep
+the `RESEARCH_COMPARATOR_ONLY` decision gate.
+
 ## Decision safeguards
 
 Because independent site-specific validation is not available, the software enforces:
@@ -325,7 +363,7 @@ The software includes:
 - A documented public Python package interface.
 - A command-line report validator.
 - Automated checks for unsupported recommendations and inconsistent model outputs.
-- A full test suite with **192 passing tests**.
+- A full test suite with **215 passing tests**.
 
 ## Run the automated tests
 
@@ -340,7 +378,7 @@ python -m pytest -v
 Expected result:
 
 ```text
-192 passed
+215 passed, 228 subtests passed
 ```
 ## Regenerate the integrity manifest
 

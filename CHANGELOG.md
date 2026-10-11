@@ -7,6 +7,19 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 - Analytical local density-elasticity summary for the reconstructed Konya 1972 and Konya 1983 equations.
 - Twelve automated tests covering numerical derivative agreement, reference values, input validation, and research-safety metadata.
+- Analytical Konya density-elasticity grid across 84 explosive-density and rock-density pairs.
+- Reproducible elasticity reference/grid CSV tables, metadata JSON sidecar, comparison notebook, and two-panel figure.
+- Eight grid tests and three saved-artifact regression tests for the density-elasticity additions.
+
+### Changed
+
+- Expanded the README and research note with analytical density-elasticity definitions, findings, and interpretation limits.
+- Increased the complete automated test suite from 192 to 215 passing tests, with 228 passing subtests.
+
+### Research safeguards
+
+- Distinguishes local differential equation response from finite-change predictions, field sensitivity, and calibrated uncertainty.
+- Preserves units and research-safety metadata alongside CSV exports and retains RESEARCH_COMPARATOR_ONLY.
 
 ## [0.8.0] - 2026-10-08
 

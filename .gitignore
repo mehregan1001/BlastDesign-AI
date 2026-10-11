@@ -63,3 +63,9 @@ dist/
 !data/processed/joint_density_sensitivity_model_response_summary.csv
 
 !outputs/figures/joint_density_sensitivity_comparison.png
+
+# Reproducible Konya density-elasticity outputs
+!data/processed/konya_density_elasticity_reference.csv
+!data/processed/konya_density_elasticity_grid.csv
+!data/processed/konya_density_elasticity_metadata.json
+!outputs/figures/konya_density_elasticity_comparison.png

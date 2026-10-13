@@ -63,6 +63,8 @@ from .density_elasticity import (
     build_konya_density_elasticity_summary,
 )
 
+from .density_elasticity import build_gole_gohar_konya_density_elasticity_table
+
 __all__ = [
     "DEFAULT_ASH_BURDEN_RATIO_GRID",
     "DEFAULT_DIAMETER_GRID_MM",
@@ -107,4 +109,5 @@ __all__ = [
     "build_joint_density_ensemble_summary",
     "build_model_joint_density_response_summary",
     "build_konya_density_elasticity_summary",
+    "build_gole_gohar_konya_density_elasticity_table",
 ]

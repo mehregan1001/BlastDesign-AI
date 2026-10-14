@@ -7,8 +7,8 @@ authors:
   - family-names: "Mehregan"
     given-names: "Alireza"
 
-version: 0.9.0
-date-released: 2026-10-12
+version: 1.0.0
+date-released: 2026-10-14
 license: MIT
 repository-code: "https://github.com/mehregan1001/BlastDesign-AI"
 

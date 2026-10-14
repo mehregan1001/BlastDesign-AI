@@ -69,3 +69,6 @@ dist/
 !data/processed/konya_density_elasticity_grid.csv
 !data/processed/konya_density_elasticity_metadata.json
 !outputs/figures/konya_density_elasticity_comparison.png
+
+# Versioned public-interface baseline
+!data/processed/public_api_contract.json

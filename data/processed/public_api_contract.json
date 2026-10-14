@@ -1,0 +1,1130 @@
+{
+  "contract_schema_version": 1,
+  "dataframes": {
+    "blastdesign.build_ash_burden_ratio_ensemble_summary": {
+      "columns": [
+        "ash_burden_ratio",
+        "model_count",
+        "mean_burden_m",
+        "median_burden_m",
+        "minimum_burden_m",
+        "maximum_burden_m",
+        "range_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_diameter_ensemble_summary": {
+      "columns": [
+        "hole_diameter_mm",
+        "model_count",
+        "mean_burden_m",
+        "median_burden_m",
+        "minimum_burden_m",
+        "maximum_burden_m",
+        "range_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_explosive_density_ensemble_summary": {
+      "columns": [
+        "explosive_density_g_cm3",
+        "explosive_to_rock_density_ratio",
+        "model_count",
+        "mean_burden_m",
+        "median_burden_m",
+        "minimum_burden_m",
+        "maximum_burden_m",
+        "range_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_gole_gohar_ash_burden_ratio_sensitivity_table": {
+      "columns": [
+        "ash_burden_ratio",
+        "model_id",
+        "model_name",
+        "burden_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_gole_gohar_diameter_sensitivity_table": {
+      "columns": [
+        "hole_diameter_mm",
+        "model_id",
+        "model_name",
+        "burden_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_gole_gohar_explosive_density_sensitivity_table": {
+      "columns": [
+        "explosive_density_g_cm3",
+        "explosive_to_rock_density_ratio",
+        "model_id",
+        "model_name",
+        "burden_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_gole_gohar_joint_density_sensitivity_table": {
+      "columns": [
+        "explosive_density_g_cm3",
+        "rock_density_g_cm3",
+        "explosive_to_rock_density_ratio",
+        "model_id",
+        "model_name",
+        "burden_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_gole_gohar_konya_density_elasticity_table": {
+      "columns": [
+        "model_id",
+        "model_name",
+        "hole_diameter_mm",
+        "explosive_density_g_cm3",
+        "rock_density_g_cm3",
+        "explosive_to_rock_density_ratio",
+        "burden_m",
+        "explosive_density_elasticity",
+        "rock_density_elasticity"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_gole_gohar_rock_density_sensitivity_table": {
+      "columns": [
+        "rock_density_g_cm3",
+        "explosive_to_rock_density_ratio",
+        "model_id",
+        "model_name",
+        "burden_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_gole_gohar_ucs_sensitivity_table": {
+      "columns": [
+        "ucs_mpa",
+        "model_id",
+        "model_name",
+        "burden_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_integrated_sensitivity_summary": {
+      "columns": [
+        "analysis_id",
+        "parameter_name",
+        "parameter_label",
+        "unit",
+        "reference_value",
+        "sampled_minimum",
+        "sampled_maximum",
+        "sample_count",
+        "responding_model_count",
+        "responding_model_ids_json",
+        "reference_mean_burden_m",
+        "reference_range_m",
+        "minimum_ensemble_range_m",
+        "minimum_range_parameter_values_json",
+        "maximum_ensemble_range_m",
+        "maximum_range_parameter_values_json",
+        "ensemble_range_span_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_joint_density_ensemble_summary": {
+      "columns": [
+        "explosive_density_g_cm3",
+        "rock_density_g_cm3",
+        "explosive_to_rock_density_ratio",
+        "model_count",
+        "mean_burden_m",
+        "median_burden_m",
+        "minimum_burden_m",
+        "maximum_burden_m",
+        "range_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_konya_density_elasticity_summary": {
+      "columns": [
+        "model_id",
+        "model_name",
+        "hole_diameter_mm",
+        "explosive_density_g_cm3",
+        "rock_density_g_cm3",
+        "explosive_to_rock_density_ratio",
+        "burden_m",
+        "explosive_density_elasticity",
+        "rock_density_elasticity"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_model_ash_burden_ratio_response_summary": {
+      "columns": [
+        "model_id",
+        "model_name",
+        "distinct_burden_count",
+        "responds_to_ash_burden_ratio",
+        "lower_ash_burden_ratio",
+        "upper_ash_burden_ratio",
+        "burden_at_lower_endpoint_m",
+        "reference_ash_burden_ratio",
+        "reference_burden_m",
+        "burden_at_upper_endpoint_m",
+        "endpoint_change_m",
+        "endpoint_change_percent",
+        "burden_range_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_model_diameter_response_summary": {
+      "columns": [
+        "model_id",
+        "model_name",
+        "lower_diameter_mm",
+        "upper_diameter_mm",
+        "burden_at_lower_endpoint_m",
+        "reference_diameter_mm",
+        "reference_burden_m",
+        "burden_at_upper_endpoint_m",
+        "endpoint_change_m",
+        "endpoint_change_percent",
+        "burden_range_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_model_explosive_density_response_summary": {
+      "columns": [
+        "model_id",
+        "model_name",
+        "distinct_burden_count",
+        "responds_to_explosive_density",
+        "lower_explosive_density_g_cm3",
+        "upper_explosive_density_g_cm3",
+        "burden_at_lower_endpoint_m",
+        "reference_explosive_density_g_cm3",
+        "reference_density_ratio",
+        "reference_burden_m",
+        "burden_at_upper_endpoint_m",
+        "endpoint_change_m",
+        "endpoint_change_percent",
+        "burden_range_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_model_joint_density_response_summary": {
+      "columns": [
+        "model_id",
+        "model_name",
+        "distinct_burden_count",
+        "responds_to_joint_density_grid",
+        "reference_explosive_density_g_cm3",
+        "reference_rock_density_g_cm3",
+        "reference_density_ratio",
+        "reference_burden_m",
+        "minimum_sampled_density_ratio",
+        "maximum_sampled_density_ratio",
+        "burden_at_minimum_density_ratio_m",
+        "burden_at_maximum_density_ratio_m",
+        "ratio_endpoint_change_m",
+        "ratio_endpoint_change_percent",
+        "minimum_burden_m",
+        "maximum_burden_m",
+        "burden_range_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_model_parameter_dependency_matrix": {
+      "columns": [
+        "model_id",
+        "model_name",
+        "hole_diameter_mm",
+        "ucs_mpa",
+        "explosive_density_g_cm3",
+        "rock_density_g_cm3",
+        "ash_burden_ratio",
+        "responsive_parameter_count"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_model_rock_density_response_summary": {
+      "columns": [
+        "model_id",
+        "model_name",
+        "distinct_burden_count",
+        "responds_to_rock_density",
+        "lower_rock_density_g_cm3",
+        "upper_rock_density_g_cm3",
+        "burden_at_lower_endpoint_m",
+        "reference_rock_density_g_cm3",
+        "reference_density_ratio",
+        "reference_burden_m",
+        "burden_at_upper_endpoint_m",
+        "endpoint_change_m",
+        "endpoint_change_percent",
+        "burden_range_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_model_ucs_response_summary": {
+      "columns": [
+        "model_id",
+        "model_name",
+        "distinct_burden_count",
+        "responds_to_ucs",
+        "reference_ucs_mpa",
+        "reference_burden_m",
+        "minimum_burden_m",
+        "maximum_burden_m",
+        "burden_range_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_rock_density_ensemble_summary": {
+      "columns": [
+        "rock_density_g_cm3",
+        "explosive_to_rock_density_ratio",
+        "model_count",
+        "mean_burden_m",
+        "median_burden_m",
+        "minimum_burden_m",
+        "maximum_burden_m",
+        "range_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.build_ucs_ensemble_summary": {
+      "columns": [
+        "ucs_mpa",
+        "model_count",
+        "mean_burden_m",
+        "median_burden_m",
+        "minimum_burden_m",
+        "maximum_burden_m",
+        "range_m"
+      ],
+      "decision_gate": "RESEARCH_COMPARATOR_ONLY"
+    },
+    "blastdesign.evaluate_conventional_burden_models": {
+      "columns": [
+        "model_id",
+        "model_name",
+        "burden_m"
+      ],
+      "decision_gate": null
+    }
+  },
+  "namespaces": {
+    "blastdesign": {
+      "DEFAULT_ASH_BURDEN_RATIO_GRID": {
+        "container_type": "tuple",
+        "kind": "constant",
+        "value": [
+          20.0,
+          22.5,
+          25.0,
+          27.5,
+          30.0,
+          32.5,
+          35.0,
+          37.5,
+          40.0
+        ]
+      },
+      "DEFAULT_DIAMETER_GRID_MM": {
+        "container_type": "tuple",
+        "kind": "constant",
+        "value": [
+          181.0,
+          191.0,
+          201.0,
+          211.0,
+          221.0,
+          231.0,
+          241.0,
+          251.0,
+          261.0,
+          271.0,
+          281.0,
+          291.0,
+          301.0,
+          311.0
+        ]
+      },
+      "DEFAULT_EXPLOSIVE_DENSITY_GRID_G_CM3": {
+        "container_type": "tuple",
+        "kind": "constant",
+        "value": [
+          0.7,
+          0.75,
+          0.8,
+          0.85,
+          0.9,
+          0.95,
+          1.0
+        ]
+      },
+      "DEFAULT_ROCK_DENSITY_GRID_G_CM3": {
+        "container_type": "tuple",
+        "kind": "constant",
+        "value": [
+          1.8,
+          2.1,
+          2.4,
+          2.6,
+          2.75,
+          3.0,
+          3.3,
+          3.75,
+          4.0,
+          4.37,
+          4.8,
+          5.3
+        ]
+      },
+      "DEFAULT_UCS_GRID_MPA": {
+        "container_type": "tuple",
+        "kind": "constant",
+        "value": [
+          40.0,
+          54.999,
+          55.0,
+          69.999,
+          70.0,
+          85.0,
+          110.0,
+          110.001,
+          180.0,
+          180.001,
+          220.0
+        ]
+      },
+      "SCORE_COLUMNS": {
+        "container_type": "list",
+        "kind": "constant",
+        "value": [
+          "theoretical_basis_score",
+          "independent_validation_score",
+          "input_observability_score",
+          "transferability_score",
+          "uncertainty_capability_score",
+          "reproducibility_score",
+          "decision_integration_score"
+        ]
+      },
+      "ash_burden": {
+        "display_signature": "(hole_diameter_mm, burden_ratio=25.0)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "hole_diameter_mm"
+          },
+          {
+            "default": 25.0,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "burden_ratio"
+          }
+        ],
+        "source_alias": "blastdesign.burden.ash_burden"
+      },
+      "assert_close": {
+        "display_signature": "(actual, expected, tolerance=1e-12)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "actual"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "expected"
+          },
+          {
+            "default": 1e-12,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "tolerance"
+          }
+        ],
+        "source_alias": "blastdesign.validation.assert_close"
+      },
+      "bhandari_burden": {
+        "display_signature": "(hole_diameter_mm)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "hole_diameter_mm"
+          }
+        ],
+        "source_alias": "blastdesign.burden.bhandari_burden"
+      },
+      "build_ash_burden_ratio_ensemble_summary": {
+        "display_signature": "(sensitivity_table)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "sensitivity_table"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_ash_burden_ratio_ensemble_summary"
+      },
+      "build_diameter_ensemble_summary": {
+        "display_signature": "(sensitivity_table)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "sensitivity_table"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_diameter_ensemble_summary"
+      },
+      "build_explosive_density_ensemble_summary": {
+        "display_signature": "(sensitivity_table)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "sensitivity_table"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_explosive_density_ensemble_summary"
+      },
+      "build_gole_gohar_ash_burden_ratio_sensitivity_table": {
+        "display_signature": "(ash_burden_ratios=None)",
+        "kind": "function",
+        "parameters": [
+          {
+            "default": null,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "ash_burden_ratios"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_gole_gohar_ash_burden_ratio_sensitivity_table"
+      },
+      "build_gole_gohar_diameter_sensitivity_table": {
+        "display_signature": "(hole_diameters_mm=None)",
+        "kind": "function",
+        "parameters": [
+          {
+            "default": null,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "hole_diameters_mm"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_gole_gohar_diameter_sensitivity_table"
+      },
+      "build_gole_gohar_explosive_density_sensitivity_table": {
+        "display_signature": "(explosive_densities_g_cm3=None)",
+        "kind": "function",
+        "parameters": [
+          {
+            "default": null,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "explosive_densities_g_cm3"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_gole_gohar_explosive_density_sensitivity_table"
+      },
+      "build_gole_gohar_joint_density_sensitivity_table": {
+        "display_signature": "(explosive_densities_g_cm3=None, rock_densities_g_cm3=None)",
+        "kind": "function",
+        "parameters": [
+          {
+            "default": null,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "explosive_densities_g_cm3"
+          },
+          {
+            "default": null,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "rock_densities_g_cm3"
+          }
+        ],
+        "source_alias": "blastdesign.joint_density.build_gole_gohar_joint_density_sensitivity_table"
+      },
+      "build_gole_gohar_konya_density_elasticity_table": {
+        "display_signature": "(explosive_densities_g_cm3=None, rock_densities_g_cm3=None)",
+        "kind": "function",
+        "parameters": [
+          {
+            "default": null,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "explosive_densities_g_cm3"
+          },
+          {
+            "default": null,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "rock_densities_g_cm3"
+          }
+        ],
+        "source_alias": "blastdesign.density_elasticity.build_gole_gohar_konya_density_elasticity_table"
+      },
+      "build_gole_gohar_rock_density_sensitivity_table": {
+        "display_signature": "(rock_densities_g_cm3=None)",
+        "kind": "function",
+        "parameters": [
+          {
+            "default": null,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "rock_densities_g_cm3"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_gole_gohar_rock_density_sensitivity_table"
+      },
+      "build_gole_gohar_ucs_sensitivity_table": {
+        "display_signature": "(ucs_values_mpa=None)",
+        "kind": "function",
+        "parameters": [
+          {
+            "default": null,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "ucs_values_mpa"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_gole_gohar_ucs_sensitivity_table"
+      },
+      "build_integrated_sensitivity_summary": {
+        "display_signature": "()",
+        "kind": "function",
+        "parameters": [],
+        "source_alias": "blastdesign.synthesis.build_integrated_sensitivity_summary"
+      },
+      "build_joint_density_ensemble_summary": {
+        "display_signature": "(sensitivity_table)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "sensitivity_table"
+          }
+        ],
+        "source_alias": "blastdesign.joint_density.build_joint_density_ensemble_summary"
+      },
+      "build_konya_density_elasticity_summary": {
+        "display_signature": "(hole_diameter_mm=None, explosive_density_g_cm3=None, rock_density_g_cm3=None)",
+        "kind": "function",
+        "parameters": [
+          {
+            "default": null,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "hole_diameter_mm"
+          },
+          {
+            "default": null,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "explosive_density_g_cm3"
+          },
+          {
+            "default": null,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "rock_density_g_cm3"
+          }
+        ],
+        "source_alias": "blastdesign.density_elasticity.build_konya_density_elasticity_summary"
+      },
+      "build_model_ash_burden_ratio_response_summary": {
+        "display_signature": "(sensitivity_table, reference_ash_burden_ratio=25.0)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "sensitivity_table"
+          },
+          {
+            "default": 25.0,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "reference_ash_burden_ratio"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_model_ash_burden_ratio_response_summary"
+      },
+      "build_model_diameter_response_summary": {
+        "display_signature": "(sensitivity_table, reference_diameter_mm=251.0)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "sensitivity_table"
+          },
+          {
+            "default": 251.0,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "reference_diameter_mm"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_model_diameter_response_summary"
+      },
+      "build_model_explosive_density_response_summary": {
+        "display_signature": "(sensitivity_table, reference_explosive_density_g_cm3=0.85)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "sensitivity_table"
+          },
+          {
+            "default": 0.85,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "reference_explosive_density_g_cm3"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_model_explosive_density_response_summary"
+      },
+      "build_model_joint_density_response_summary": {
+        "display_signature": "(sensitivity_table, reference_explosive_density_g_cm3=None, reference_rock_density_g_cm3=None)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "sensitivity_table"
+          },
+          {
+            "default": null,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "reference_explosive_density_g_cm3"
+          },
+          {
+            "default": null,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "reference_rock_density_g_cm3"
+          }
+        ],
+        "source_alias": "blastdesign.joint_density.build_model_joint_density_response_summary"
+      },
+      "build_model_parameter_dependency_matrix": {
+        "display_signature": "()",
+        "kind": "function",
+        "parameters": [],
+        "source_alias": "blastdesign.synthesis.build_model_parameter_dependency_matrix"
+      },
+      "build_model_registry": {
+        "display_signature": "()",
+        "kind": "function",
+        "parameters": [],
+        "source_alias": "blastdesign.registry.build_model_registry"
+      },
+      "build_model_rock_density_response_summary": {
+        "display_signature": "(sensitivity_table, reference_rock_density_g_cm3=4.37)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "sensitivity_table"
+          },
+          {
+            "default": 4.37,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "reference_rock_density_g_cm3"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_model_rock_density_response_summary"
+      },
+      "build_model_ucs_response_summary": {
+        "display_signature": "(sensitivity_table, reference_ucs_mpa=85.0)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "sensitivity_table"
+          },
+          {
+            "default": 85.0,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "reference_ucs_mpa"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_model_ucs_response_summary"
+      },
+      "build_rock_density_ensemble_summary": {
+        "display_signature": "(sensitivity_table)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "sensitivity_table"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_rock_density_ensemble_summary"
+      },
+      "build_ucs_ensemble_summary": {
+        "display_signature": "(sensitivity_table)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "sensitivity_table"
+          }
+        ],
+        "source_alias": "blastdesign.sensitivity.build_ucs_ensemble_summary"
+      },
+      "calculate_blast_metrics": {
+        "display_signature": "(bench_height_m, hole_diameter_mm, burden_m, spacing_m, subdrilling_m, stemming_m, explosive_density_kg_m3, number_of_holes)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "bench_height_m"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "hole_diameter_mm"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "burden_m"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "spacing_m"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "subdrilling_m"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "stemming_m"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "explosive_density_kg_m3"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "number_of_holes"
+          }
+        ],
+        "source_alias": "blastdesign.core.calculate_blast_metrics"
+      },
+      "evaluate_conventional_burden_models": {
+        "display_signature": "(hole_diameter_mm, ucs_mpa, explosive_density_g_cm3, rock_density_g_cm3, explosive_type='ANFO', ash_burden_ratio=25.0)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "hole_diameter_mm"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "ucs_mpa"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "explosive_density_g_cm3"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "rock_density_g_cm3"
+          },
+          {
+            "default": "ANFO",
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "explosive_type"
+          },
+          {
+            "default": 25.0,
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "ash_burden_ratio"
+          }
+        ],
+        "source_alias": "blastdesign.comparison.evaluate_conventional_burden_models"
+      },
+      "gole_gohar_burden_results": {
+        "display_signature": "()",
+        "kind": "function",
+        "parameters": [],
+        "source_alias": "blastdesign.audit.gole_gohar_burden_results"
+      },
+      "gole_gohar_reference_inputs": {
+        "display_signature": "()",
+        "kind": "function",
+        "parameters": [],
+        "source_alias": "blastdesign.audit.gole_gohar_reference_inputs"
+      },
+      "konya_1972_burden": {
+        "display_signature": "(hole_diameter_mm, explosive_density_g_cm3, rock_density_g_cm3)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "hole_diameter_mm"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "explosive_density_g_cm3"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "rock_density_g_cm3"
+          }
+        ],
+        "source_alias": "blastdesign.burden.konya_1972_burden"
+      },
+      "konya_1983_burden": {
+        "display_signature": "(hole_diameter_mm, explosive_density_g_cm3, rock_density_g_cm3)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "hole_diameter_mm"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "explosive_density_g_cm3"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "rock_density_g_cm3"
+          }
+        ],
+        "source_alias": "blastdesign.burden.konya_1983_burden"
+      },
+      "lopez_jimeno_burden": {
+        "display_signature": "(hole_diameter_mm, ucs_mpa, explosive_type='ANFO')",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "hole_diameter_mm"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "ucs_mpa"
+          },
+          {
+            "default": "ANFO",
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "explosive_type"
+          }
+        ],
+        "source_alias": "blastdesign.burden.lopez_jimeno_burden"
+      },
+      "rustan_applicability": {
+        "display_signature": "(hole_diameter_mm)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "hole_diameter_mm"
+          }
+        ],
+        "source_alias": "blastdesign.burden.rustan_applicability"
+      },
+      "rustan_burden": {
+        "display_signature": "(hole_diameter_mm)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "hole_diameter_mm"
+          }
+        ],
+        "source_alias": "blastdesign.burden.rustan_burden"
+      },
+      "score_model": {
+        "display_signature": "(registry, model_id, theoretical_basis, independent_validation, input_observability, transferability, uncertainty_capability, reproducibility, decision_integration, evidence_notes, scoring_status='Provisional')",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "registry"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "model_id"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "theoretical_basis"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "independent_validation"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "input_observability"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "transferability"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "uncertainty_capability"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "reproducibility"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "decision_integration"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "evidence_notes"
+          },
+          {
+            "default": "Provisional",
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "scoring_status"
+          }
+        ],
+        "source_alias": "blastdesign.registry.score_model"
+      },
+      "tatiya_al_ajmi_burden": {
+        "display_signature": "(hole_diameter_mm, ucs_mpa, explosive_type='ANFO')",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "hole_diameter_mm"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "ucs_mpa"
+          },
+          {
+            "default": "ANFO",
+            "has_default": true,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "explosive_type"
+          }
+        ],
+        "source_alias": "blastdesign.burden.tatiya_al_ajmi_burden"
+      },
+      "tatiya_al_ajmi_coefficients": {
+        "display_signature": "(ucs_mpa)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "ucs_mpa"
+          }
+        ],
+        "source_alias": "blastdesign.burden.tatiya_al_ajmi_coefficients"
+      }
+    },
+    "blastdesign_ai": {
+      "build_burden_decision_report": {
+        "display_signature": "(model_table, scenario_table)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "model_table"
+          },
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "scenario_table"
+          }
+        ],
+        "source_alias": "blastdesign_ai.decision_report.build_burden_decision_report"
+      },
+      "validate_burden_decision_contract": {
+        "display_signature": "(report)",
+        "kind": "function",
+        "parameters": [
+          {
+            "has_default": false,
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "name": "report"
+          }
+        ],
+        "source_alias": "blastdesign_ai.decision_contract.validate_burden_decision_contract"
+      }
+    }
+  },
+  "reference_scenario_inputs": {
+    "ash_burden_ratio": 25.0,
+    "explosive_density_g_cm3": 0.85,
+    "explosive_type": "ANFO",
+    "hole_diameter_mm": 251.0,
+    "rock_density_g_cm3": 4.37,
+    "ucs_mpa": 85.0
+  },
+  "target_release": "1.0.0"
+}

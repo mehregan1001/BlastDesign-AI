@@ -4,6 +4,25 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-10-14
+
+### Added
+
+- Public package export of the existing Konya density-elasticity grid builder.
+- Public API compatibility policy, generated reference, and saved machine-readable interface baseline.
+- Three compatibility tests covering exports/defaults, function arguments/direct-import aliases, and research DataFrame schemas.
+- Read-only release-readiness inventory and isolated normal-wheel installation, regression, and CLI checks.
+
+### Changed
+
+- Configured CI to test installed wheels on Linux with Python 3.10 through 3.14 and on Windows with Python 3.11.
+- Linked software-interface compatibility and reproducibility documentation from the README and research note.
+- Increased the complete automated test suite from 215 to 218 passing tests, with 228 passing subtests.
+
+### Research safeguards
+
+- Retains the RESEARCH_COMPARATOR_ONLY gate and distinguishes interface stability from independent field validation.
+
 ## [0.9.0] - 2026-10-12
 
 ### Added
@@ -205,7 +224,8 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - No probabilistically calibrated uncertainty model.
 - No field-ready blasting recommendation.
 
-[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.9.0...HEAD
+[Unreleased]: https://github.com/mehregan1001/BlastDesign-AI/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.9.0...v1.0.0
 [0.9.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/mehregan1001/BlastDesign-AI/compare/v0.6.0...v0.7.0

@@ -1,7 +1,12 @@
 # BlastDesign-AI
 [![Automated tests](https://github.com/mehregan1001/BlastDesign-AI/actions/workflows/tests.yml/badge.svg)](https://github.com/mehregan1001/BlastDesign-AI/actions/workflows/tests.yml)
 
-## Status note: Preliminary public research prototype (alpha).
+## Status: Stable research software interface (v1.0.0)
+
+Version 1.0.0 establishes the documented public software interface for
+reproducible comparisons of the reconstructed equations. Independent
+field validation and operational blast-design suitability remain outside
+the current research scope.
 BlastDesign-AI is under active development and has not been validated for operational or safety-critical blasting decisions. The current repository is published to document the project concept, initial computational work and planned development.
 
 BlastDesign-AI builds on the author’s MSc research and the original BlastDesign engineering model for drilling-and-blasting design under technical, safety and environmental constraints. The present project aims to extend that work with Python-based data analysis and machine-learning methods.
@@ -326,6 +331,26 @@ The JSON sidecar preserves units, scenario inputs, sampled intervals,
 and interpretation warnings that CSV does not retain. All outputs keep
 the `RESEARCH_COMPARATOR_ONLY` decision gate.
 
+<!-- BEGIN PUBLIC API COMPATIBILITY -->
+## Public API and compatibility
+
+The supported imports, arguments, defaults, physical units, and research-table
+schemas are documented in the [compatibility policy](docs/API_COMPATIBILITY.md)
+and [public API reference](docs/PUBLIC_API_REFERENCE.md). A saved JSON baseline
+and compatibility tests make unexpected interface changes visible.
+
+Test the normal installed package with:
+
+```text
+python scripts/check_wheel_installation.py
+```
+
+This creates a temporary environment, verifies wheel imports and metadata,
+runs the suite against the installed package, and checks its validator.
+Software-interface stability and scientific field validation are distinct;
+the research-comparator scope remains in force.
+<!-- END PUBLIC API COMPATIBILITY -->
+
 ## Decision safeguards
 
 Because independent site-specific validation is not available, the software enforces:
@@ -363,7 +388,7 @@ The software includes:
 - A documented public Python package interface.
 - A command-line report validator.
 - Automated checks for unsupported recommendations and inconsistent model outputs.
-- A full test suite with **215 passing tests**.
+- A full test suite with **218 passing tests**.
 
 ## Run the automated tests
 
@@ -378,7 +403,7 @@ python -m pytest -v
 Expected result:
 
 ```text
-215 passed, 228 subtests passed
+218 passed, 228 subtests passed
 ```
 ## Regenerate the integrity manifest
 

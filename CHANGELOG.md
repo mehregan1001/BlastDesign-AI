@@ -4,6 +4,14 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Burden-equation provenance document mapping the seven implementations to thesis locations and recording unresolved original-source checks.
+
+### Fixed
+
+- Checksum generation now hashes selected staged Git blob contents, rejects unstaged inputs, and reports local research outputs outside the version-controlled inventory.
+
 ## [1.0.0] - 2026-10-14
 
 ### Added

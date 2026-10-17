@@ -3,7 +3,7 @@
 **Author:** Alireza Mehregan  
 **Project:** BlastDesign-AI  
 **Research stage:** Reproducible methodological reconstruction and comparative assessment  
-**Software status:** Python package with 218 passing automated tests
+**Software status:** Python package with 234 passing automated tests
 
 ## 1. Research background
 
@@ -115,7 +115,7 @@ The project currently includes:
 - A reusable decision-contract validator.
 - An explicitly defined package interface.
 - Automated tests covering model behavior, report construction, decision safeguards, and public API consistency.
-- A complete automated test suite containing 218 passing tests.
+- A complete automated test suite containing 234 passing tests.
 - Version-controlled source code and research outputs.
 
 The automated checks include safeguards against unsupported recommendations, duplicated model identifiers, inconsistent numerical ranges, missing model information, and unsupported validation claims.
@@ -681,7 +681,7 @@ JSON sidecar preserves column units and analysis attributes.
 Automated checks cover analytical derivatives against numerical finite
 differences, ratio invariance, reference reproduction, complete grid
 structure, input validation, metadata, and saved-data consistency.
-The project suite currently passes 218 tests and 228 subtests.
+The project suite currently passes 234 tests and 228 subtests.
 
 The analysis retains `RESEARCH_COMPARATOR_ONLY` and provides no
 operational burden recommendation.

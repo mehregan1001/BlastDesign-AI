@@ -388,7 +388,7 @@ The software includes:
 - A documented public Python package interface.
 - A command-line report validator.
 - Automated checks for unsupported recommendations and inconsistent model outputs.
-- A full test suite with **218 passing tests**.
+- A full test suite with **234 passing tests**.
 
 ## Run the automated tests
 
@@ -403,9 +403,17 @@ python -m pytest -v
 Expected result:
 
 ```text
-218 passed, 228 subtests passed
+234 passed, 228 subtests passed
 ```
 ## Regenerate the integrity manifest
+
+<!-- BEGIN STAGED CHECKSUM POLICY -->
+The manifest records selected **staged Git contents**. Stage the intended input
+files before generating it. Then stage `CHECKSUMS.sha256` and run
+`python scripts/generate_checksums.py --check` before committing.
+The [checksum policy](docs/CHECKSUM_MANIFEST.md) explains inventory coverage,
+line endings, binary files, and historical outputs requiring recovery.
+<!-- END STAGED CHECKSUM POLICY -->
 
 The repository includes a deterministic SHA-256 manifest covering reproducibility-critical source code, tests, notebooks, documentation, source materials, and processed research artifacts.
 

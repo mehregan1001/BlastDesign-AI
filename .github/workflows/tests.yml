@@ -38,5 +38,8 @@ jobs:
         uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Verify the Git snapshot checksum manifest
+        run: python scripts/generate_checksums.py --check
+
       - name: Build, install, and test the normal wheel and validator
         run: python scripts/check_wheel_installation.py

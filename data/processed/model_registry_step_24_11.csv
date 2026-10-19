@@ -1,0 +1,15 @@
+model_id,model_name,model_family,theoretical_basis_score,independent_validation_score,input_observability_score,transferability_score,uncertainty_capability_score,reproducibility_score,decision_integration_score,scoring_status,evidence_notes
+CONV_ASH,Ash,Conventional burden,1,1,3,1,0,3,2,Provisional,Equation and benchmark reproduced; primary-source domain and independent validation remain incomplete.
+CONV_BHANDARI,Bhandari,Conventional burden,1,1,3,1,0,3,2,Provisional,Equation and benchmark reproduced; independent field validation remains incomplete.
+CONV_JIMENO,Lopez Jimeno,Conventional burden,1,1,3,1,0,3,2,Provisional,Piecewise tables and branch tests reproduced; 165–180 mm gap explicitly rejected.
+CONV_KONYA_1972,Konya 1972,Conventional burden,1,1,3,1,0,3,2,Provisional,Metric equation and Gole-Gohar benchmark reproduced; primary-source audit remains incomplete.
+CONV_KONYA_1983,Konya 1983,Conventional burden,1,1,3,1,0,3,2,Provisional,Factor-2 equation verified against thesis Equation 2-10 and 5.69 m benchmark.
+CONV_RUSTAN,Rustan,Conventional burden,1,1,3,1,0,3,2,Provisional,"Correct Rustan identity, metre input, 89–311 mm domain note and 6.98 m benchmark recorded."
+CONV_TATIYA,Tatiya,Conventional burden,1,1,3,1,0,3,2,Provisional,"ANFO-only piecewise quadratic, all UCS boundaries and 5.84 m benchmark verified."
+FRAG_KUZRAM,Kuz-Ram,Fragmentation,,,,,,,,Not scored,
+FRAG_SVEDEFO,SVEDEFO,Fragmentation,,,,,,,,Not scored,
+VIB_SCALED_DISTANCE,Scaled-distance model,Ground vibration,,,,,,,,Not scored,
+AIR_HUSTRULID,Hustrulid,Airblast,,,,,,,,Not scored,
+AIR_BHANDARI,Bhandari,Airblast,,,,,,,,Not scored,
+FLY_BENCH,Ideal bench-blasting model,Flyrock,,,,,,,,Not scored,
+FLY_CRATER,Crater-blasting model,Flyrock,,,,,,,,Not scored,

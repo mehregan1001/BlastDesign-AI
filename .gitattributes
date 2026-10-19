@@ -1,2 +1,15 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# BEGIN LEGACY CSV ARCHIVE v1.0.0
+data/processed/burden_aggregation_comparison_step_24_15.csv -text -filter -working-tree-encoding -ident whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+data/processed/burden_applicability_ledger_step_24_16.csv -text -filter -working-tree-encoding -ident whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+data/processed/burden_decision_readiness_step_24_20.csv -text -filter -working-tree-encoding -ident whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+data/processed/burden_evidence_tiers_step_24_17.csv -text -filter -working-tree-encoding -ident whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+data/processed/burden_leave_one_out_step_24_14.csv -text -filter -working-tree-encoding -ident whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+data/processed/burden_results_step_24_11.csv -text -filter -working-tree-encoding -ident whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+data/processed/burden_robust_spread_step_24_15.csv -text -filter -working-tree-encoding -ident whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+data/processed/burden_screening_scenarios_step_24_17.csv -text -filter -working-tree-encoding -ident whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+data/processed/burden_structural_uncertainty_step_24_18.csv -text -filter -working-tree-encoding -ident whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+data/processed/model_registry_step_24_11.csv -text -filter -working-tree-encoding -ident whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# END LEGACY CSV ARCHIVE v1.0.0

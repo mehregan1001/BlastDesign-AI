@@ -1,0 +1,5 @@
+method_id,method_name,burden_estimate_m,aggregation_rule,difference_from_legacy_m,difference_from_legacy_percent
+ARITHMETIC_MEAN,Arithmetic mean,6.137371203249507,Mean of all seven models,0.24309964146461027,4.124337314906392
+MEDIAN,Median,5.839369999999999,Middle ordered prediction,-0.0549015617848978,-0.9314393001647276
+SYMMETRIC_TRIMMED_MEAN,Symmetric trimmed mean,6.0902172494279165,Remove one lowest and one highest value,0.1959456876430199,3.324341024825192
+LEGACY_ONE_SIGMA,Legacy one-sigma screening,5.894271561784897,Average predictions inside mean ± 1σ,0.0,0.0

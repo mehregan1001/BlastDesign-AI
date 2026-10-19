@@ -72,3 +72,16 @@ dist/
 
 # Versioned public-interface baseline
 !data/processed/public_api_contract.json
+
+# BEGIN LEGACY CSV ARCHIVE v1.0.0
+!data/processed/burden_aggregation_comparison_step_24_15.csv
+!data/processed/burden_applicability_ledger_step_24_16.csv
+!data/processed/burden_decision_readiness_step_24_20.csv
+!data/processed/burden_evidence_tiers_step_24_17.csv
+!data/processed/burden_leave_one_out_step_24_14.csv
+!data/processed/burden_results_step_24_11.csv
+!data/processed/burden_robust_spread_step_24_15.csv
+!data/processed/burden_screening_scenarios_step_24_17.csv
+!data/processed/burden_structural_uncertainty_step_24_18.csv
+!data/processed/model_registry_step_24_11.csv
+# END LEGACY CSV ARCHIVE v1.0.0

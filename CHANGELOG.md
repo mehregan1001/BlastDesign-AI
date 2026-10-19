@@ -10,6 +10,8 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 ### Fixed
 
+- Recovered four historical burden-analysis CSVs with exact v1.0.0 checksum matches and prepared all ten legacy outputs for version-controlled archival with their original bytes preserved.
+
 - Checksum generation now hashes selected staged Git blob contents, rejects unstaged inputs, and reports local research outputs outside the version-controlled inventory.
 
 ## [1.0.0] - 2026-10-14

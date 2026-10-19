@@ -53,6 +53,22 @@ Git reported no tracked `data/processed/burden_*.csv` files on that branch. Thos
 
 The project should separately decide which historical research outputs to retain under version control. A checksum entry alone does not publish or back up a file.
 
+<!-- BEGIN LEGACY CSV RECOVERY STATUS -->
+## Legacy CSV archive recovery
+
+The four missing CSVs listed above were reconstructed from reviewed code in
+`notebooks/02_blastdesign_model_audit.ipynb`. Each reconstructed file matches its
+original v1.0.0 SHA-256 exactly. The six surviving local CSVs were retained after
+the same original-manifest check. See [Legacy research-output archive](LEGACY_OUTPUT_ARCHIVE.md)
+for the ten-file inventory, reconstruction method, and interpretation limits.
+
+These ten historical CSVs have explicit `.gitignore` exceptions and path-specific
+`.gitattributes` rules preserving their original stored bytes, including CRLF.
+`scripts/recover_legacy_csvs.py --check-staged` verifies the staged copies against
+the original hashes. They enter the current manifest after being staged and after
+normal checksum generation. The published v1.0.0 tag and manifest stay unchanged.
+<!-- END LEGACY CSV RECOVERY STATUS -->
+
 ## Implementation references
 
 - [Git index inventory and stage records](https://git-scm.com/docs/git-ls-files)

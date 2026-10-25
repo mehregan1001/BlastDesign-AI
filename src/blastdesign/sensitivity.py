@@ -180,13 +180,13 @@ def build_gole_gohar_ash_burden_ratio_sensitivity_table(
 def build_gole_gohar_diameter_sensitivity_table(
     hole_diameters_mm: Iterable[float] | None = None,
 ) -> pd.DataFrame:
-    """Build a seven-model diameter-sensitivity comparison.
-
-    The comparison window is greater than 180 mm through 311 mm.
-    This selects the Lopez Jimeno large-hole branch and avoids
-    extrapolating Rustan beyond its documented upper limit.
-
-    The window is not a universal validation domain for all models.
+    """Build the historical seven-model diameter-sensitivity comparison.
+    
+    The retained comparison window is greater than 180 mm through 311 mm.
+    It selects the Lopez Jimeno large-hole branch. Rustan (1992), Eq. 22,
+    reports 89–381 mm; 311 mm remains this study's historical upper limit.
+    
+    The comparison window is not a universal model-validation domain.
     """
 
     if hole_diameters_mm is None:
@@ -297,10 +297,10 @@ def build_gole_gohar_diameter_sensitivity_table(
         "RESEARCH_COMPARATOR_ONLY"
     )
     result.attrs["window_warning"] = (
-        "The comparison window aligns the Lopez Jimeno "
-        "large-hole branch with the documented Rustan "
-        "upper limit; it is not a universal validation "
-        "domain for all models."
+        "The historical comparison window is greater than 180 mm through 311 "
+        "mm and selects the Lopez Jimeno large-hole branch. Rustan (1992), "
+        "Eq. 22, reports 89–381 mm; 311 mm is the retained study limit. The "
+        "window is not a universal validation domain for all models."
     )
 
     return result

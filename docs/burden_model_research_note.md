@@ -3,7 +3,7 @@
 **Author:** Alireza Mehregan  
 **Project:** BlastDesign-AI  
 **Research stage:** Reproducible methodological reconstruction and comparative assessment  
-**Software status:** Python package with 234 passing automated tests
+**Software status:** Python package with 241 passing automated tests
 
 ## 1. Research background
 
@@ -115,7 +115,7 @@ The project currently includes:
 - A reusable decision-contract validator.
 - An explicitly defined package interface.
 - Automated tests covering model behavior, report construction, decision safeguards, and public API consistency.
-- A complete automated test suite containing 234 passing tests.
+- A complete automated test suite containing 241 passing tests.
 - Version-controlled source code and research outputs.
 
 The automated checks include safeguards against unsupported recommendations, duplicated model identifiers, inconsistent numerical ranges, missing model information, and unsupported validation claims.
@@ -681,7 +681,7 @@ JSON sidecar preserves column units and analysis attributes.
 Automated checks cover analytical derivatives against numerical finite
 differences, ratio invariance, reference reproduction, complete grid
 structure, input validation, metadata, and saved-data consistency.
-The project suite currently passes 234 tests and 228 subtests.
+The project suite currently passes 241 tests and 228 subtests.
 
 The analysis retains `RESEARCH_COMPARATOR_ONLY` and provides no
 operational burden recommendation.
@@ -703,3 +703,28 @@ evidence for the tested configuration. It does not establish predictive
 accuracy or independent field validation. The existing
 `RESEARCH_COMPARATOR_ONLY` decision gate and research limitations remain.
 <!-- END PUBLIC API COMPATIBILITY -->
+
+<!-- BEGIN RUSTAN SOURCE REVIEW -->
+## Rustan source-page audit
+
+Visual inspection of Rustan (1992), printed pages 146–147 (E6–E7 in the doctoral
+thesis reprint), confirms Eq. 18's normalization
+`B_p1 = sqrt(B_p * S_p)` and Eq. 22's **89–381 mm** open-pit diameter interval.
+The applicability helper is corrected to that interval. The existing 181–311 mm
+diameter-comparison grid is retained independently for reproducibility.
+
+Eq. 22 prints **18.1**, while Figure 5's surface-mine label prints **18.8**. The
+implementation continues following the explicit numbered equation with 18.1;
+the conflicting figure label is recorded as an unresolved source discrepancy.
+No numerical burden expression or saved numerical artifact changes.
+
+Rustan's normalized practical burden is not an arbitrary-spacing burden
+prescription. The seven-model study compares reconstructed legacy outputs;
+complete harmonization of their engineering target definitions remains open.
+This limits interpretation of the ensemble spread as disagreement about an
+identical operational design target. Historical evidence-tier CSVs remain
+unchanged archival records.
+
+See [the Rustan source-page audit](RUSTAN_SOURCE_AUDIT.md). The
+`RESEARCH_COMPARATOR_ONLY` decision gate remains in force.
+<!-- END RUSTAN SOURCE REVIEW -->

@@ -92,6 +92,23 @@ All seven model outputs increase with diameter, although at different rates. The
 The changing range reflects structural differences and ranking changes among the empirical equations. It does not identify an optimal diameter or represent calibrated predictive uncertainty.
 
 See the [detailed diameter sensitivity analysis](docs/diameter_sensitivity_analysis.md) for the fixed inputs, numerical interpretation, limitations, and reproducibility information.
+
+<!-- BEGIN RUSTAN SOURCE REVIEW -->
+### Rustan source clarification
+
+The visually checked Rustan (1992) Eq. 22 reports **89–381 mm**. The historical
+181–311 mm all-model comparison grid is retained as a study choice. The
+applicability helper now uses the published 381 mm upper bound.
+
+Rustan's output is normalized practical burden for `S/B = 1`. Eq. 22's coefficient
+**18.1** is retained; Figure 5's conflicting **18.8** label is documented. The
+comparison remains a research comparison of legacy equation outputs, with source
+definitions still requiring harmonization across models.
+
+See [the Rustan source-page audit](docs/RUSTAN_SOURCE_AUDIT.md) for the verified
+page readings, compatibility implications, and interpretation limits.
+<!-- END RUSTAN SOURCE REVIEW -->
+
 ## Controlled UCS sensitivity analysis
 
 The project includes a deterministic one-factor analysis of uniaxial compressive strength while the other reconstructed Gole Gohar inputs remain fixed.
@@ -388,7 +405,7 @@ The software includes:
 - A documented public Python package interface.
 - A command-line report validator.
 - Automated checks for unsupported recommendations and inconsistent model outputs.
-- A full test suite with **234 passing tests**.
+- A full test suite with **241 passing tests**.
 
 ## Run the automated tests
 
@@ -403,7 +420,7 @@ python -m pytest -v
 Expected result:
 
 ```text
-234 passed, 228 subtests passed
+241 passed, 228 subtests passed
 ```
 ## Regenerate the integrity manifest
 

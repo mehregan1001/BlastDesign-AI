@@ -96,19 +96,28 @@ def konya_1983_burden(
 
 
 def rustan_burden(hole_diameter_mm) -> float:
-    """Rustan (1990/1992): B = 18.1 d^0.689, with d and B in metres."""
+    """Return the normalized practical burden from Rustan (1992), Eq. 22.
+    
+    The existing metre-based expression is B_p1 = 18.1 * d**0.689.
+    B_p1 corresponds to S/B = 1, not an arbitrary-spacing prescription.
+    The conflicting Figure 5 coefficient is recorded in the source audit.
+    """
     diameter_m = positive_float(hole_diameter_mm, "hole_diameter_mm") / 1000.0
     return 18.1 * diameter_m**0.689
 
 
 def rustan_applicability(hole_diameter_mm) -> str:
-    """Classify the diameter against the documented 89–311 mm thesis range."""
+    """Screen the 89–381 mm interval reported by Rustan (1992), Eq. 22.
+
+    This diameter screen does not verify other source conditions or
+    establish site-specific predictive accuracy.
+    """
     diameter_mm = positive_float(hole_diameter_mm, "hole_diameter_mm")
     if diameter_mm < 89:
         return "Outside documented domain: below 89 mm"
-    if diameter_mm <= 311:
-        return "Within documented 89–311 mm domain"
-    return "Extrapolation: above documented 311 mm limit"
+    if diameter_mm <= 381:
+        return "Within documented 89–381 mm domain"
+    return "Extrapolation: above documented 381 mm limit"
 
 
 def tatiya_al_ajmi_coefficients(ucs_mpa) -> dict:

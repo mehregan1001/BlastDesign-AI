@@ -6,7 +6,7 @@ Implementation reviewed: the contents of `src/blastdesign/burden.py` supplied by
 
 This document traces the seven Python burden equations to the MSc thesis and records the extent of the external source checks. The implementations can be traced to the thesis equations and tables, including documented corrections. Verification against the original publications remains incomplete. The review also identifies differences between source conditions and the inputs accepted by the software.
 
-This is an initial provenance audit. It does not change the equations, public API, compatibility baseline, reference scenario, evidence tiers, or saved numerical results. Findings below are review items, not changes already made to the software.
+The initial 17 October audit recorded review items without changing the software. The Rustan follow-up on 25 October 2026 visually checked printed pages 146–147, corrected the applicability screen to the reported 89–381 mm interval, and clarified the output definition. Implemented follow-ups are marked explicitly; the other findings remain review items. Burden equations, public signatures, sampling grids, the compatibility baseline, reference inputs, historical tiers, and saved numerical artifacts remain unchanged.
 
 ## Evidence recorded by this review
 
@@ -108,11 +108,33 @@ The coefficient 12 is consistent with the same feet/inches conversion used above
 
 Functions: `rustan_burden(hole_diameter_mm)` and `rustan_applicability(hole_diameter_mm)`.
 
-The thesis prints millimetres beside Eq. 2-11, but the code uses metres. Its benchmark supports that reconstruction. The applicability helper records 89–311 mm; the numerical function itself accepts any positive diameter.
+The thesis prints millimetres beside Eq. 2-11, but the implementation uses metres.
+Its benchmark supports that reconstruction. The numerical function continues
+using coefficient 18.1 and exponent 0.689 and accepts positive diameters; its
+separate applicability helper supplies the diameter-range screen.
 
-Rustan's 1992 paper [R] was checked through an extracted full-text reproduction, with publication identity corroborated by LTU. Section 4.3, Eq. 22 reports the implemented expression over **89–381 mm**, conflicting with the thesis. Its burden is normalized to spacing/burden equal to one; Section 4.2 defines that quantity using the square root of practical burden times practical spacing. The paper also assumes coupled charges.
+On 25 October 2026, printed pages 146–147 (E6–E7 in the institutional thesis
+reprint) were visually checked [R]. Page 146, Eq. 18 defines
+`B_p1 = sqrt(B_p * S_p)` as practical burden normalized to `S/B = 1`.
+Page 147, Section 4.3 and the line below Eq. 22 both report **89–381 mm**.
+The helper is corrected from its thesis-derived 311 mm upper limit to 381 mm.
+The historical 181–311 mm all-model comparison grid remains unchanged.
 
-This distinction affects interpretation of the seven-model comparison. The source scan should be visually checked before changing the applicability helper, diameter grid, or associated documentation. The v1.0.0 values remain unchanged by this review.
+Page 147 prints **18.1** in Eq. 22 but **18.8** in Figure 5's surface-mine label.
+The implementation retains the explicit numbered Eq. 22 coefficient. The
+conflicting label is a recorded source discrepancy, not a resolved author erratum.
+
+The output definition affects interpretation of the seven-model comparison:
+normalized practical burden must not silently be treated as an arbitrary-spacing
+burden prescription. The engineering target definitions and geometry/charging
+assumptions of all seven sources have not yet been fully harmonized. The earlier
+coupled-charge assumption was checked in extracted text outside these two page
+images; this visual check does not extend to every source page or condition.
+
+See [the Rustan source-page audit](RUSTAN_SOURCE_AUDIT.md) for the exact readings,
+compatibility implications, regression checks, and review-input identifiers.
+Released v1.0.0 artifacts and the ten historical legacy CSVs retain their original
+values and wording.
 
 ## Tatiya and Al-Ajmi
 
@@ -136,12 +158,13 @@ Published tests of the historical relationship do not constitute independent fie
 
 | ID | Item | Next evidence needed |
 |---|---|---|
-| P01 | Rustan's published upper diameter differs from the thesis-derived helper | Inspect the original page image for Section 4.3/Eq. 22; review the helper, tests, grid rationale, and research text together |
+| P01 | Rustan source interval verified as 89–381 mm and helper corrected; historical grid retained | Resolved range check on printed pp. 146–147/E6–E7; source-definition harmonization remains under P02 |
 | P02 | Diameter can mean charge diameter or hole diameter | Record the source definition for each equation and the coupling assumption used in comparisons |
 | P03 | Tatiya diameter scope is not enforced by the function | Check the full article and decide how source applicability will be represented without silently changing the public numerical interface |
 | P04 | Konya exponent 0.33 differs from a cube root | Identify the intended source edition and preserve the legacy expression unless a separately documented correction is justified |
 | P05 | Several citations stop at a secondary source or publication record | Obtain exact pages/equation or table identifiers for Ash, Bhandari–Vutukuri, López Jimeno, and both Konya versions |
 | P06 | Branch acceptance can exceed documented scenario coverage | Check small-hole charging assumptions, diameter limits, and endpoint conventions against the complete source tables |
+| P07 | Rustan Figure 5 prints 18.8 while Eq. 22 prints 18.1 | Retain explicit Eq. 22 in the reconstruction; record the discrepancy without asserting an author-issued correction |
 
 A future correction should identify the affected source claim, retain the released v1.0.0 record, assess API compatibility, and regenerate affected numerical artifacts only when a numerical change has actually been made.
 
@@ -155,7 +178,7 @@ A future correction should identify the affected source claim, retain the releas
 
 **[K] Later author-coauthored reference.** Konya, C.J., and Walter, E.J., 1991. *Rock Blasting and Overbreak Control*. FHWA-HI-92-001. [USDOT record](https://rosap.ntl.bts.gov/view/dot/743); [FHWA text](https://www.fhwa.dot.gov/engineering/geotech/pubs/012844.pdf), historical discussion of burden equations, printed p. 352. The relevant indexed text was inspected; this is not a claim to have inspected the original 1972 or 1983 publications.
 
-**[R] Original research publication.** Rustan, R. Agne, 1992. *Burden, spacing and borehole diameter at rock blasting*. International Journal of Surface Mining, Reclamation and Environment 6(3), 141–149. [DOI](https://doi.org/10.1080/09208119208944329); [LTU publication record](https://ltu.diva-portal.org/smash/record.jsf?pid=diva2:982260). Relevant extracted text: Sections 4.2–4.3, Eqs. 18 and 22; [reproduction inspected](https://www.scribd.com/document/383336301/Rustan-1992). Original page-image verification remains open.
+**[R] Original research publication.** Rustan, R. Agne, 1992. *Burden, spacing and borehole diameter at rock blasting*. International Journal of Surface Mining, Reclamation and Environment 6(3), 141–149. [DOI](https://doi.org/10.1080/09208119208944329); [LTU publication record](https://ltu.diva-portal.org/smash/record.jsf?pid=diva2:982260). Visually checked on 25 October 2026: printed pp. 146–147/E6–E7, Sections 4.2–4.3, Eqs. 18 and 22, and the Figure 5 label; [reproduction inspected](https://www.scribd.com/document/383336301/Rustan-1992). These supplied page images verify the stated range and normalization and expose the coefficient-label discrepancy; other source conditions are not certified by this two-page check.
 
 **[T] Original research publication identified.** Tatiya, R.R., and Al-Ajmi, A., 2000. *Evaluation of the Atlas Copco relation between burden and blast-hole diameter and rock strength at bench blasting — a case study*. International Journal of Surface Mining, Reclamation and Environment 14(2), 151–160. [DOI](https://doi.org/10.1080/13895260008953310); [authors' university record](https://squ.elsevierpure.com/en/publications/evaluation-of-the-atlas-copco-relation-between-burden-and-blast-h/). Publication metadata and abstract inspected; full coefficient table not inspected.
 

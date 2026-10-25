@@ -513,3 +513,21 @@ burden_m
 - The integrated-summary `unit` field identifies each varied parameter's unit.
 - Counts, response flags, identifiers, and JSON list fields are not physical measurements.
 - Low-level numerical outputs and model disagreement remain research comparisons.
+
+<!-- BEGIN RUSTAN SOURCE REVIEW -->
+## Rustan applicability-source correction (Unreleased)
+
+`blastdesign.rustan_applicability(hole_diameter_mm)` now screens the reported
+89–381 mm interval of Rustan (1992), Eq. 22, including both endpoints. Calls above
+311 through 381 mm therefore change classification; the returned inside-range
+and upper-extrapolation strings report 381 mm. This is a documented source-range
+correction, not a recapture of the v1.0.0 compatibility baseline.
+
+`blastdesign.rustan_burden(hole_diameter_mm)` retains its argument, millimetre
+input conversion, and numerical expression with coefficient 18.1. Its output
+represents normalized practical burden for `S/B = 1`. The historical all-model
+diameter-comparison grid and input window stay unchanged.
+
+See [the Rustan source-page audit](RUSTAN_SOURCE_AUDIT.md) for the printed evidence
+and the conflicting Figure 5 label. No new predictive-validation claim is made.
+<!-- END RUSTAN SOURCE REVIEW -->

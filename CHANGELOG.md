@@ -6,13 +6,21 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 ### Added
 
+- Rustan source-page audit documenting normalized practical burden, the Eq. 22/Figure 5 coefficient discrepancy, and seven regression checks for the source interval and retained comparison window.
+
 - Burden-equation provenance document mapping the seven implementations to thesis locations and recording unresolved original-source checks.
 
 ### Fixed
 
+- Corrected Rustan's applicability screen to the visually verified 89–381 mm interval in the 1992 paper; retained the historical 181–311 mm comparison grid and updated its explanatory metadata.
+
 - Recovered four historical burden-analysis CSVs with exact v1.0.0 checksum matches and prepared all ten legacy outputs for version-controlled archival with their original bytes preserved.
 
 - Checksum generation now hashes selected staged Git blob contents, rejects unstaged inputs, and reports local research outputs outside the version-controlled inventory.
+
+### Changed
+
+- Updated the current documented test count to 241 after the complete suite passed.
 
 ## [1.0.0] - 2026-10-14
 

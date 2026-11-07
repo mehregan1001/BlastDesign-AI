@@ -159,7 +159,7 @@ Published tests of the historical relationship do not constitute independent fie
 | ID | Item | Next evidence needed |
 |---|---|---|
 | P01 | Rustan source interval verified as 89–381 mm and helper corrected; historical grid retained | Resolved range check on printed pp. 146–147/E6–E7; source-definition harmonization remains under P02 |
-| P02 | Diameter can mean charge diameter or hole diameter | Record the source definition for each equation and the coupling assumption used in comparisons |
+| P02 | Diameter and burden definitions require model-specific reconciliation | See [BURDEN_QUANTITY_AUDIT.md](BURDEN_QUANTITY_AUDIT.md); source completion and target harmonization remain open |
 | P03 | Tatiya diameter scope is not enforced by the function | Check the full article and decide how source applicability will be represented without silently changing the public numerical interface |
 | P04 | Konya exponent 0.33 differs from a cube root | Identify the intended source edition and preserve the legacy expression unless a separately documented correction is justified |
 | P05 | Several citations stop at a secondary source or publication record | Obtain exact pages/equation or table identifiers for Ash, Bhandari–Vutukuri, López Jimeno, and both Konya versions |

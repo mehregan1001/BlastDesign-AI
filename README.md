@@ -81,6 +81,18 @@ The two audited model branches still disagree by approximately **1.210 m**.
 
 This disagreement represents structural differences between empirical equations. It is not a confidence interval, a calibrated uncertainty estimate, or evidence that either result is correct for a particular mine.
 
+<!-- BEGIN BURDEN QUANTITY AUDIT -->
+### Engineering definitions in the comparison
+
+The seven-model statistics summarize reconstructed legacy formula outputs.
+Their diameter definitions, burden targets, and charging/geometry assumptions
+have not yet been fully harmonized across the original sources.
+The spread may reflect definition and source-condition differences as well as
+equation differences; these contributions have not been separated.
+See the [definition audit](docs/BURDEN_QUANTITY_AUDIT.md).
+The decision gate remains `RESEARCH_COMPARATOR_ONLY`.
+<!-- END BURDEN QUANTITY AUDIT -->
+
 ## Diameter sensitivity analysis
 
 A controlled one-factor-at-a-time analysis was performed by varying hole diameter from 181 to 311 mm while keeping the other reference inputs fixed.

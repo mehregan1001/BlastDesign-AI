@@ -728,3 +728,15 @@ unchanged archival records.
 See [the Rustan source-page audit](RUSTAN_SOURCE_AUDIT.md). The
 `RESEARCH_COMPARATOR_ONLY` decision gate remains in force.
 <!-- END RUSTAN SOURCE REVIEW -->
+
+<!-- BEGIN BURDEN QUANTITY AUDIT -->
+## Engineering definitions and comparability
+
+The evaluator's shared hole-diameter input and `burden_m` column reproduce the
+legacy comparison but do not establish identical original-source quantities.
+Ensemble statistics are descriptive summaries of reconstructed formula outputs.
+The contributions of equation differences and unresolved definition/condition
+differences have not been separated. A/B/C tiers do not certify quantity
+equivalence. See the [definition audit](BURDEN_QUANTITY_AUDIT.md).
+Historical results are retained; `RESEARCH_COMPARATOR_ONLY` still applies.
+<!-- END BURDEN QUANTITY AUDIT -->

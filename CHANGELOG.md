@@ -6,6 +6,8 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 ### Added
 
+- Seven-model diameter and burden definition audit recording evidence and unresolved source definitions.
+
 - Rustan source-page audit documenting normalized practical burden, the Eq. 22/Figure 5 coefficient discrepancy, and seven regression checks for the source interval and retained comparison window.
 
 - Burden-equation provenance document mapping the seven implementations to thesis locations and recording unresolved original-source checks.
@@ -19,6 +21,8 @@ All notable changes to BlastDesign-AI will be documented in this file.
 - Checksum generation now hashes selected staged Git blob contents, rejects unstaged inputs, and reports local research outputs outside the version-controlled inventory.
 
 ### Changed
+
+- Clarified the interpretation of legacy ensemble statistics while source quantity harmonization remains incomplete.
 
 - Updated the current documented test count to 241 after the complete suite passed.
 

@@ -6,6 +6,8 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 ### Added
 
+- Visually checked Konya source-page audit and regression against FHWA worked Example 6.2.
+
 - Seven-model diameter and burden definition audit recording evidence and unresolved source definitions.
 
 - Rustan source-page audit documenting normalized practical burden, the Eq. 22/Figure 5 coefficient discrepancy, and seven regression checks for the source interval and retained comparison window.
@@ -22,9 +24,11 @@ All notable changes to BlastDesign-AI will be documented in this file.
 
 ### Changed
 
+- Clarified charge-diameter assumptions in the Konya docstrings while preserving numerical equations, public arguments, and saved research outputs.
+
 - Clarified the interpretation of legacy ensemble statistics while source quantity harmonization remains incomplete.
 
-- Updated the current documented test count to 241 after the complete suite passed.
+- Updated the current documented test count to 242 after the complete suite passed, including 228 passing subtests.
 
 ## [1.0.0] - 2026-10-14
 

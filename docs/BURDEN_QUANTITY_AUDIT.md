@@ -2,6 +2,8 @@
 
 Review date: 31 October 2026.
 
+Konya follow-up: 15 November 2026; see [the source-page audit](KONYA_SOURCE_AUDIT.md).
+
 ## Scope
 
 The current evaluator supplies one hole-diameter input to seven reconstructed
@@ -17,7 +19,7 @@ conditions, or burden quantities.
 | Bhandari–Vutukuri | MSc Eq. 2-6 identifies hole diameter in metres. | The originating source's practical/maximum/nominal burden convention remains unresolved. Inspect the cited book page and original publication. |
 | Lopez Jimeno | MSc Tables 2-3 and 2-4 identify hole diameter. | Inspect the original table headings and surrounding text for burden, charging, geometry, adjustment, and branch conditions. |
 | Konya 1972 | The MSc thesis and later FHWA handbook identify explosive charge diameter. | The code passes hole diameter and retains exponent 0.33. Verify the originating publication and its burden conditions; the later handbook is not a complete original-source audit. |
-| Konya 1983 | The MSc equation shares the preceding charge-diameter context. | This is a thesis-context reading. Verify the original 1983 variable definitions and burden conditions; do not treat the handbook's 1972 definition as independent verification of this version. |
+| Konya 1983 | The visually checked FHWA Eq. 6.2 defines charge diameter; see [the follow-up audit](KONYA_SOURCE_AUDIT.md). | This later author-coauthored reference supports the linear reconstruction. The originating 1983 publication and full cross-model target harmonization remain to be checked. |
 | Rustan | The existing source audit records borehole diameter and the 89–381 mm interval. | Eq. 18 defines normalized practical burden B_p1 = sqrt(B_p * S_p), and Eq. 22 estimates B_p1 for S/B = 1. Retain the documented 18.1/18.8 source discrepancy and establish any mapping to another burden target. |
 | Tatiya–Al-Ajmi | The thesis and authors' institutional abstract identify blast-hole diameter. | The full coefficient table and precise burden convention remain unchecked. Record the ANFO condition and reported 25–304 mm study scope. |
 

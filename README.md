@@ -417,7 +417,7 @@ The software includes:
 - A documented public Python package interface.
 - A command-line report validator.
 - Automated checks for unsupported recommendations and inconsistent model outputs.
-- A full test suite with **241 passing tests**.
+- A full test suite with **242 passing tests**.
 
 ## Run the automated tests
 
@@ -432,7 +432,7 @@ python -m pytest -v
 Expected result:
 
 ```text
-241 passed, 228 subtests passed
+242 passed, 228 subtests passed
 ```
 ## Regenerate the integrity manifest
 

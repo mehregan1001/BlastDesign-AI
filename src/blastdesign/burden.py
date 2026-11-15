@@ -76,7 +76,13 @@ def konya_1972_burden(
     explosive_density_g_cm3,
     rock_density_g_cm3,
 ) -> float:
-    """Metric Konya (1972): B = 37.8 d (rho_e/rho_r)^0.33."""
+    """Return the legacy metric Konya (1972) reconstruction.
+
+    Retains exponent 0.33 rather than substituting an exact cube root.
+    The shared hole-diameter input assumes equal charge diameter; this
+    function has no separate charge-diameter or decoupling argument.
+    See docs/KONYA_SOURCE_AUDIT.md for the FHWA source definitions.
+    """
     diameter_m = positive_float(hole_diameter_mm, "hole_diameter_mm") / 1000.0
     rho_e = positive_float(explosive_density_g_cm3, "explosive_density_g_cm3")
     rho_r = positive_float(rock_density_g_cm3, "rock_density_g_cm3")
@@ -88,7 +94,13 @@ def konya_1983_burden(
     explosive_density_g_cm3,
     rock_density_g_cm3,
 ) -> float:
-    """Verified metric Konya (1983): B = 12 d (2 rho_e/rho_r + 1.5)."""
+    """Return B = 12 d (2 rho_e/rho_r + 1.5), with d in metres.
+
+    FHWA (1991), Eq. 6.2, uses explosive charge diameter. The legacy
+    hole_diameter_mm name is retained; the shared comparator assumes
+    equal hole and charge diameters. No separate charge geometry is
+    represented. See docs/KONYA_SOURCE_AUDIT.md for the source check.
+    """
     diameter_m = positive_float(hole_diameter_mm, "hole_diameter_mm") / 1000.0
     rho_e = positive_float(explosive_density_g_cm3, "explosive_density_g_cm3")
     rho_r = positive_float(rock_density_g_cm3, "rock_density_g_cm3")
